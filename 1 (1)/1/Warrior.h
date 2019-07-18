@@ -4,7 +4,7 @@ class Warrior :public Character
 {
 public:
 	Warrior();
-	void ShowCharacter();
+	void InputData(int Class = NULL);
 
 	~Warrior();
 };

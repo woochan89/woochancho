@@ -4,8 +4,15 @@
 
 Warrior::Warrior()
 {
+}
+
+void Warrior::InputData(int Class)
+{
 	int ClassStat;
-	Class = RandClass();
+	if (Class == NULL)
+		m_iClass = RandClass();
+	else
+		m_iClass = Class;
 	if (Class == 1)
 		ClassStat = 5;
 	else if (Class == 2)
@@ -16,20 +23,15 @@ Warrior::Warrior()
 		ClassStat = 2;
 	else
 		ClassStat = 1;
-	Name = "전사";
-	Lv = 1;
-	Atk = 1 + ClassStat;
-	Def = 1 + ClassStat;
-	Range = 3;
-	MaxHp = 10 + ClassStat;
-	CurHp = MaxHp;
-}
+	m_sName = "전사";
+	m_iLv = 1;
+	m_iAtk = 1 + ClassStat;
+	m_iDef = 1 + ClassStat;
+	m_iRange = 3;
+	m_iMaxHp = 10 + ClassStat;
+	m_iCurHp = m_iMaxHp;
 
-void Warrior::ShowCharacter()
-{
-	cout << Name << "   " << Class<<" 등급";
 }
-
 
 Warrior::~Warrior()
 {

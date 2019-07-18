@@ -13,14 +13,14 @@ private:
 	bool m_bFacilityFlag;
 	Draw DrawManager;
 	Dungeon DungeonManager;
-	static Character *CharacterList[3];
+	Character *CharacterList[3];
 	Character *tmp[5];
 public:
 	void GameStart();
 	void Menu();
-	void AssemblyFacility();
 	void ShowStatus();
+	void HireCharacter();
+	void AssemblyFacility();
 	Village();
 	~Village();
 };
-

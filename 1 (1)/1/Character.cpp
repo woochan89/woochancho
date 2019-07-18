@@ -25,11 +25,6 @@ int Character::RandClass()
 	return Class;
 }
 
-void Character::InputData(int Number,Character *Char)
-{
-	
-}
-
 Character::~Character()
 {
 }

@@ -4,7 +4,7 @@ class Magician :public Character
 {
 public:
 	Magician();
-	void ShowCharacter();
+	void InputData(int Class = NULL);
 
 	~Magician();
 };

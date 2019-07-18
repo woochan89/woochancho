@@ -4,8 +4,7 @@ class Archer:public Character
 {
 public:
 	Archer();
-	void ShowCharacter();
-
+	void InputData(int Class=NULL);
 	~Archer();
 };
 
