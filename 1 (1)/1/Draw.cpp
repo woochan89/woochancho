@@ -83,7 +83,7 @@ void Draw::DrawBox()
 	}
 }
 
-int Draw::DrawCursor(int Volume, int StartX, int StartY)
+int Draw::DrawCursor(int Volume, int StartX, int StartY,int Space)
 {
 	int Y = StartY;
 	char ch;
@@ -98,11 +98,11 @@ int Draw::DrawCursor(int Volume, int StartX, int StartY)
 			{
 			case 'w':
 				if (Y > StartY)
-					Y -= 2;
+					Y -= Space;
 				break;
 			case 's':
 				if (Y+2 < StartY + (Volume * 2))
-					Y += 2;
+					Y += Space;
 				break;
 			case 13://ฟฃลอ
 				return ((Y - StartY)*0.5) + 1;

@@ -25,6 +25,20 @@ int Character::RandClass()
 	return Class;
 }
 
+void Character::ShowStat(int X, int Y)
+{
+	DrawManager.gotoxy(X, Y);
+	cout << "┌─────────────────┐" ;
+	DrawManager.gotoxy(X, Y+1);
+	cout << "  이름 : " << m_sName << "\t 등급 : " << m_iClass << "\t레벨 : " << m_iLv<<endl;
+	DrawManager.gotoxy(X, Y+2);
+	cout << "  ATK : " << m_iAtk << "\t DEF : " << m_iDef << endl;
+	DrawManager.gotoxy(X, Y+3);
+	cout << "  사정거리 : " << m_iRange << "\t" << m_iCurHp <<"/"<<m_iMaxHp<< endl;
+	DrawManager.gotoxy(X, Y+4);
+	cout << "└─────────────────┘" << endl;
+}
+
 Character::~Character()
 {
 }

@@ -12,7 +12,7 @@ public:
 	void TextDraw(string str, int x, int y);
 	void ErasePoint(int x, int y);
 	void DrawBox();
-	int DrawCursor(int Volume,int StartX,int StartY);
+	int DrawCursor(int Volume,int StartX,int StartY,int Space=2);
 	inline void gotoxy(int x, int y)
 	{
 		COORD Pos = { x, y };

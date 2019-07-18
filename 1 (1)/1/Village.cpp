@@ -81,6 +81,7 @@ void Village::Menu()
 			}
 			break;
 		case 5:
+			AdjustCharacter();
 			break;
 		case 6:
 			return;
@@ -96,6 +97,48 @@ void Village::ShowStatus()
 
 void Village::HireCharacter()
 {
+	int Select;
+	system("cls");
+	DrawManager.DrawBox();
+	DrawManager.DrawMidText("기존 용병을 해고후 새로운 용병을 고용하시겠습니까?",WIDTH,HEIGHT*0.5-4);
+	DrawManager.DrawMidText("예",WIDTH,HEIGHT*0.5-2);
+	DrawManager.DrawMidText("아니오",WIDTH,HEIGHT*0.5-0);
+	Select = DrawManager.DrawCursor(2, WIDTH*0.5 - 5, HEIGHT*0.5 - 2);
+	switch (Select)
+	{
+	case 1:
+			system("cls");
+			DrawManager.DrawBox();
+			DrawManager.DrawMidText("< 현 재 용 병 >", WIDTH, HEIGHT*0.5 - 6);
+			for (int i = 0,j=-4; i < 3; i++,j+=2)
+			{
+				DrawManager.gotoxy(WIDTH*0.5 + 15, HEIGHT*0.5 + j);
+				cout << CharacterList[i]->OutputName() << "  " << CharacterList[i]->OutputClass() << " 등급";
+			}
+			Select = DrawManager.DrawCursor(3, WIDTH*0.5 - 5, HEIGHT*0.5 - 4);
+			DrawManager.gotoxy(10, HEIGHT*0.5);
+			cout << CharacterList[Select - 1]->OutputName() << "를 해고하였습니다!";
+			if (Select == 1)
+			{
+				delete CharacterList[0];
+				CharacterList[0] = NULL;
+			}
+			else if(Select==2)
+			{
+				delete CharacterList[1];
+				CharacterList[1] = NULL;
+			}
+			else
+			{
+				delete CharacterList[2];
+				CharacterList[2] = NULL;
+			}
+			DrawManager.gotoxy(0, HEIGHT);
+			system("pause");
+		break;
+	case 2:
+		return;
+	}
 
 }
 
@@ -103,7 +146,8 @@ void Village::AssemblyFacility()//집회구역
 {
 	int Select;
 	int CharacterNum;
-	if (m_bFacilityFlag = true)
+	int CharacterNumber=0;
+	if (m_bFacilityFlag == true)
 	{
 		if (tmp[0] != NULL)//널체크
 		{
@@ -132,15 +176,16 @@ void Village::AssemblyFacility()//집회구역
 		system("cls");
 		DrawManager.DrawBox();
 		DrawManager.DrawMidText("< 집 회 구 역 >", WIDTH, HEIGHT*0.5 -6);
-		for (CharacterNum = 0; CharacterNum < 5; CharacterNum++,i++)
+		for (CharacterNum = 0; CharacterNum < 5; CharacterNum++ ,i++)
 		{
-			if (tmp[CharacterNum] == NULL)
-				CharacterNum++;
 			DrawManager.gotoxy(WIDTH*0.5 + 15, HEIGHT*0.5 + 2 * i);
-			cout << tmp[CharacterNum]->OutputName() << "  " << tmp[CharacterNum]->OutputClass() << " 등급";
+			if (tmp[CharacterNum] == NULL)
+				cout << "공 석";
+			else
+				cout << tmp[CharacterNum]->OutputName() << "  " << tmp[CharacterNum]->OutputClass() << " 등급";
 		}
 		DrawManager.DrawMidText("나가기", WIDTH, HEIGHT*0.5 + 2 * i);
-		Select = DrawManager.DrawCursor(CharacterNum, WIDTH*0.5 - 5, HEIGHT*0.5 - 4);
+		Select = DrawManager.DrawCursor(CharacterNum+1, WIDTH*0.5 - 5, HEIGHT*0.5 - 4);
 		switch (Select)
 		{
 		case 1:
@@ -148,21 +193,63 @@ void Village::AssemblyFacility()//집회구역
 		case 3:
 		case 4:
 		case 5:
+			if (tmp[Select - 1] == NULL)
+			{
+				DrawManager.DrawMidText("이미 선택된 용병입니다.", WIDTH, HEIGHT*0.5);
+				DrawManager.gotoxy(0, HEIGHT);
+				system("pause");
+				break;
+
+			}
+			if (CharacterList[0]!=NULL&& CharacterList[1] != NULL && CharacterList[2] != NULL)
+			{
+				DrawManager.DrawMidText("용병이 가득찼습니다.", WIDTH, HEIGHT*0.5);
+				DrawManager.gotoxy(0, HEIGHT);
+				system("pause");
+				HireCharacter();
+				break;
+			}
+			for (CharacterNumber = 0; CharacterNumber < 3; CharacterNumber++)
+			{
+				if (CharacterList[CharacterNumber] == NULL)
+					break;
+			}
 			if (tmp[Select - 1]->OutputName() == "궁수")
-				CharacterList[0] = new Archer();//수정요망
+				CharacterList[CharacterNumber] = new Archer();
 			else if (tmp[Select - 1]->OutputName() == "마법사")
-				CharacterList[0] = new Magician();
+				CharacterList[CharacterNumber] = new Magician();
 			else
-				CharacterList[0] = new Warrior();
-			CharacterList[0]->InputData(tmp[Select - 1]->OutputClass());
+				CharacterList[CharacterNumber] = new Warrior();
+			CharacterList[CharacterNumber]->InputData(tmp[Select - 1]->OutputClass());
 			delete tmp[Select - 1];
 			tmp[Select - 1] = NULL;
 			break;
 		case 6:
-			return;
+			if (CharacterList[0] != NULL && CharacterList[1] != NULL && CharacterList[2] != NULL)
+			{
+				m_bFacilityFlag = false;
+				return;
+			}
+			DrawManager.DrawMidText("용병 3명을 모두 채워주십시오", WIDTH, HEIGHT*0.5);
+			DrawManager.gotoxy(0, HEIGHT);
+			system("pause");
+			break;
 		}
 	}
-	m_bFacilityFlag=false;
+}
+
+void Village::AdjustCharacter()
+{
+	int Select;
+	system("cls");
+	DrawManager.DrawBox();
+	for (int i = 0; i < 3; i++)
+	{
+		CharacterList[i]->ShowStat(WIDTH*0.5, HEIGHT*0.5 - 8 + i * 5);
+	}
+	DrawManager.DrawMidText("나가기", WIDTH, HEIGHT*0.5 + 9);
+	Select = DrawManager.DrawCursor(4, WIDTH*0.5 - 12, HEIGHT*0.5 - 6,5);
+
 }
 
 Village::~Village()

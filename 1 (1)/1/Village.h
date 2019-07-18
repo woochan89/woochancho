@@ -21,6 +21,8 @@ public:
 	void ShowStatus();
 	void HireCharacter();
 	void AssemblyFacility();
+	void AdjustCharacter();
+
 	Village();
 	~Village();
 };
