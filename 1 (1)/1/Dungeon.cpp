@@ -6,7 +6,7 @@ Dungeon::Dungeon()
 {
 }
 
-void Dungeon::Menu()
+void Dungeon::Menu(Character *CharacterList[])
 {
 	int Select;
 	while (true)
@@ -38,12 +38,56 @@ void Dungeon::Menu()
 		case 3:
 		case 4:
 		case 5:
-			Battle::BattleInterface(Select);
+			Battle(Select,CharacterList);
 			break;
 		case 6:
 			return;
 		}
 	}
+}
+
+void Dungeon::Battle(int Floor, Character *CharacterList[])
+{
+	int DmgToPlayer[3];
+	int DmgToEnemy[3];
+	for (int i = 0; i < 3; i++)
+	{
+		MonsterList[i] = new Monster();
+		MonsterList[i]->InputData(Floor,i);
+	}
+	while (1)
+	{
+		for (int i = P1; i <= P3; i++)//데미지 확인
+		{
+			CharacterList[i]->DealToEnemy(DmgToEnemy);
+			MonsterList[i]->DealToEnemy(DmgToPlayer);
+		}
+		for (int i = P1; i <= P3; i++)//데미지 적용
+		{
+			CharacterList[i]->GetDmg(DmgToPlayer,i);
+			MonsterList[i]->GetDmg(DmgToEnemy,i);
+		}
+		for (int i = P1; i <= P3; i++)//전투상태창 표시
+		{
+			CharacterList[i]->ShowBattleStat(PLAYER);
+			MonsterList[i]->ShowBattleStat(MONSTER);
+		}
+		if (MonsterList[0]->WinCheck() && MonsterList[0]->WinCheck() && MonsterList[0]->WinCheck())//승리확인
+		{
+			//레벨업
+			//다음층 진행 여부확인
+		}
+		Sleep(1000);
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		delete MonsterList[i];
+	}
+}
+
+void Dungeon::InputMonsterData()
+{
+
 }
 
 Dungeon::~Dungeon()

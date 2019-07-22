@@ -6,7 +6,7 @@ Magician::Magician()
 {
 }
 
-void Magician::InputData(int Class)
+void Magician::InputData(int Class, int Num)
 {
 	int ClassStat;
 	if (Class == NULL)
@@ -30,7 +30,8 @@ void Magician::InputData(int Class)
 	m_iRange = 3;
 	m_iMaxHp = 10 + ClassStat;
 	m_iCurHp = m_iMaxHp;
-
+	m_iMaxExp = 10;
+	m_iCurExp = 0;
 }
 
 Magician::~Magician()

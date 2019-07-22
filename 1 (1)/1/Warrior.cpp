@@ -6,7 +6,7 @@ Warrior::Warrior()
 {
 }
 
-void Warrior::InputData(int Class)
+void Warrior::InputData(int Class, int Num)
 {
 	int ClassStat;
 	if (Class == NULL)
@@ -30,7 +30,8 @@ void Warrior::InputData(int Class)
 	m_iRange = 3;
 	m_iMaxHp = 10 + ClassStat;
 	m_iCurHp = m_iMaxHp;
-
+	m_iMaxExp = 10;
+	m_iCurExp = 0;
 }
 
 Warrior::~Warrior()

@@ -7,7 +7,7 @@ Archer::Archer()
 
 }
 
-void Archer::InputData(int Class)
+void Archer::InputData(int Class, int Num)
 {
 	int ClassStat;
 	if (Class == NULL)
@@ -31,6 +31,8 @@ void Archer::InputData(int Class)
 	m_iRange = 3;
 	m_iMaxHp = 10 + ClassStat;
 	m_iCurHp = m_iMaxHp;
+	m_iMaxExp = 10;
+	m_iCurExp = 0;
 }
 
 Archer::~Archer()

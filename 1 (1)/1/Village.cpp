@@ -57,7 +57,7 @@ void Village::Menu()
 		switch (Select)
 		{
 		case 1:
-			DungeonManager.Menu();
+			DungeonManager.Menu(CharacterList);
 			break;
 		case 2:
 			break;
