@@ -1,23 +1,5 @@
-﻿  Archer.cpp
-c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-  Character.cpp
-c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-  Dungeon.cpp
-c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\dungeon.cpp(19): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\dungeon.cpp(21): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\dungeon.cpp(23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\dungeon.cpp(25): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\dungeon.cpp(27): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\dungeon.cpp(29): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\dungeon.cpp(31): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\dungeon.cpp(33): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Magician.cpp
-c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-  Monster.cpp
-c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-  Village.cpp
-c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+﻿  Village.cpp
+c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(20): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
 c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(10): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
 c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(24): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -38,20 +20,14 @@ c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(112): warning C4244: '인수
 c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(115): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(118): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(119): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(178): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(181): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(187): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(179): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(182): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(188): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(198): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(206): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(233): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(248): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(250): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(189): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(199): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(207): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(234): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(249): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(251): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Warrior.cpp
-c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-  소스.cpp
-c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\소스.cpp(23): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-  코드를 생성하고 있습니다...
+c:\users\a10\desktop\woochancho\1 (1)\1\village.cpp(252): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   1.vcxproj -> C:\Users\A10\Desktop\woochancho\1 (1)\x64\Debug\1.exe

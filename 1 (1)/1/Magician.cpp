@@ -25,13 +25,28 @@ void Magician::InputData(int Class, int Num)
 		ClassStat = 1;
 	m_sName = "마법사";
 	m_iLv = 1;
-	m_iAtk = 1 + ClassStat;
+	m_iAtk = 3 + ClassStat;
 	m_iDef = 1 + ClassStat;
 	m_iRange = 3;
 	m_iMaxHp = 10 + ClassStat;
 	m_iCurHp = m_iMaxHp;
 	m_iMaxExp = 10;
 	m_iCurExp = 0;
+}
+
+void Magician::GetExp(int Exp)
+{
+	m_iCurExp += Exp;
+	if (m_iCurExp >= m_iMaxExp)
+	{
+		m_iLv++;
+		m_iCurExp -= m_iMaxExp;
+		m_iMaxExp += 5;
+		m_iAtk += 3;
+		m_iDef += 1;
+		m_iMaxHp += 3;
+		Character::Recovery();//체력 회복
+	}
 }
 
 Magician::~Magician()

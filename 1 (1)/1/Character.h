@@ -32,9 +32,10 @@ public:
 	void GetDmg(int Dmg[], int Target);
 	int RandClass();
 	void ShowStat(int X,int Y);
-	void ShowBattleStat(int Check);
+	void ShowBattleStat(int Check,int Num);
 	bool WinCheck();
 	void Recovery(int Percent=100);
+	void DrawCharacter(int x,int y);
 	string OutputName() { return m_sName; }
 	int OutputClass() { return m_iClass; }
 	virtual ~Character();

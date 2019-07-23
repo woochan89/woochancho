@@ -26,7 +26,7 @@ void Archer::InputData(int Class, int Num)
 		ClassStat = 1;
 	m_sName = "±Ã¼ö";
 	m_iLv = 1;
-	m_iAtk = 1 + ClassStat;
+	m_iAtk = 3 + ClassStat;
 	m_iDef = 1 + ClassStat;
 	m_iRange = 3;
 	m_iMaxHp = 10 + ClassStat;

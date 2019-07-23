@@ -39,31 +39,27 @@ void Character::ShowStat(int X, int Y)
 	cout << "└─────────────────┘" << endl;
 }
 
-void Character::ShowBattleStat(int Check)
+void Character::ShowBattleStat(int Check,int Num)
 {
 	int x, y,add;
+	y = HEIGHT * 0.5;
 	if (Check == PLAYER)
 	{
-		x = 20;
-		y = 10;
-		add = -5;
+		x = 45;
+		add = -16;
 	}
 	else
 	{
-		x = 25;
-		y = 10;
-		add = 5;
+		x = 65;
+		add = 16;
 	}
-	for (int i = 0; i < 3; i++)
-	{
-		DrawManager.gotoxy(x+(i*add), y);
-		cout << m_sName << "    LV : " << m_iLv;
-		DrawManager.gotoxy(x + (i*add), y+1);
-		cout << "ATK : " << m_iAtk << "    DEF : " << m_iDef;
-		DrawManager.gotoxy(x + (i*add), y + 1);
-		cout << "HP : " << m_iCurHp << " / " << m_iMaxHp;
-	}
-
+	DrawManager.gotoxy(x+(Num*add), y+1);
+	cout << m_sName << "  LV : " << m_iLv;
+	DrawManager.gotoxy(x + (Num*add), y+2);
+	cout << "ATK:" << m_iAtk << "    DEF:" << m_iDef;
+	DrawManager.gotoxy(x + (Num*add), y + 3);
+	cout << "HP:" << m_iCurHp << "/" << m_iMaxHp<<"   ";
+	DrawCharacter(x + (Num * add) +1,y-7);
 }
 
 void Character::DealToEnemy(int DmgToEnemy[])
@@ -109,6 +105,23 @@ void Character::Recovery(int Percent)
 	m_iCurHp += (m_iMaxHp*Percent*0.01);
 	if (m_iCurHp > m_iMaxHp)
 		m_iCurHp = m_iMaxHp;
+}
+
+void Character::DrawCharacter(int x, int y)
+{
+	//색추가
+	DrawManager.gotoxy(x, y);
+	if (m_iCurHp == 0)
+		cout << "(Ｘ.Ｘ)";
+	else
+		cout << "(ㅇ.ㅇ)";
+	DrawManager.gotoxy(x, y+1);
+	cout<<"─┼─";
+	DrawManager.gotoxy(x, y+2);
+	cout << "  Α  ";
+	DrawManager.gotoxy(x, y+3);
+	cout << " ／ ＼";
+	//색제거
 }
 
 Character::~Character()

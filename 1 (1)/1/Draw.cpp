@@ -41,10 +41,17 @@ void Draw::DrawMidText(string str, int x, int y)
 	gotoxy(x + str.length(), y);
 	return;
 }
+
 void Draw::TextDraw(string str, int x, int y)
 {
 	gotoxy(x, y);
 	cout << str;
+}
+
+void Draw::DrawTextWithBox(string str, int x, int y)
+{
+	DrawMidText(str,x,y);
+	DrawSmallBox((x*0.5)-(str.size()*0.5)-1,y-1,str.size()+2,3);
 }
 
 void Draw::DrawBox()
@@ -77,6 +84,42 @@ void Draw::DrawBox()
 				if (width == 0)
 					cout << "¦¢";
 				else if(width ==WIDTH-1)
+					cout << "¦¢";
+			}
+		}
+	}
+}
+
+void Draw::DrawSmallBox(int x, int y, int Width, int Height)
+{
+	for (int i = 0; i < Height; i++)
+	{
+		for (int j = 0; j < Width; j++)
+		{
+			gotoxy((x+j) * 2, y+i);
+			if (i == 0)
+			{
+				if (j == 0)
+					cout << "¦£";
+				else if (j == Width - 1)
+					cout << "¦¤";
+				else
+					cout << "¦¡";
+			}
+			else if (i == Height - 1)
+			{
+				if (j == 0)
+					cout << "¦¦";
+				else if (j == Width - 1)
+					cout << "¦¥";
+				else
+					cout << "¦¡";
+			}
+			else
+			{
+				if (j == 0)
+					cout << "¦¢";
+				else if (j == Width - 1)
 					cout << "¦¢";
 			}
 		}

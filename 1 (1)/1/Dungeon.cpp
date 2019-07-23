@@ -48,6 +48,7 @@ void Dungeon::Menu(Character *CharacterList[])
 
 void Dungeon::Battle(int Floor, Character *CharacterList[])
 {
+
 	int DmgToPlayer[3];
 	int DmgToEnemy[3];
 	for (int i = 0; i < 3; i++)
@@ -55,6 +56,15 @@ void Dungeon::Battle(int Floor, Character *CharacterList[])
 		MonsterList[i] = new Monster();
 		MonsterList[i]->InputData(Floor,i);
 	}
+	system("cls");
+	DrawManager.DrawBox();
+	DrawManager.gotoxy(WIDTH - (25*2), HEIGHT*0.5 - 2);
+	for (int i = 0; i < 25; i++)//땅그리기
+	{
+		cout << "▨▧";
+	}
+	DrawManager.DrawSmallBox(WIDTH*0.5-25,HEIGHT*0.5-10,50,10);
+
 	while (1)
 	{
 		for (int i = P1; i <= P3; i++)//데미지 확인
@@ -69,8 +79,8 @@ void Dungeon::Battle(int Floor, Character *CharacterList[])
 		}
 		for (int i = P1; i <= P3; i++)//전투상태창 표시
 		{
-			CharacterList[i]->ShowBattleStat(PLAYER);
-			MonsterList[i]->ShowBattleStat(MONSTER);
+			CharacterList[i]->ShowBattleStat(PLAYER,i);
+			MonsterList[i]->ShowBattleStat(MONSTER,i);
 		}
 		if (MonsterList[0]->WinCheck() && MonsterList[0]->WinCheck() && MonsterList[0]->WinCheck())//승리확인
 		{
@@ -78,7 +88,10 @@ void Dungeon::Battle(int Floor, Character *CharacterList[])
 			{
 				CharacterList[i]->GetExp(Floor*3);
 			}
-			//다음층 진행 여부확인
+			DrawManager.DrawMidText("승 리!",WIDTH,HEIGHT*0.5);
+			system("pause");
+			break;//다음층 진행 여부확인
+
 		}
 		Sleep(1000);
 	}
