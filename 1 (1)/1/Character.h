@@ -23,16 +23,18 @@ protected:
 	int m_iCurHp;
 	int m_iMaxExp;
 	int m_iCurExp;
+	int m_iGiveExp;
 public:
 	Character();
 	virtual void InputData(int Class=NULL, int Num = NULL)=0;
+	virtual void GetExp(int Exp)=0;
 	void DealToEnemy(int DmgToEnemy[]);
 	void GetDmg(int Dmg[], int Target);
 	int RandClass();
 	void ShowStat(int X,int Y);
 	void ShowBattleStat(int Check);
 	bool WinCheck();
-	void LevelUp();
+	void Recovery(int Percent=100);
 	string OutputName() { return m_sName; }
 	int OutputClass() { return m_iClass; }
 	virtual ~Character();

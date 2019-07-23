@@ -102,9 +102,13 @@ bool Character::WinCheck()
 	return false;
 }
 
-void Character::LevelUp()
+void Character::Recovery(int Percent)
 {
-
+	if (Percent <= 0)
+		return;
+	m_iCurHp += (m_iMaxHp*Percent*0.01);
+	if (m_iCurHp > m_iMaxHp)
+		m_iCurHp = m_iMaxHp;
 }
 
 Character::~Character()

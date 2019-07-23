@@ -21,6 +21,11 @@ void Monster::InputData(int Class, int Num)
 
 }
 
+void Monster::GetExp(int Exp)
+{
+
+}
+
 Monster::~Monster()
 {
 }

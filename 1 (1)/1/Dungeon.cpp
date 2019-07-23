@@ -74,7 +74,10 @@ void Dungeon::Battle(int Floor, Character *CharacterList[])
 		}
 		if (MonsterList[0]->WinCheck() && MonsterList[0]->WinCheck() && MonsterList[0]->WinCheck())//승리확인
 		{
-			//레벨업
+			for (int i = 0; i < 3; i++)//경험치 획득
+			{
+				CharacterList[i]->GetExp(Floor*3);
+			}
 			//다음층 진행 여부확인
 		}
 		Sleep(1000);

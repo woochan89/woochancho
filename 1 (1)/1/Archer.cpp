@@ -35,6 +35,21 @@ void Archer::InputData(int Class, int Num)
 	m_iCurExp = 0;
 }
 
+void Archer::GetExp(int Exp)
+{
+	m_iCurExp += Exp;
+	if (m_iCurExp >= m_iMaxExp)
+	{
+		m_iLv++;
+		m_iCurExp -= m_iMaxExp;
+		m_iMaxExp += 5;
+		m_iAtk += 3;
+		m_iDef += 1;
+		m_iMaxHp += 3;
+		Character::Recovery();//체력 회복
+	}
+}
+
 Archer::~Archer()
 {
 }
