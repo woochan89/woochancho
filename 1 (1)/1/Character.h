@@ -28,7 +28,7 @@ public:
 	Character();
 	virtual void InputData(int Class=NULL, int Num = NULL)=0;
 	virtual void GetExp(int Exp)=0;
-	void DealToEnemy(int DmgToEnemy[]);
+	void DealToEnemy(int DmgToEnemy[], Character *EnemyList[]);
 	void GetDmg(int Dmg[], int Target);
 	int RandClass();
 	void ShowStat(int X,int Y);

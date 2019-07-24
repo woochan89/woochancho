@@ -14,7 +14,7 @@ private:
 	Draw DrawManager;
 	Character *MonsterList[3];
 public:
-	void Menu(Character *CharacterList[]);
+	void Menu(Character *CharacterList[], int *Money);
 	void Battle(int Floor, Character *CharacterList[]);
 	void InputMonsterData();
 

@@ -39,6 +39,7 @@ void Draw::DrawMidText(string str, int x, int y)
 	gotoxy(x, y);
 	cout << str;
 	gotoxy(x + str.length(), y);
+	gotoxy(0, HEIGHT);
 	return;
 }
 
@@ -52,6 +53,7 @@ void Draw::DrawTextWithBox(string str, int x, int y)
 {
 	DrawMidText(str,x,y);
 	DrawSmallBox((x*0.5)-(str.size()*0.5)-1,y-1,str.size()+2,3);
+	gotoxy(0, HEIGHT);
 }
 
 void Draw::DrawBox()
@@ -144,7 +146,7 @@ int Draw::DrawCursor(int Volume, int StartX, int StartY,int Space)
 					Y -= Space;
 				break;
 			case 's':
-				if (Y+2 < StartY + (Volume * 2))
+				if (Y+Space <= StartY + (Volume * Space))
 					Y += Space;
 				break;
 			case 13://ฟฃลอ

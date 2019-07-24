@@ -6,7 +6,7 @@ Dungeon::Dungeon()
 {
 }
 
-void Dungeon::Menu(Character *CharacterList[])
+void Dungeon::Menu(Character *CharacterList[],int *Money)
 {
 	int Select;
 	while (true)
@@ -20,17 +20,17 @@ void Dungeon::Menu(Character *CharacterList[])
 			else if (i == -2)
 				DrawManager.DrawMidText("고블린 소굴(Lv 1~10)", WIDTH, HEIGHT*0.5 + 2 * i);
 			else if (i == -1)
-				DrawManager.DrawMidText("고블린 소굴(Lv 1~10)", WIDTH, HEIGHT*0.5 + 2 * i);
+				DrawManager.DrawMidText("오크 군락(Lv 1~10)", WIDTH, HEIGHT*0.5 + 2 * i);
 			else if (i == 0)
-				DrawManager.DrawMidText("고블린 소굴(Lv 1~10)", WIDTH, HEIGHT*0.5 + 2 * i);
+				DrawManager.DrawMidText("저주받은 묘지(Lv 1~10)", WIDTH, HEIGHT*0.5 + 2 * i);
 			else if (i == 1)
-				DrawManager.DrawMidText("고블린 소굴(Lv 1~10)", WIDTH, HEIGHT*0.5 + 2 * i);
+				DrawManager.DrawMidText("태초의 섬(Lv 1~10)", WIDTH, HEIGHT*0.5 + 2 * i);
 			else if (i == 2)
-				DrawManager.DrawMidText("고블린 소굴(Lv 1~10)", WIDTH, HEIGHT*0.5 + 2 * i);
+				DrawManager.DrawMidText("용의 둥지(Lv 1~10)", WIDTH, HEIGHT*0.5 + 2 * i);
 			else
 				DrawManager.DrawMidText("나가기", WIDTH, HEIGHT*0.5 + 2 * i);
 		}
-		Select = DrawManager.DrawCursor(6, WIDTH*0.5 - 7, HEIGHT*0.5 - 4);
+		Select = DrawManager.DrawCursor(5, WIDTH*0.5 - 7, HEIGHT*0.5 - 4);
 		switch (Select)
 		{
 		case 1:
@@ -39,6 +39,7 @@ void Dungeon::Menu(Character *CharacterList[])
 		case 4:
 		case 5:
 			Battle(Select,CharacterList);
+			*Money += 100 * Select;
 			break;
 		case 6:
 			return;
@@ -49,8 +50,6 @@ void Dungeon::Menu(Character *CharacterList[])
 void Dungeon::Battle(int Floor, Character *CharacterList[])
 {
 
-	int DmgToPlayer[3];
-	int DmgToEnemy[3];
 	for (int i = 0; i < 3; i++)
 	{
 		MonsterList[i] = new Monster();
@@ -67,22 +66,24 @@ void Dungeon::Battle(int Floor, Character *CharacterList[])
 
 	while (1)
 	{
+		int DmgToPlayer[3] = { 0 };
+		int DmgToMonster[3] = { 0 };
 		for (int i = P1; i <= P3; i++)//데미지 확인
 		{
-			CharacterList[i]->DealToEnemy(DmgToEnemy);
-			MonsterList[i]->DealToEnemy(DmgToPlayer);
+			CharacterList[i]->DealToEnemy(DmgToMonster,MonsterList);
+			MonsterList[i]->DealToEnemy(DmgToPlayer,CharacterList);
 		}
 		for (int i = P1; i <= P3; i++)//데미지 적용
 		{
 			CharacterList[i]->GetDmg(DmgToPlayer,i);
-			MonsterList[i]->GetDmg(DmgToEnemy,i);
+			MonsterList[i]->GetDmg(DmgToMonster,i);
 		}
 		for (int i = P1; i <= P3; i++)//전투상태창 표시
 		{
 			CharacterList[i]->ShowBattleStat(PLAYER,i);
 			MonsterList[i]->ShowBattleStat(MONSTER,i);
 		}
-		if (MonsterList[0]->WinCheck() && MonsterList[0]->WinCheck() && MonsterList[0]->WinCheck())//승리확인
+		if (MonsterList[P1]->WinCheck() && MonsterList[P2]->WinCheck() && MonsterList[P3]->WinCheck())//승리확인
 		{
 			for (int i = 0; i < 3; i++)//경험치 획득
 			{
@@ -91,7 +92,6 @@ void Dungeon::Battle(int Floor, Character *CharacterList[])
 			DrawManager.DrawMidText("승 리!",WIDTH,HEIGHT*0.5);
 			system("pause");
 			break;//다음층 진행 여부확인
-
 		}
 		Sleep(1000);
 	}

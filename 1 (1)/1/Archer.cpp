@@ -10,6 +10,9 @@ Archer::Archer()
 void Archer::InputData(int Class, int Num)
 {
 	int ClassStat;
+	int m_iLv = Num;
+	if (m_iLv == 0)
+		m_iLv = 1;
 	if (Class == NULL)
 		m_iClass = RandClass();
 	else
@@ -25,7 +28,6 @@ void Archer::InputData(int Class, int Num)
 	else
 		ClassStat = 1;
 	m_sName = "±Ã¼ö";
-	m_iLv = 1;
 	m_iAtk = 3 + ClassStat;
 	m_iDef = 1 + ClassStat;
 	m_iRange = 3;

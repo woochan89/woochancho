@@ -28,15 +28,15 @@ int Character::RandClass()
 void Character::ShowStat(int X, int Y)
 {
 	DrawManager.gotoxy(X, Y);
-	cout << "┌─────────────────┐" ;
+	cout << "┌───────────────────────┐" ;
 	DrawManager.gotoxy(X, Y+1);
-	cout << "  이름 : " << m_sName << "\t등급 : " << m_iClass << "\t레벨 : " << m_iLv;
+	cout << "  이름 : " << m_sName << "\t레벨 : " << m_iLv << "\t경험치 " << m_iCurExp << "/" << m_iMaxExp;
 	DrawManager.gotoxy(X, Y+2);
-	cout << "  ATK : " << m_iAtk << "\tDEF : " << m_iDef <<"\t경험치 "<<m_iCurHp<<"/"<<m_iMaxHp;
+	cout << "  ATK : " << m_iAtk << "      \tDEF : " << m_iDef <<"    \t등급 "<<m_iClass;
 	DrawManager.gotoxy(X, Y+3);
-	cout << "  사정거리 : " << m_iRange << "\tHP" << m_iCurHp <<"/"<<m_iMaxHp;
+	cout << "  사거리 : " << m_iRange << "\tHP" << m_iCurHp <<"/"<<m_iMaxHp;
 	DrawManager.gotoxy(X, Y+4);
-	cout << "└─────────────────┘" << endl;
+	cout << "└───────────────────────┘" << endl;
 }
 
 void Character::ShowBattleStat(int Check,int Num)
@@ -58,13 +58,18 @@ void Character::ShowBattleStat(int Check,int Num)
 	DrawManager.gotoxy(x + (Num*add), y+2);
 	cout << "ATK:" << m_iAtk << "    DEF:" << m_iDef;
 	DrawManager.gotoxy(x + (Num*add), y + 3);
+	cout << "사거리 : "<<m_iRange<<"  ";
+	DrawManager.gotoxy(x + (Num*add), y + 4);
 	cout << "HP:" << m_iCurHp << "/" << m_iMaxHp<<"   ";
 	DrawCharacter(x + (Num * add) +1,y-7);
 }
 
-void Character::DealToEnemy(int DmgToEnemy[])
+void Character::DealToEnemy(int DmgToEnemy[],Character *EnemyList[])
 {
 	int Target;
+
+	if (m_iCurHp == 0)
+		return;
 
 	if (m_iRange == 1)
 		Target = P1;
@@ -73,16 +78,40 @@ void Character::DealToEnemy(int DmgToEnemy[])
 	else
 		Target = P3;
 
-	DmgToEnemy[Target] = m_iAtk;
+	if (EnemyList[Target]->m_iCurHp == 0)
+	{
+		if (Target == P1)
+		{
+			if(EnemyList[P2]->m_iCurHp!=0)
+				DmgToEnemy[P2] += m_iAtk;
+			else
+				DmgToEnemy[P3] += m_iAtk;
+		}
+		else if (Target == P2)
+		{
+			if (EnemyList[P1]->m_iCurHp != 0)
+				DmgToEnemy[P1] += m_iAtk;
+			else
+				DmgToEnemy[P3] += m_iAtk;
+
+		}
+		else if (Target == P3)
+		{
+			if (EnemyList[P1]->m_iCurHp != 0)
+				DmgToEnemy[P1] += m_iAtk;
+			else
+				DmgToEnemy[P2] += m_iAtk;
+		}
+		return;
+	}
+
+	DmgToEnemy[Target] += m_iAtk;
 }
 
 void Character::GetDmg(int Dmg[],int Target)
 {
-	if (m_iCurHp == 0)
-	{
-		Dmg[Target + 1] += Dmg[Target];
+	if (Dmg[Target] == 0)
 		return;
-	}
 	int FinalDmg = Dmg[Target] - m_iDef;
 	if (FinalDmg <= 0)
 		FinalDmg = 1;

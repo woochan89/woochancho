@@ -27,7 +27,7 @@ void Warrior::InputData(int Class, int Num)
 	m_iLv = 1;
 	m_iAtk = 1 + ClassStat;
 	m_iDef = 3 + ClassStat;
-	m_iRange = 3;
+	m_iRange = 1;
 	m_iMaxHp = 10 + ClassStat;
 	m_iCurHp = m_iMaxHp;
 	m_iMaxExp = 10;
