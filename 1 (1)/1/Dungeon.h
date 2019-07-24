@@ -14,10 +14,9 @@ private:
 	Draw DrawManager;
 	Character *MonsterList[3];
 public:
-	void Menu(Character *CharacterList[], int *Money);
-	void Battle(int Floor, Character *CharacterList[]);
-	void InputMonsterData();
-
+	bool Menu(Character *CharacterList[], int *Money);
+	void Battle(int Floor, Character *CharacterList[],int Stage=1);
+	bool NextFloorChoice();
 	Dungeon();
 	~Dungeon();
 };

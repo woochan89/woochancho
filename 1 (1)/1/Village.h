@@ -20,7 +20,7 @@ public:
 	void Menu();
 	void ShowStatus();
 	void HireCharacter();
-	void AssemblyFacility();
+	void AssemblyFacility(bool Check);
 	void AdjustCharacter();
 
 	Village();

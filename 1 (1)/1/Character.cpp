@@ -153,6 +153,21 @@ void Character::DrawCharacter(int x, int y)
 	//»öÁ¦°Å
 }
 
+void Character::GetData(Character *Player)
+{
+	m_sName = Player->m_sName;
+	m_iAtk = Player->m_iAtk;
+	m_iDef = Player->m_iDef;
+	m_iLv = Player->m_iLv;
+	m_iClass = Player->m_iClass;
+	m_iRange = Player->m_iRange;
+	m_iMaxHp = Player->m_iMaxHp;
+	m_iCurHp = m_iMaxHp;
+	m_iMaxExp = Player->m_iMaxExp;
+	m_iCurExp = Player->m_iCurExp;
+
+}
+
 Character::~Character()
 {
 }

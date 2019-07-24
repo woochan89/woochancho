@@ -13,6 +13,7 @@ void Monster::InputData(int Class, int Num)
 	char buf[20];
 	sprintf(buf, "Floor%d.txt",Class);
 	load.open(buf);
+	
 	for (int i = 0; i < (Num-1) * 6; i++)
 	{
 		load >> tmp;
