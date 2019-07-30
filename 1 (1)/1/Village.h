@@ -12,7 +12,7 @@ private:
 	int m_iMoney;
 	bool m_bFacilityFlag;
 	Draw DrawManager;
-	Dungeon DungeonManager;
+	Dungeon *DungeonManager;
 	Character *CharacterList[3];
 	Character *tmp[5];
 public:
@@ -20,7 +20,7 @@ public:
 	void Menu();
 	void ShowStatus();
 	void HireCharacter();
-	void AssemblyFacility();
+	void AssemblyFacility(bool Check);
 	void AdjustCharacter();
 
 	Village();

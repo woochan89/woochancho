@@ -54,7 +54,7 @@ void Character::ShowBattleStat(int Check,int Num)
 		add = 16;
 	}
 	DrawManager.gotoxy(x+(Num*add), y+1);
-	cout << m_sName << "  LV : " << m_iLv;
+	cout << m_sName << " LV:" << m_iLv;
 	DrawManager.gotoxy(x + (Num*add), y+2);
 	cout << "ATK:" << m_iAtk << "    DEF:" << m_iDef;
 	DrawManager.gotoxy(x + (Num*add), y + 3);
@@ -151,6 +151,21 @@ void Character::DrawCharacter(int x, int y)
 	DrawManager.gotoxy(x, y+3);
 	cout << " £¯ ¡¬";
 	//»öÁ¦°Å
+}
+
+void Character::GetData(Character *Player)
+{
+	m_sName = Player->m_sName;
+	m_iAtk = Player->m_iAtk;
+	m_iDef = Player->m_iDef;
+	m_iLv = Player->m_iLv;
+	m_iClass = Player->m_iClass;
+	m_iRange = Player->m_iRange;
+	m_iMaxHp = Player->m_iMaxHp;
+	m_iCurHp = m_iMaxHp;
+	m_iMaxExp = Player->m_iMaxExp;
+	m_iCurExp = Player->m_iCurExp;
+
 }
 
 Character::~Character()

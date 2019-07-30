@@ -150,7 +150,7 @@ int Draw::DrawCursor(int Volume, int StartX, int StartY,int Space)
 					Y += Space;
 				break;
 			case 13://ø£≈Õ
-				return ((Y - StartY)*0.5) + 1;
+				return ((Y - StartY)/Space) + 1;
 			}
 			DrawPoint("¢π", StartX, Y);
 		}

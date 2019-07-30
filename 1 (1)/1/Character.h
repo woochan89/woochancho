@@ -36,6 +36,7 @@ public:
 	bool WinCheck();
 	void Recovery(int Percent=100);
 	void DrawCharacter(int x,int y);
+	void GetData(Character *Player);
 	string OutputName() { return m_sName; }
 	int OutputClass() { return m_iClass; }
 	virtual ~Character();

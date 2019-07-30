@@ -13,12 +13,14 @@ class Dungeon
 private:
 	Draw DrawManager;
 	Character *MonsterList[3];
+	int *m_iMoney;
+	int *m_iDay;
 public:
-	void Menu(Character *CharacterList[], int *Money);
-	void Battle(int Floor, Character *CharacterList[]);
-	void InputMonsterData();
-
-	Dungeon();
+	bool Menu(Character *CharacterList[]);
+	void Battle(int Floor, Character *CharacterList[],int Stage=1);
+	int NextFloorChoice();
+	void ShowStatus(Character *CharacterList[]);
+	Dungeon(int *Money, int *Day);
 	~Dungeon();
 };
 

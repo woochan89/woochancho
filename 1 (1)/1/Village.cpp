@@ -15,15 +15,17 @@ Village::Village()
 	tmp[0] = { NULL };
 	for (int i = 0; i < 3; i++)
 		CharacterList[i] = NULL;
+	DungeonManager = new Dungeon(&m_iMoney,&m_iDay);
 	GameStart();
 }
 
 void Village::GameStart()
 {
 	int Num = 0;
-	DrawManager.DrawMidText("모험을 함께할 동료 세명을 선택해주세요!", WIDTH, HEIGHT*0.5);
+	DrawManager.DrawBox();
+	DrawManager.DrawTextWithBox("모험을 함께할 용병 세명을 선택해주세요!", WIDTH, HEIGHT*0.5);
 	system("pause");
-	AssemblyFacility();
+	AssemblyFacility(1);
 	Menu();
 }
 
@@ -56,12 +58,12 @@ void Village::Menu()
 		switch (Select)
 		{
 		case 1:
-			DungeonManager.Menu(CharacterList,&m_iMoney);
+			m_bFacilityFlag=DungeonManager->Menu(CharacterList);
 			break;
 		case 2:
 			break;
 		case 3://집회구역
-			AssemblyFacility();
+			AssemblyFacility(0);
 			break;
 		case 4://여관
 			if (m_iMoney >= 100)
@@ -94,8 +96,21 @@ void Village::Menu()
 
 void Village::ShowStatus()
 {
-	DrawManager.gotoxy(WIDTH-10,HEIGHT+1);
-	cout << "Day : " << m_iDay << "\t 소지금 : " << m_iMoney<<" G";
+	string Player[3];
+	for (int i = 0;i < 3; i++)
+	{
+		if (CharacterList[i] == NULL)
+		{
+			Player[i] = " _ ";
+			continue;
+		}
+		if (CharacterList[i]->WinCheck())
+			Player[i] = " X ";
+		else
+			Player[i] = " O ";
+	}
+	DrawManager.gotoxy(WIDTH-20,HEIGHT+1);
+	cout << "Day : " << m_iDay << "\t 소지금 : " << m_iMoney<<" G"<<"\t파티상태 : ["<<Player[P1]<<Player[P2]<<Player[P3]<<"]";
 }
 
 void Village::HireCharacter()
@@ -106,20 +121,25 @@ void Village::HireCharacter()
 	DrawManager.DrawMidText("기존 용병을 해고후 새로운 용병을 고용하시겠습니까?",WIDTH,HEIGHT*0.5-4);
 	DrawManager.DrawMidText("예",WIDTH,HEIGHT*0.5-2);
 	DrawManager.DrawMidText("아니오",WIDTH,HEIGHT*0.5-0);
-	Select = DrawManager.DrawCursor(2, WIDTH*0.5 - 5, HEIGHT*0.5 - 2);
+	Select = DrawManager.DrawCursor(1, WIDTH*0.5 - 5, HEIGHT*0.5 - 2);
 	switch (Select)
 	{
 	case 1:
 			system("cls");
 			DrawManager.DrawBox();
 			DrawManager.DrawMidText("< 현 재 용 병 >", WIDTH, HEIGHT*0.5 - 6);
-			for (int i = 0,j=-4; i < 3; i++,j+=2)
+			for (int i = 0,j=-4; i <= 3; i++,j+=2)
 			{
-				DrawManager.gotoxy(WIDTH*0.5 + 15, HEIGHT*0.5 + j);
+				DrawManager.gotoxy((WIDTH*0.5-3)*2, HEIGHT*0.5 + j);
+				if (i == 3)
+				{
+					cout << "나가기";
+					break;
+				}
 				cout << CharacterList[i]->OutputName() << "  " << CharacterList[i]->OutputClass() << " 등급";
 			}
 			Select = DrawManager.DrawCursor(3, WIDTH*0.5 - 5, HEIGHT*0.5 - 4);
-			DrawManager.gotoxy(10, HEIGHT*0.5);
+			DrawManager.gotoxy((WIDTH*0.5-6)*2, HEIGHT*0.5);
 			cout << CharacterList[Select - 1]->OutputName() << "를 해고하였습니다!";
 			if (Select == 1)
 			{
@@ -145,7 +165,7 @@ void Village::HireCharacter()
 
 }
 
-void Village::AssemblyFacility()//집회구역
+void Village::AssemblyFacility(bool Check)//집회구역
 {
 	int Select;
 	int CharacterNum;
@@ -198,7 +218,7 @@ void Village::AssemblyFacility()//집회구역
 		case 5:
 			if (tmp[Select - 1] == NULL)
 			{
-				DrawManager.DrawMidText("이미 선택된 용병입니다.", WIDTH, HEIGHT*0.5);
+				DrawManager.DrawTextWithBox("이미 선택된 용병입니다.", WIDTH, HEIGHT*0.5);
 				DrawManager.gotoxy(0, HEIGHT);
 				system("pause");
 				break;
@@ -206,8 +226,7 @@ void Village::AssemblyFacility()//집회구역
 			}
 			if (CharacterList[0]!=NULL&& CharacterList[1] != NULL && CharacterList[2] != NULL)
 			{
-				DrawManager.DrawMidText("용병이 가득찼습니다.", WIDTH, HEIGHT*0.5);
-				DrawManager.gotoxy(0, HEIGHT);
+				DrawManager.DrawTextWithBox("용병이 가득찼습니다.", WIDTH, HEIGHT*0.5);
 				system("pause");
 				HireCharacter();
 				break;
@@ -226,6 +245,13 @@ void Village::AssemblyFacility()//집회구역
 			CharacterList[CharacterNumber]->InputData(tmp[Select - 1]->OutputClass());
 			delete tmp[Select - 1];
 			tmp[Select - 1] = NULL;
+			if (CharacterNumber == 2 && Check == 1)
+			{
+				m_bFacilityFlag = false;
+				DrawManager.DrawTextWithBox("함께 할 용병 3명을 모두 선택하셨습니다!",WIDTH,HEIGHT*0.5);
+				system("pause");
+				return;
+			}
 			break;
 		case 6:
 			if (CharacterList[0] != NULL && CharacterList[1] != NULL && CharacterList[2] != NULL)
@@ -233,8 +259,7 @@ void Village::AssemblyFacility()//집회구역
 				m_bFacilityFlag = false;
 				return;
 			}
-			DrawManager.DrawMidText("용병 3명을 모두 채워주십시오", WIDTH, HEIGHT*0.5);
-			DrawManager.gotoxy(0, HEIGHT);
+			DrawManager.DrawTextWithBox("용병 3명을 모두 채워주십시오", WIDTH, HEIGHT*0.5);
 			system("pause");
 			break;
 		}
@@ -244,6 +269,7 @@ void Village::AssemblyFacility()//집회구역
 void Village::AdjustCharacter()
 {
 	int Select1st=0,Select2nd=0;
+	Character *tmp;
 	while (true)
 	{
 		system("cls");
@@ -257,7 +283,7 @@ void Village::AdjustCharacter()
 			DrawManager.gotoxy((WIDTH*0.5 - 10) * 2, HEIGHT*0.5 - 6 + i * 5);
 			if (i == 0)
 				cout << "선봉";
-			else if (i == 2)
+			else if (i == 1)
 				cout << "중진";
 			else
 				cout << "후위";
@@ -267,16 +293,35 @@ void Village::AdjustCharacter()
 			CharacterList[i]->ShowStat((WIDTH*0.5 - 7) * 2, HEIGHT*0.5 - 8 + i * 5);
 		}
 		DrawManager.DrawMidText("나가기", WIDTH, HEIGHT*0.5 + 9);
+		if (Select1st == 4)
+			break;
 		if (Select1st == 0)
 			Select1st = DrawManager.DrawCursor(3, WIDTH*0.5 - 12, HEIGHT*0.5 - 6, 5);
 		else
 		{
-			Select2nd = DrawManager.DrawCursor(3, WIDTH*0.5 - 12, HEIGHT*0.5 - 6, 5);
-
+				Select2nd = DrawManager.DrawCursor(3, WIDTH*0.5 - 12, HEIGHT*0.5 - 6, 5);
+				if (Select2nd == 4)
+					break;
+				if (CharacterList[Select2nd - 1]->OutputName() == "궁수")
+					tmp = new Archer();
+				else if (CharacterList[Select2nd - 1]->OutputName() == "마법사")
+					tmp = new Magician();
+				else
+					tmp = new Warrior();
+				tmp->GetData(CharacterList[Select2nd - 1]);
+				delete CharacterList[Select2nd - 1];
+				if (CharacterList[Select1st - 1]->OutputName() == "궁수")
+					CharacterList[Select2nd - 1] = new Archer();
+				else if (CharacterList[Select1st - 1]->OutputName() == "마법사")
+					CharacterList[Select2nd - 1] = new Magician();
+				else
+					CharacterList[Select2nd - 1] = new Warrior();
+				CharacterList[Select2nd - 1]->GetData(CharacterList[Select1st - 1]);
+				delete CharacterList[Select1st - 1];
+				CharacterList[Select1st - 1] = tmp;
+				Select1st = 0;
+				Select2nd = 0;
 		}
-
-		if (Select1st == 4 || Select2nd==4)
-			break;
 	}
 
 }
@@ -293,4 +338,5 @@ Village::~Village()
 		if (CharacterList[i] != NULL)
 			delete CharacterList[i];
 	}
+	delete DungeonManager;
 }
