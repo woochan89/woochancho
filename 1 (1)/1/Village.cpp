@@ -16,7 +16,33 @@ Village::Village()
 	for (int i = 0; i < 3; i++)
 		CharacterList[i] = NULL;
 	DungeonManager = new Dungeon(&m_iMoney,&m_iDay);
-	GameStart();
+	MainMenu();
+}
+
+void Village::MainMenu()
+{
+	int Select;
+	while (true)
+	{
+		system("cls");
+		DrawManager.DrawBox();
+		DrawManager.DrawTextWithBox("던 전  R P G", WIDTH, HEIGHT*0.5 - 4);
+		DrawManager.DrawMidText("새 게임", WIDTH, HEIGHT*0.5 - 1);
+		DrawManager.DrawMidText("불러오기", WIDTH, HEIGHT*0.5 + 1);
+		DrawManager.DrawMidText("종료", WIDTH, HEIGHT*0.5 + 3);
+		Select = DrawManager.DrawCursor(2, WIDTH*0.5 - 4, HEIGHT*0.5 - 1);
+		switch (Select)
+		{
+		case 1:
+			GameStart();
+			break;
+		case 2:
+			Load();
+			break;
+		case 3:
+			return;
+		}
+	}
 }
 
 void Village::GameStart()
@@ -26,10 +52,10 @@ void Village::GameStart()
 	DrawManager.DrawTextWithBox("모험을 함께할 용병 세명을 선택해주세요!", WIDTH, HEIGHT*0.5);
 	system("pause");
 	AssemblyFacility(1);
-	Menu();
+	VillageInterface();
 }
 
-void Village::Menu()
+void Village::VillageInterface()
 {
 	int Select;
 	while (true)
@@ -37,35 +63,35 @@ void Village::Menu()
 		system("cls");
 		DrawManager.DrawBox();
 		ShowStatus();
-		for (int i = -3; i <= 3; i++)
+		for (int i = -3; i <= 4; i++)
 		{
 			if (i == -3)
 				DrawManager.DrawMidText("< 마 을 >",WIDTH, HEIGHT*0.5 + 2 * i);
 			else if (i == -2)
 				DrawManager.DrawMidText("던 전", WIDTH, HEIGHT*0.5 + 2 * i);
 			else if (i == -1)
-				DrawManager.DrawMidText("상 점", WIDTH, HEIGHT*0.5 + 2 * i);
-			else if (i == 0)
 				DrawManager.DrawMidText("집 회 구 역", WIDTH, HEIGHT*0.5 + 2 * i);
-			else if (i == 1)
+			else if (i == 0)
 				DrawManager.DrawMidText("여 관", WIDTH, HEIGHT*0.5 + 2 * i);
-			else if (i == 2)
+			else if (i == 1)
 				DrawManager.DrawMidText("상 태 창", WIDTH, HEIGHT*0.5 + 2 * i);
+			else if (i == 2)
+				DrawManager.DrawMidText("저 장 하 기", WIDTH, HEIGHT*0.5 + 2 * i);
+			else if (i == 3)
+				DrawManager.DrawMidText("불 러 오 기", WIDTH, HEIGHT*0.5 + 2 * i);
 			else
 				DrawManager.DrawMidText("나가기", WIDTH, HEIGHT*0.5 + 2 * i);
 		}
-		Select = DrawManager.DrawCursor(5, WIDTH*0.5-4, HEIGHT*0.5 - 4);
+		Select = DrawManager.DrawCursor(6, WIDTH*0.5-4, HEIGHT*0.5 - 4);
 		switch (Select)
 		{
 		case 1:
 			m_bFacilityFlag=DungeonManager->Menu(CharacterList);
 			break;
-		case 2:
-			break;
-		case 3://집회구역
+		case 2://집회구역
 			AssemblyFacility(0);
 			break;
-		case 4://여관
+		case 3://여관
 			if (m_iMoney >= 100)
 			{
 				m_iDay++;
@@ -74,21 +100,26 @@ void Village::Menu()
 				{
 					CharacterList[i]->Recovery();
 				}
-				DrawManager.DrawTextWithBox("휴식을 취했습니다(소지금 -100G)",WIDTH,HEIGHT*0.5);
+				DrawManager.DrawTextWithBox("휴식을 취했습니다(소지금 -100G)", WIDTH, HEIGHT*0.5);
 				system("pause");
 			}
 			else
 			{
 				system("cls");
 				DrawManager.DrawBox();
-				DrawManager.DrawTextWithBox("소지금이 부족합니다!",WIDTH,HEIGHT*0.5);
+				DrawManager.DrawTextWithBox("소지금이 부족합니다!", WIDTH, HEIGHT*0.5);
 				system("pause");
 			}
 			break;
-		case 5:
+		case 4:
 			AdjustCharacter();
 			break;
-		case 6:
+		case 5://저장하기
+			break;
+		case 6://불러오기
+			Load();
+			break;
+		case 7:
 			return;
 		}
 	}
@@ -324,6 +355,45 @@ void Village::AdjustCharacter()
 		}
 	}
 
+}
+
+void Village::Save()
+{
+	ofstream save;
+	save.open("Save.txt");
+	if (save.is_open())
+	{
+		DrawManager.DrawTextWithBox("기존 세이브 파일이 있습니다", WIDTH, HEIGHT*0.5);
+		system("pause");
+		save.close();
+	}
+	else
+	{
+		save << m_iDay << " " << m_iMoney << endl;
+		DrawManager.DrawTextWithBox("세이브 완료!", WIDTH, HEIGHT*0.5);
+		system("pause");
+		save.close();
+	}
+
+}
+
+void Village::Load()
+{
+	ifstream load;
+	load.open("Save.txt");
+	if (load.is_open())
+	{
+		DrawManager.DrawTextWithBox("세이브 파일이 없습니다!",WIDTH,HEIGHT*0.5);
+		system("pause");
+		load.close();
+	}
+	else
+	{
+
+		DrawManager.DrawTextWithBox("불러오기 완료!", WIDTH, HEIGHT*0.5);
+		system("pause");
+		load.close();
+	}
 }
 
 Village::~Village()

@@ -165,7 +165,17 @@ void Character::GetData(Character *Player)
 	m_iCurHp = m_iMaxHp;
 	m_iMaxExp = Player->m_iMaxExp;
 	m_iCurExp = Player->m_iCurExp;
+}
 
+void Character::SaveData()//¿©±â
+{
+	ofstream save;
+
+}
+
+void Character::LoadData()
+{
+	ifstream load;
 }
 
 Character::~Character()

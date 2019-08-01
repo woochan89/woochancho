@@ -16,12 +16,15 @@ private:
 	Character *CharacterList[3];
 	Character *tmp[5];
 public:
+	void MainMenu();
 	void GameStart();
-	void Menu();
+	void VillageInterface();
 	void ShowStatus();
 	void HireCharacter();
 	void AssemblyFacility(bool Check);
 	void AdjustCharacter();
+	void Save();
+	void Load();
 
 	Village();
 	~Village();
