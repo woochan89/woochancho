@@ -10,10 +10,9 @@ void Monster::InputData(int Class, int Num)
 {
 	ifstream load;
 	string tmp;
-	char buf[20];
-	sprintf(buf, "Floor%d.txt",Class);
-	load.open(buf);
-	
+	char floor[20];
+	sprintf(floor, "Floor%d.txt",Class);
+	load.open(floor);
 	for (int i = 0; i < (Num-1) * 6; i++)
 	{
 		load >> tmp;

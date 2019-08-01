@@ -1,44 +1,4 @@
-﻿  Village.cpp
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\draw.h(20): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(10): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(29): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(30): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(31): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(32): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(33): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(52): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(69): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(71): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(73): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(75): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(77): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(79): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(81): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(83): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(85): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(103): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(110): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(152): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(153): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(154): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(155): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(161): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(164): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(172): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(173): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(232): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(235): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(241): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(242): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(252): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(260): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(282): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(293): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(314): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(324): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(326): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(330): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(333): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\깃허브\woochancho\1 (1)\1\village.cpp(372): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  1.vcxproj -> C:\Users\user\Desktop\깃허브\woochancho\1 (1)\x64\Debug\1.exe
+﻿  소스.cpp
+c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(20): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+c:\users\a10\desktop\woochancho\1 (1)\1\소스.cpp(5): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+  1.vcxproj -> C:\Users\A10\Desktop\woochancho\1 (1)\x64\Debug\1.exe

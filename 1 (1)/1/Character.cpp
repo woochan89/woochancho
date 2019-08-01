@@ -170,12 +170,31 @@ void Character::GetData(Character *Player)
 void Character::SaveData()//¿©±â
 {
 	ofstream save;
-
+	save.open("Save.txt",ios::app);
+	save << m_sName << " " << m_iClass << " " << m_iLv << " " << m_iAtk << " " 
+		<< m_iDef << " " << m_iRange << " " << m_iMaxHp << " " << m_iCurHp << " " << m_iMaxExp << " " << m_iCurExp << endl;
+	save.close();
 }
 
-void Character::LoadData()
+void Character::LoadData(int Num)
 {
 	ifstream load;
+	string tmp;
+	load.open("Save.txt");
+	for (int i = 0; i < (Num*10)+2; i++)
+		load >> tmp;
+	load >> m_sName;
+	load >> m_iClass;
+	load >> m_iLv;
+	load >> m_iAtk;
+	load >> m_iDef;
+	load >> m_iRange;
+	load >> m_iMaxHp;
+	load >> m_iCurHp;
+	load >> m_iMaxExp;
+	load >> m_iCurExp;
+	load.close();
+
 }
 
 Character::~Character()

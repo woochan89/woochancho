@@ -24,8 +24,8 @@ public:
 	void AssemblyFacility(bool Check);
 	void AdjustCharacter();
 	void Save();
-	void Load();
-
+	void Load(bool check=false);
+	void DeleteAll();
 	Village();
 	~Village();
 };

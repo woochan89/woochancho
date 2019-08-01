@@ -4,6 +4,7 @@
 
 Village::Village()
 {
+	srand((unsigned)time(NULL));
 	int Width= (WIDTH * 2) + 1;
 	int Height= HEIGHT + 5;
 	char buf[256];
@@ -24,6 +25,9 @@ void Village::MainMenu()
 	int Select;
 	while (true)
 	{
+		m_iDay = 1;
+		m_iMoney = 0;
+		m_bFacilityFlag = true;
 		system("cls");
 		DrawManager.DrawBox();
 		DrawManager.DrawTextWithBox("던 전  R P G", WIDTH, HEIGHT*0.5 - 4);
@@ -37,7 +41,7 @@ void Village::MainMenu()
 			GameStart();
 			break;
 		case 2:
-			Load();
+			Load(1);
 			break;
 		case 3:
 			return;
@@ -115,11 +119,13 @@ void Village::VillageInterface()
 			AdjustCharacter();
 			break;
 		case 5://저장하기
+			Save();
 			break;
 		case 6://불러오기
 			Load();
 			break;
 		case 7:
+			DeleteAll();
 			return;
 		}
 	}
@@ -361,52 +367,84 @@ void Village::Save()
 {
 	ofstream save;
 	save.open("Save.txt");
-	if (save.is_open())
-	{
-		DrawManager.DrawTextWithBox("기존 세이브 파일이 있습니다", WIDTH, HEIGHT*0.5);
-		system("pause");
-		save.close();
-	}
-	else
-	{
-		save << m_iDay << " " << m_iMoney << endl;
-		DrawManager.DrawTextWithBox("세이브 완료!", WIDTH, HEIGHT*0.5);
-		system("pause");
-		save.close();
-	}
-
+	save << m_iDay << " " << m_iMoney << endl;
+	save.close();
+	for (int i = 0; i < 3; i++)
+		CharacterList[i]->SaveData();
+	DrawManager.DrawTextWithBox("세이브 완료!", WIDTH, HEIGHT*0.5);
+	system("pause");
 }
 
-void Village::Load()
+void Village::Load(bool check)
 {
 	ifstream load;
+	string NameCheck;
+	string Tmp;
 	load.open("Save.txt");
-	if (load.is_open())
+	if (!load.is_open())
 	{
 		DrawManager.DrawTextWithBox("세이브 파일이 없습니다!",WIDTH,HEIGHT*0.5);
 		system("pause");
-		load.close();
 	}
 	else
 	{
-
+		for (int i = 0; i < 3; i++)//기존 파일 지우기
+		{
+			if (CharacterList[i] != NULL)
+				delete CharacterList[i];
+		}
+		load >> m_iDay;
+		load >> m_iMoney;
+		for (int i = 0; i < 3; i++)
+		{
+			load >> NameCheck;
+			if (NameCheck == "궁수")
+				CharacterList[i] = new Archer();
+			else if (NameCheck == "마법사")
+				CharacterList[i] = new Magician();
+			else
+				CharacterList[i] = new Warrior();
+			if (i == 2)
+				break;
+			for (int j = 0; j < 10; j++)
+				load >> Tmp;
+		}
+		for (int i = 0; i < 3; i++)
+			CharacterList[i]->LoadData(i);
 		DrawManager.DrawTextWithBox("불러오기 완료!", WIDTH, HEIGHT*0.5);
 		system("pause");
-		load.close();
+	}
+	load.close();
+	if(check==true)
+		VillageInterface();
+}
+
+void Village::DeleteAll()
+{
+	if (tmp[0] != NULL)
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			delete tmp[i];
+			tmp[i] = NULL;
+		}
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		if (CharacterList[i] != NULL)
+		{
+			delete CharacterList[i];
+			CharacterList[i] = NULL;
+		}
+	}
+	if (DungeonManager != NULL)
+	{
+		delete DungeonManager;
+		DungeonManager = NULL;
 	}
 }
 
 Village::~Village()
 {
-	if (tmp[0] != NULL)
-	{
-		for (int i = 0; i < 5; i++)
-			delete tmp[i];
-	}
-	for (int i = 0; i < 3; i++)
-	{
-		if (CharacterList[i] != NULL)
-			delete CharacterList[i];
-	}
-	delete DungeonManager;
+	DeleteAll();
 }
