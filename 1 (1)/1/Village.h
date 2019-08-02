@@ -5,6 +5,8 @@
 #include"Warrior.h"
 #include"Draw.h"
 #include"Dungeon.h"
+#define SAVE 0
+#define LOAD 1
 class Village
 {
 private:
@@ -25,7 +27,9 @@ public:
 	void AdjustCharacter();
 	void Save();
 	void Load(bool check=false);
+	int ShowSaveMenu(bool saveload);
 	void DeleteAll();
+	
 	Village();
 	~Village();
 };

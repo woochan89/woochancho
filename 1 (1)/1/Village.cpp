@@ -178,21 +178,8 @@ void Village::HireCharacter()
 			Select = DrawManager.DrawCursor(3, WIDTH*0.5 - 5, HEIGHT*0.5 - 4);
 			DrawManager.gotoxy((WIDTH*0.5-6)*2, HEIGHT*0.5);
 			cout << CharacterList[Select - 1]->OutputName() << "를 해고하였습니다!";
-			if (Select == 1)
-			{
-				delete CharacterList[0];
-				CharacterList[0] = NULL;
-			}
-			else if(Select==2)
-			{
-				delete CharacterList[1];
-				CharacterList[1] = NULL;
-			}
-			else
-			{
-				delete CharacterList[2];
-				CharacterList[2] = NULL;
-			}
+			delete CharacterList[Select-1];
+			CharacterList[Select-1] = NULL;
 			DrawManager.gotoxy(0, HEIGHT);
 			system("pause");
 		break;
@@ -365,7 +352,9 @@ void Village::AdjustCharacter()
 
 void Village::Save()
 {
+	ShowSaveMenu(SAVE);
 	ofstream save;
+
 	save.open("Save.txt");
 	save << m_iDay << " " << m_iMoney << endl;
 	save.close();
@@ -377,6 +366,7 @@ void Village::Save()
 
 void Village::Load(bool check)
 {
+	ShowSaveMenu(LOAD);
 	ifstream load;
 	string NameCheck;
 	string Tmp;
@@ -417,6 +407,64 @@ void Village::Load(bool check)
 	load.close();
 	if(check==true)
 		VillageInterface();
+}
+
+int Village::ShowSaveMenu(bool saveload)
+{
+	ifstream load;
+	bool SaveFlag[5];
+	char Data[20];
+	int Select;
+	for (int i = 0; i < 5; i++)
+	{
+		sprintf(Data, "Save%d.txt", i);
+		load.open(Data);
+		if (!load.is_open())
+		{
+			DrawManager.DrawPoint("Ｘ", WIDTH*0.5 + 5, HEIGHT*0.5 - 5 + i * 2);
+			SaveFlag[i] = false;
+		}
+		else 
+		{
+			DrawManager.DrawPoint("○", WIDTH*0.5 + 5, HEIGHT*0.5 - 5 + i * 2);
+			SaveFlag[i] = true;
+		}
+		load.close();
+	}
+	while (true)
+	{
+		system("cls");
+		DrawManager.DrawBox();
+		DrawManager.DrawTextWithBox("Save Slot",WIDTH,HEIGHT*0.5-8);
+		DrawManager.DrawTextWithBox("1번 슬롯",WIDTH,HEIGHT*0.5-5);
+		DrawManager.DrawTextWithBox("2번 슬롯",WIDTH,HEIGHT*0.5-3);
+		DrawManager.DrawTextWithBox("3번 슬롯",WIDTH,HEIGHT*0.5-1);
+		DrawManager.DrawTextWithBox("4번 슬롯",WIDTH,HEIGHT*0.5+1);
+		DrawManager.DrawTextWithBox("5번 슬롯",WIDTH,HEIGHT*0.5+3);
+		DrawManager.DrawTextWithBox("나가기",WIDTH,HEIGHT*0.5+5);
+		Select = DrawManager.DrawCursor(5, WIDTH*0.5 - 4, HEIGHT*0.5 - 5);
+		if (SaveFlag[Select - 1] == true)
+		{
+			if (saveload == SAVE)
+			{
+				DrawManager.DrawTextWithBox("세이브 데이터를 덮어씌우겠습니까?",WIDTH,HEIGHT*0.5);
+
+				return Select;
+
+			}
+			else if (saveload == LOAD)
+			{
+				DrawManager.DrawTextWithBox("세이브 데이터를 불러오시겠습니까?", WIDTH, HEIGHT*0.5);
+
+				return Select;
+			}
+		}
+		else
+		{
+			DrawManager.DrawTextWithBox("빈 슬롯 입니다!",WIDTH,HEIGHT*0.5);
+			system("pause");
+		}
+	}
 }
 
 void Village::DeleteAll()
