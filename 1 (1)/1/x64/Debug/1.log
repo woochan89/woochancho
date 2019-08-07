@@ -1,4 +1,0 @@
-﻿  소스.cpp
-c:\users\a10\desktop\woochancho\1 (1)\1\draw.h(20): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-c:\users\a10\desktop\woochancho\1 (1)\1\소스.cpp(5): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-  1.vcxproj -> C:\Users\A10\Desktop\woochancho\1 (1)\x64\Debug\1.exe
