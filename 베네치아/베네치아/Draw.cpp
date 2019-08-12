@@ -168,13 +168,13 @@ void Draw::DrawHeart(int Heart)
 
 void Draw::DrawScore(int Score)
 {
-	gotoxy(WIDTH*0.5 - 3, HEIGHT + 2);
+	gotoxy(WIDTH - 3, HEIGHT + 2);
 	cout << "Score : " << Score<<"  ";
 }
 
 void Draw::DrawName(string Name)
 {
-	gotoxy(WIDTH - 15, HEIGHT + 2);
+	gotoxy(WIDTH + 40, HEIGHT + 2);
 	cout << "Name : " << Name<<"      ";
 }
 

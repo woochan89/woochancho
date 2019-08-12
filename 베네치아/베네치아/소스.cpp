@@ -1,6 +1,6 @@
-#include"Game.h"
+#include"Play.h"
 
 void main()
 {
-	Game Gamemanager;
+	Play Gamemanager;
 }

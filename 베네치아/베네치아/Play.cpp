@@ -26,7 +26,8 @@ void Play::Menu()
 		switch (Select)
 		{
 		case 1:
-			Intro();
+			Drawmanager.Drawinterface();
+			//Intro();
 			Getname();
 			Gameplay(1);
 			break;
@@ -41,11 +42,68 @@ void Play::Menu()
 
 void Play::Intro()
 {
+	int max;
+	ifstream load;
+	string *str;
+	load.open("베네치아_스토리.txt");
+	load >> max;
+	str = new string[max + 1];
+	for (int i=0;!load.eof();i++)
+	{
+		getline(load, str[i]);
+		if (i + 1 == max)
+			str[i] = " ";
+	}
+	Introchange(str, 0);
 
+}
+
+void Play::Introchange(string str[],int num)
+{
+	if (str[num] == " ")
+		return;
+	for (int i = 0; i <= num; i++)
+	{
+		if (i >= 12)
+		{
+			for (int j = i-12, k=0 ; k < 12; j++,k++)
+			{
+				Drawmanager.DrawMidText("                                       ", WIDTH, HEIGHT*0.5 - 7 + k);
+				Drawmanager.DrawMidText(str[j+1], WIDTH, HEIGHT*0.5 - 7 + k);
+			}
+			continue;
+		}
+		Drawmanager.DrawMidText(str[i], WIDTH, HEIGHT*0.5 - 7 + i);
+	}
+	Sleep(100);
+	Introchange(str, ++num);
 }
 
 void Play::Getname()
 {
+	m_sName = "";
+	char ch;
+	Drawmanager.Drawinterface();
+	Drawmanager.DrawSmallBox(23, HEIGHT*0.5 + 3, 15, 3);
+	Drawmanager.DrawMidText("이름 입력(영문,10글자 이하)", WIDTH, HEIGHT*0.5 + 2);
+	while (true)
+	{
+		ch = getch();
+		if (!(ch >= 'a'&&ch <= 'z') && !(ch >= 'A'&&ch <= 'Z')&&ch!=8)
+			continue;
+		if (ch == 8)//백스페이스
+		{
+			m_sName[m_sName.length()] = NULL;
+		}
+		m_sName += ch;
+		Drawmanager.DrawMidText(m_sName, WIDTH, HEIGHT*0.5 + 4);
+		if (m_sName.length() >= 10)
+		{
+			Drawmanager.DrawTextWithBox("10글자 초과!!", WIDTH, HEIGHT*0.5);
+			system("pause");
+			break;
+		}
+	}
 
 }
 
