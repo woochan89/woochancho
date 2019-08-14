@@ -17,8 +17,8 @@ public:
 	int DrawCursor(int Volume, int StartX, int StartY, int Space = 2);
 	void DrawHeart(int Heart=9);
 	void DrawScore(int Score=0);
-	void DrawName(string Name="? ? ?");
-	void Drawinterface();
+	void DrawName(string Name);
+	void Drawinterface(string Name = "? ? ?");
 	inline void gotoxy(int x, int y)
 	{
 		COORD Pos = { x, y };

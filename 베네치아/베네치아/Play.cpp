@@ -7,8 +7,8 @@ Play::Play()
 	char buf[256];
 	sprintf(buf, "mode con: lines=%d cols=%d", HEIGHT + 5, (WIDTH * 2) + 1);
 	system(buf);
+	srand((unsigned)time);
 	Menu();
-
 }
 
 void Play::Menu()
@@ -28,7 +28,7 @@ void Play::Menu()
 		case 1:
 			Drawmanager.Drawinterface();
 			//Intro();
-			Getname();
+			m_sName=Getword(NAME);
 			Gameplay(1);
 			break;
 		case 2:
@@ -79,9 +79,10 @@ void Play::Introchange(string str[],int num)
 	Introchange(str, ++num);
 }
 
-void Play::Getname()
+string Play::Getword(bool check)
 {
-	m_sName = "";
+	char tmp[11] = {NULL};
+	int num=0;
 	char ch;
 	Drawmanager.Drawinterface();
 	Drawmanager.DrawSmallBox(23, HEIGHT*0.5 + 3, 15, 3);
@@ -89,27 +90,44 @@ void Play::Getname()
 	while (true)
 	{
 		ch = getch();
-		if (!(ch >= 'a'&&ch <= 'z') && !(ch >= 'A'&&ch <= 'Z')&&ch!=8)
-			continue;
-		if (ch == 8)//백스페이스
+		if (ch == 13&&num>0)//엔터
+			break;
+		else if (ch == 8)//백스페이스
 		{
-			m_sName[m_sName.length()] = NULL;
+			tmp[num - 1] = NULL;
+			if (num > 0)
+				num--;
 		}
-		m_sName += ch;
-		Drawmanager.DrawMidText(m_sName, WIDTH, HEIGHT*0.5 + 4);
-		if (m_sName.length() >= 10)
+		else if (!(ch >= 'a'&&ch <= 'z') && !(ch >= 'A'&&ch <= 'Z'))
+			continue;
+		else
+			tmp[num++]=ch;
+		Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
+		Drawmanager.DrawMidText(tmp, WIDTH, HEIGHT*0.5 + 4);
+		if (num > 9&&check==NAME)
 		{
 			Drawmanager.DrawTextWithBox("10글자 초과!!", WIDTH, HEIGHT*0.5);
 			system("pause");
 			break;
 		}
 	}
-
+	return tmp;
 }
 
 void Play::Gameplay(int stage)
 {
-
+	char tmp[20];
+	sprintf(tmp, "%d stage", stage);
+	Drawmanager.Drawinterface(m_sName);
+	Drawmanager.DrawMidText(tmp, WIDTH, HEIGHT*0.5);
+	Sleep(1000);
+	Drawmanager.DrawMidText("       ", WIDTH, HEIGHT*0.5);
+	Sleep(1000);
+	while (true)
+	{
+		Word::Makeword();
+		Word::Dropword();
+	}
 }
 
 Play::~Play()

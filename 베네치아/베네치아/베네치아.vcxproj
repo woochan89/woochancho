@@ -143,11 +143,13 @@
     <ClInclude Include="mecro.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Rank.h" />
+    <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="Play.cpp" />
     <ClCompile Include="Rank.cpp" />
+    <ClCompile Include="Word.cpp" />
     <ClCompile Include="소스.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

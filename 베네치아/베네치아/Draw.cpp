@@ -38,8 +38,8 @@ void Draw::DrawMidText(string str, int x, int y)
 		x -= str.size() / 2;
 	gotoxy(x, y);
 	cout << str;
-	gotoxy(x + str.length(), y);
-	gotoxy(0, HEIGHT);
+	//gotoxy(x + str.length(), y);
+	//gotoxy(0, HEIGHT);
 	return;
 }
 
@@ -178,13 +178,13 @@ void Draw::DrawName(string Name)
 	cout << "Name : " << Name<<"      ";
 }
 
-void Draw::Drawinterface()
+void Draw::Drawinterface(string Name)
 {
 	system("cls");
 	DrawBox();
 	DrawHeart();
 	DrawScore();
-	DrawName();
+	DrawName(Name);
 }
 
 Draw::~Draw()
