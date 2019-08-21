@@ -8,6 +8,9 @@
 class Play:public Word
 {
 private:
+	char m_cWord[11] = {NULL};
+	int m_iHeart;
+	int m_iScore;
 	Draw Drawmanager;
 	Rank Rankmanager;
 	string m_sName;
@@ -15,7 +18,8 @@ public:
 	void Menu();
 	void Intro();
 	void Introchange(string str[],int num);
-	string Getword(bool check);
+	string Getname();
+	bool Getword(char ch);
 	void Gameplay(int stage);
 	Play();
 	~Play();

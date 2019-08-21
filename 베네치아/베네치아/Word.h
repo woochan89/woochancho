@@ -1,30 +1,37 @@
 #pragma once
 #include"Draw.h"
-
-struct Wordstat
-{
-	string word;
-	int coordinate;
-};
+#define SLOW 1
+#define FAST 2
+#define STOP 3
+#define BLIND 4
 
 struct Wordtree
 {
 	string word;
+	int Xcoordinate;
+	int Ycoordinate;
+	int effect;
+	int number;
 	Wordtree *next;
 };
 
 class Word
 {
 private:
+	int m_iWordmax;
 	int m_iMax;
-	Wordstat *Wordlist;
-	Wordtree *
+	string *m_sWordlist;
+	Wordtree *m_wDroppingword;
+	Wordtree *m_wTmp;
+	Draw Drawmanager;
 protected:
 
 public:
 	void Getdata();
 	void Makeword();
 	void Dropword();
+	void EraseWord(Wordtree *Word);
+	void GetWord(string typingword);
 	Word();
 	~Word();
 };
