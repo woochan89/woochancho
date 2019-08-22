@@ -11,7 +11,6 @@ struct Wordtree
 	int Xcoordinate;
 	int Ycoordinate;
 	int effect;
-	int number;
 	Wordtree *next;
 };
 
@@ -31,7 +30,7 @@ public:
 	void Makeword();
 	void Dropword();
 	void EraseWord(Wordtree *Word);
-	void GetWord(string typingword);
+	int HitWord(string typingword);
 	Word();
 	~Word();
 };

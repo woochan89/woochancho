@@ -33,12 +33,14 @@ void Word::Makeword()
 	m_wDroppingword = new Wordtree();
 
 	int chance = rand() % 100;
-	if (chance <= 3)
+	if (chance <= 5)
 		words = 3;
-	else if (chance <= 10)
+	else if (chance <= 15)
 		words = 2;
-	else if (chance <= 50)
+	else if (chance <= 30)
 		words = 1;
+	else
+		return;
 	for (int i = 0; i < words; i++)
 	{
 		num[i] = rand() % m_iMax;
@@ -55,20 +57,27 @@ void Word::Makeword()
 			Add->word = m_sWordlist[num[i]];
 			Add->Xcoordinate = tmp;
 			Add->Ycoordinate = 1;
-			Add->number = m_iWordmax;
 			if (rand() % 100 < 10)
 				tmp = rand() % 4;
 			else
 				tmp = NULL;
 			Add->effect = tmp;
 			if (m_iWordmax == 0)
+			{
 				m_wDroppingword = Add;
+				m_wTmp = m_wDroppingword;
+				Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+				m_iWordmax++;
+				words--;
+			}
 			else
-			m_wTmp->next = Add;
-			m_iWordmax++;
-			words--;
-			Drawmanager.DrawPoint(m_wTmp->word,m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
-			m_wTmp = m_wTmp->next;
+			{
+				m_wTmp->next = Add;
+				m_iWordmax++;
+				words--;
+				m_wTmp = m_wTmp->next;
+				Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+			}
 		}
 	}
 }
@@ -92,27 +101,30 @@ void Word::EraseWord(Wordtree *word)
 		cout << " ";
 }
 
-void Word::GetWord(string typingword)
+int Word::HitWord(string typingword)
 {
+	Wordtree *tmp;
+	int effect=NULL;
 	if (m_wDroppingword == NULL)
-		return;
+		return effect;
 	m_wTmp = m_wDroppingword;
-	int i = 0;
 	while (1)
 	{
 		if (m_wTmp->word == typingword)
 		{
-			m_w[i].word = m_wTmp->word;//¿©±â
-			tmp[i++].Ycoordinate = m_wTmp->Ycoordinate;
+			EraseWord(m_wTmp);
+			effect= m_wTmp->effect;
+			tmp = m_wTmp;
+			m_wTmp = m_wTmp->next;
+			//delete tmp;
+			m_iWordmax--;
+			return effect;
 		}
 		if (m_wTmp->next == NULL)
 			break;
 		m_wTmp = m_wTmp->next;
 	}
-	if(i>=2)
-
-	else
-
+	return effect;
 }
 
 

@@ -8,7 +8,7 @@ Play::Play()
 	sprintf(buf, "mode con: lines=%d cols=%d", HEIGHT + 5, (WIDTH * 2) + 1);
 	system(buf);
 	srand((unsigned)time);
-	
+	m_iTypingWordNum = 0;
 	Menu();
 }
 
@@ -115,32 +115,40 @@ string Play::Getname()
 	return tmp;
 }
 
-bool Play::Getword(char ch)
+bool Play::GetWord()
 {
-	int num = 0;
-		if (ch == 13 && num > 0)//엔터
+	char ch = getch();
+	if (ch == 13)//엔터
+	{
+		if (m_iTypingWordNum > 0)
+		{
+			m_iTypingWordNum = 0;
 			return true;
-		else if (ch == 8)//백스페이스
-		{
-			if (num > 0)
-			{
-				m_cWord[num - 1] = NULL;
-				num--;
-			}
 		}
-		else if (!(ch >= 'a'&&ch <= 'z') && !(ch >= 'A'&&ch <= 'Z'))
-			return false;
-		else
+		return false;
+	}
+	else if (ch == 8)//백스페이스
+	{
+		if (m_iTypingWordNum > 0)
 		{
-			m_cWord[num++] = ch;
-			Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
-			Drawmanager.DrawMidText(m_cWord, WIDTH, HEIGHT*0.5 + 4);
+			m_cWord[m_iTypingWordNum - 1] = NULL;
+			m_iTypingWordNum--;
 		}
+	}
+	else if (!(ch >= 'a'&&ch <= 'z') && !(ch >= 'A'&&ch <= 'Z'))
+		return false;
+	else
+		m_cWord[m_iTypingWordNum++] = ch;
+	Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
+	Drawmanager.DrawMidText(m_cWord, WIDTH, HEIGHT*0.5 + 4);
+
 	return false;
 }
 
 void Play::Gameplay(int stage)
 {
+	int Effect;
+	int Curclock, Wordclock;
 	int Gamespeed=0;
 	char tmp[20];
 	char ch;
@@ -150,17 +158,41 @@ void Play::Gameplay(int stage)
 	Sleep(1000);
 	Drawmanager.DrawMidText("       ", WIDTH, HEIGHT*0.5);
 	Sleep(1000);
+	Wordclock = clock();
 	while (true)
 	{
-		if (ch = getch())
+		Curclock = clock();
+		if (kbhit())
 		{
-			if (Getword(ch))
-				Word::GetWord(m_cWord);
-		}
+			if (GetWord())
+			{
+				Effect=Word::HitWord(m_cWord);
+				for (int i = 0; i < 11; i++)
+					m_cWord[i] = NULL;
+				if (Effect == SLOW)
+				{
 
-		Word::Makeword();
-		Word::Dropword();
-		Sleep(1000+Gamespeed);
+				}
+				else if (Effect = FAST)
+				{
+
+				}
+				else if (Effect = STOP)
+				{
+
+				}
+				else if (Effect = BLIND)
+				{
+
+				}
+			}
+		}
+		if (Curclock - Wordclock >= 1000 + Gamespeed)
+		{
+			Word::Dropword();
+			Word::Makeword();
+			Wordclock = Curclock;
+		}
 	}
 }
 
