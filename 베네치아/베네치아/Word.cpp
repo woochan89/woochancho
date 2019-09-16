@@ -29,8 +29,6 @@ void Word::Makeword()
 	int num[3] = {NULL};
 	int tmp;
 	int words=0;
-	if(m_wDroppingword==NULL)
-	m_wDroppingword = new Wordtree();
 
 	int chance = rand() % 100;
 	if (chance <= 5)
@@ -41,13 +39,13 @@ void Word::Makeword()
 		words = 1;
 	else
 		return;
+	//if (m_wDroppingword == NULL)
+	//	m_wDroppingword = new Wordtree();
+
 	for (int i = 0; i < words; i++)
 	{
 		num[i] = rand() % m_iMax;
 	}
-	m_wTmp = m_wDroppingword;
-	while (m_wTmp->next != NULL)
-		m_wTmp = m_wTmp->next;
 	for (int i=0;words != 0&&i<3;i++)
 	{
 		tmp = rand() % WIDTH;
@@ -72,6 +70,9 @@ void Word::Makeword()
 			}
 			else
 			{
+				m_wTmp = m_wDroppingword;
+				while (m_wTmp->next != NULL)
+					m_wTmp = m_wTmp->next;
 				m_wTmp->next = Add;
 				m_iWordmax++;
 				words--;
@@ -103,7 +104,9 @@ void Word::EraseWord(Wordtree *word)
 
 int Word::HitWord(string typingword)
 {
-	Wordtree *tmp;
+	int firstcheck=1;
+	Wordtree *tmp2;
+	Wordtree *tmp3;
 	int effect=NULL;
 	if (m_wDroppingword == NULL)
 		return effect;
@@ -113,16 +116,39 @@ int Word::HitWord(string typingword)
 		if (m_wTmp->word == typingword)
 		{
 			EraseWord(m_wTmp);
-			effect= m_wTmp->effect;
-			tmp = m_wTmp;
-			m_wTmp = m_wTmp->next;
-			//delete tmp;
+			effect = m_wTmp->effect;
+			if (m_wTmp->next == NULL)
+				tmp2 = NULL;
+			else
+				tmp2 = m_wTmp->next;
+			delete m_wTmp;
+			if (firstcheck == 1)
+				m_wDroppingword = tmp2;
+			m_wTmp = m_wDroppingword;
+
+			while (1)//do while 확인, 넥스트가 널이면 반복문 진입 X
+			{
+				if (m_wTmp->next != NULL)
+				{
+					tmp3 = m_wTmp->next;
+					if (tmp3->effect >= 0 && tmp3->effect <= BLIND)
+					{
+						m_wTmp = m_wTmp->next;
+						continue;
+					}
+					else
+						break;
+				}
+				m_wTmp = m_wTmp->next;
+			}
+			m_wTmp->next = tmp2;
 			m_iWordmax--;
 			return effect;
 		}
 		if (m_wTmp->next == NULL)
 			break;
 		m_wTmp = m_wTmp->next;
+		firstcheck++;
 	}
 	return effect;
 }

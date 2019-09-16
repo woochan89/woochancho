@@ -169,6 +169,7 @@ void Play::Gameplay(int stage)
 				Effect=Word::HitWord(m_cWord);
 				for (int i = 0; i < 11; i++)
 					m_cWord[i] = NULL;
+				Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
 				if (Effect == SLOW)
 				{
 
