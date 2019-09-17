@@ -27,10 +27,13 @@ protected:
 
 public:
 	void Getdata();
-	void Makeword();
-	void Dropword();
+	void Makeword(int BlindCounter);
+	int Dropword(int BlindCounter);
 	void EraseWord(Wordtree *Word);
-	int HitWord(string typingword);
+	int HitWord(string typingword, int *wordlength);
+	int FirstWordErase(int *length);
+	void WordReset();
+	void WordReset(Wordtree *Word);
 	Word();
 	~Word();
 };

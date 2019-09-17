@@ -4,6 +4,7 @@
 
 Play::Play()
 {
+	m_iHeart = 9;
 	char buf[256];
 	sprintf(buf, "mode con: lines=%d cols=%d", HEIGHT + 5, (WIDTH * 2) + 1);
 	system(buf);
@@ -148,7 +149,13 @@ bool Play::GetWord()
 void Play::Gameplay(int stage)
 {
 	int Effect;
+	int TimeCounter = 0;
+	int StopCounter = 0;
+	int BlindCounter = 0;
 	int Curclock, Wordclock;
+	int wordlength=0;
+	int loseheart=0;
+	int Score=0;
 	int Gamespeed=0;
 	char tmp[20];
 	char ch;
@@ -166,33 +173,70 @@ void Play::Gameplay(int stage)
 		{
 			if (GetWord())
 			{
-				Effect=Word::HitWord(m_cWord);
+				Effect=Word::HitWord(m_cWord,&wordlength);
 				for (int i = 0; i < 11; i++)
 					m_cWord[i] = NULL;
 				Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
 				if (Effect == SLOW)
 				{
-
+					Gamespeed = 500;
+					TimeCounter = 4;
 				}
-				else if (Effect = FAST)
+				else if (Effect == FAST)
 				{
-
+					Gamespeed = -500;
+					TimeCounter = 4 ;
 				}
-				else if (Effect = STOP)
+				else if (Effect == STOP)
+					StopCounter = 4;
+				else if (Effect == BLIND)
 				{
-
+					BlindCounter = 4;
 				}
-				else if (Effect = BLIND)
+				if (wordlength != 0)
 				{
-
+					Score += wordlength * 10;
+					Drawmanager.DrawScore(Score);
+				}
+				if (Score >= 10000)
+				{
+					Drawmanager.DrawMidText("STAGE CLEAR!!",WIDTH,HEIGHT*0.5);
+					system("pause");
+					Word::WordReset();
+					return;
 				}
 			}
 		}
-		if (Curclock - Wordclock >= 1000 + Gamespeed)
+		if (Curclock - Wordclock >= 700 + Gamespeed)
 		{
-			Word::Dropword();
-			Word::Makeword();
+			if (StopCounter == 0)
+			{
+				loseheart = Word::Dropword(BlindCounter);
+				if (loseheart != 0)
+				{
+					m_iHeart -= loseheart;
+					Drawmanager.DrawHeart(m_iHeart);
+					loseheart = 0;
+					if (m_iHeart <= 0)
+					{
+						Drawmanager.DrawMidText("STAGE FAIL", WIDTH, HEIGHT*0.5);
+						system("pause");
+						Word::WordReset();
+						m_iHeart = 9;
+						return;
+					}
+				}
+				Word::Makeword(BlindCounter);
+			}
+			else
+				StopCounter--;
 			Wordclock = Curclock;
+			if (TimeCounter != 0)
+			{
+				TimeCounter--;
+				if (TimeCounter == 0)
+					Gamespeed = 0;
+			}
 		}
 	}
 }

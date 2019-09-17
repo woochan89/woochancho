@@ -23,7 +23,7 @@ void Word::Getdata()
 }
 
 
-void Word::Makeword()
+void Word::Makeword(int BlindCounter)
 {
 	Wordtree *Add;
 	int num[3] = {NULL};
@@ -39,8 +39,6 @@ void Word::Makeword()
 		words = 1;
 	else
 		return;
-	//if (m_wDroppingword == NULL)
-	//	m_wDroppingword = new Wordtree();
 
 	for (int i = 0; i < words; i++)
 	{
@@ -59,12 +57,23 @@ void Word::Makeword()
 				tmp = rand() % 4;
 			else
 				tmp = NULL;
-			Add->effect = tmp;
+			Add->effect = tmp+1;
 			if (m_iWordmax == 0)
 			{
 				m_wDroppingword = Add;
 				m_wTmp = m_wDroppingword;
-				Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+				if (BlindCounter != 0)
+				{
+					Drawmanager.gotoxy(m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+					for (int i = 0; i < m_wTmp->word.length(); i++)
+					{
+						cout << "■";
+					}
+				}
+				else
+				{
+					Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+				}
 				m_iWordmax++;
 				words--;
 			}
@@ -83,16 +92,37 @@ void Word::Makeword()
 	}
 }
 
-void Word::Dropword()
+int Word::Dropword(int BlindCounter)
 {
+	int Dropcheck = 0;
+	int length = 0;
 	m_wTmp = m_wDroppingword;
 	for (int i=0;i<m_iWordmax;i++)
 	{
 		EraseWord(m_wTmp);
 		m_wTmp->Ycoordinate++;
-		Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
-		m_wTmp = m_wTmp->next;
+		if (m_wTmp->Ycoordinate >= HEIGHT-2)
+		{
+			Dropcheck++;
+			FirstWordErase(&length);
+			m_wTmp = m_wDroppingword;
+		}
+		else
+		{
+			if (BlindCounter != 0)
+			{
+				Drawmanager.gotoxy(m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+				for (int i = 0; i < m_wTmp->word.length(); i++)
+				{
+					cout << "■";
+				}
+			}
+			else
+			Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+			m_wTmp = m_wTmp->next;
+		}
 	}
+	return Dropcheck;
 }
 
 void Word::EraseWord(Wordtree *word)
@@ -102,12 +132,13 @@ void Word::EraseWord(Wordtree *word)
 		cout << " ";
 }
 
-int Word::HitWord(string typingword)
+int Word::HitWord(string typingword,int *wordlength)
 {
 	int firstcheck=1;
-	Wordtree *tmp2;
+	Wordtree *tmpnext;
 	Wordtree *tmp3;
 	int effect=NULL;
+	*wordlength = 0;
 	if (m_wDroppingword == NULL)
 		return effect;
 	m_wTmp = m_wDroppingword;
@@ -115,34 +146,37 @@ int Word::HitWord(string typingword)
 	{
 		if (m_wTmp->word == typingword)
 		{
-			EraseWord(m_wTmp);
-			effect = m_wTmp->effect;
-			if (m_wTmp->next == NULL)
-				tmp2 = NULL;
-			else
-				tmp2 = m_wTmp->next;
-			delete m_wTmp;
 			if (firstcheck == 1)
-				m_wDroppingword = tmp2;
-			m_wTmp = m_wDroppingword;
-
-			while (1)//do while 확인, 넥스트가 널이면 반복문 진입 X
+				effect = FirstWordErase(wordlength);
+			else
 			{
-				if (m_wTmp->next != NULL)
+				EraseWord(m_wTmp);
+				effect = m_wTmp->effect;
+				*wordlength = m_wTmp->word.length();
+				if (m_wTmp->next == NULL)
+					tmpnext = NULL;
+				else
+					tmpnext = m_wTmp->next;
+				delete m_wTmp;
+				m_wTmp = m_wDroppingword;
+				while (1)
 				{
-					tmp3 = m_wTmp->next;
-					if (tmp3->effect >= 0 && tmp3->effect <= BLIND)
+					if (m_wTmp->next != NULL)
 					{
-						m_wTmp = m_wTmp->next;
-						continue;
+						tmp3 = m_wTmp->next;
+						if (tmp3->effect >= 0 && tmp3->effect <= BLIND)
+						{
+							m_wTmp = m_wTmp->next;
+							continue;
+						}
+						else
+							break;
 					}
-					else
-						break;
+					m_wTmp = m_wTmp->next;
 				}
-				m_wTmp = m_wTmp->next;
+				m_wTmp->next = tmpnext;
+				m_iWordmax--;
 			}
-			m_wTmp->next = tmp2;
-			m_iWordmax--;
 			return effect;
 		}
 		if (m_wTmp->next == NULL)
@@ -153,6 +187,44 @@ int Word::HitWord(string typingword)
 	return effect;
 }
 
+int Word::FirstWordErase(int *length)
+{
+	Wordtree *tmp;
+	int effect=0;
+	EraseWord(m_wDroppingword);
+	effect = m_wDroppingword->effect;
+	*length = m_wDroppingword->word.length();
+	if (m_wDroppingword->next != NULL)
+	{
+		tmp = m_wDroppingword->next;
+	}
+	else
+		tmp = NULL;
+	delete m_wDroppingword;
+	m_wDroppingword = tmp;
+	m_iWordmax--;
+	return effect;
+}
+
+void Word::WordReset()
+{
+	if(m_wDroppingword->next!=NULL)
+		WordReset(m_wDroppingword->next);
+	delete m_wDroppingword;
+	m_iWordmax = 0;
+}
+
+void Word::WordReset(Wordtree *word)
+{
+	if (word->next != NULL)
+		WordReset(word->next);
+	else
+	{
+		delete word;
+		return;
+	}
+	delete word;
+}
 
 Word::~Word()
 {
