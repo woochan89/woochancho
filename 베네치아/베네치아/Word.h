@@ -3,7 +3,6 @@
 #define SLOW 1
 #define FAST 2
 #define STOP 3
-#define BLIND 4
 
 struct Wordtree
 {
@@ -27,8 +26,8 @@ protected:
 
 public:
 	void Getdata();
-	void Makeword(int BlindCounter);
-	int Dropword(int BlindCounter);
+	void Makeword();
+	int Dropword();
 	void EraseWord(Wordtree *Word);
 	int HitWord(string typingword, int *wordlength);
 	int FirstWordErase(int *length);

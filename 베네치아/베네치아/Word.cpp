@@ -23,15 +23,17 @@ void Word::Getdata()
 }
 
 
-void Word::Makeword(int BlindCounter)
+void Word::Makeword()
 {
 	Wordtree *Add;
 	int num[3] = {NULL};
 	int tmp;
 	int words=0;
+	int overlapcheck[2][2] = { NULL };
+	int effectchance;
 
 	int chance = rand() % 100;
-	if (chance <= 5)
+	if (chance <= 30)
 		words = 3;
 	else if (chance <= 15)
 		words = 2;
@@ -49,31 +51,45 @@ void Word::Makeword(int BlindCounter)
 		tmp = rand() % WIDTH;
 		if (tmp + m_sWordlist[num[i]].length() <WIDTH&&tmp>0)
 		{
+			if (overlapcheck[0][0] != NULL || overlapcheck[0][1] != NULL)
+			{
+				if (tmp + m_sWordlist[num[i]].length() >= overlapcheck[0][0] && tmp <= overlapcheck[0][1])
+				{
+					--i;
+					continue;
+				}
+			}
+			if (overlapcheck[1][0] != NULL || overlapcheck[1][1] != NULL)
+			{
+				if (tmp + m_sWordlist[num[i]].length() >= overlapcheck[1][0] && tmp <= overlapcheck[1][1])
+				{
+					i--;
+					continue;
+				}
+			}
 			Add = new Wordtree();
 			Add->word = m_sWordlist[num[i]];
 			Add->Xcoordinate = tmp;
 			Add->Ycoordinate = 1;
 			if (rand() % 100 < 10)
-				tmp = rand() % 4;
+			{
+				effectchance = rand() % 3;
+				Add->effect = effectchance + 1;
+			}
 			else
-				tmp = NULL;
-			Add->effect = tmp+1;
+				Add->effect = NULL;
 			if (m_iWordmax == 0)
 			{
 				m_wDroppingword = Add;
 				m_wTmp = m_wDroppingword;
-				if (BlindCounter != 0)
+				if (m_wTmp->effect != NULL)
 				{
-					Drawmanager.gotoxy(m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
-					for (int i = 0; i < m_wTmp->word.length(); i++)
-					{
-						cout << "бс";
-					}
+					YELLOW
+						Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+					ORIGINAL
 				}
 				else
-				{
-					Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
-				}
+				Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
 				m_iWordmax++;
 				words--;
 			}
@@ -86,13 +102,32 @@ void Word::Makeword(int BlindCounter)
 				m_iWordmax++;
 				words--;
 				m_wTmp = m_wTmp->next;
+				if (m_wTmp->effect != NULL)
+				{
+					YELLOW
+						Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+					ORIGINAL
+				}
+				else
 				Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+			}
+			if (i == 0)
+			{
+				overlapcheck[0][0] = tmp;
+				overlapcheck[0][1] = tmp + m_sWordlist[num[i]].length();
+
+			}
+			else if (i == 1)
+			{
+				overlapcheck[1][0] = tmp;
+				overlapcheck[1][1] = tmp+ m_sWordlist[num[i]].length();
+
 			}
 		}
 	}
 }
 
-int Word::Dropword(int BlindCounter)
+int Word::Dropword()
 {
 	int Dropcheck = 0;
 	int length = 0;
@@ -109,13 +144,11 @@ int Word::Dropword(int BlindCounter)
 		}
 		else
 		{
-			if (BlindCounter != 0)
+			if (m_wTmp->effect != NULL)
 			{
-				Drawmanager.gotoxy(m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
-				for (int i = 0; i < m_wTmp->word.length(); i++)
-				{
-					cout << "бс";
-				}
+				YELLOW
+				Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
+				ORIGINAL
 			}
 			else
 			Drawmanager.DrawPoint(m_wTmp->word, m_wTmp->Xcoordinate, m_wTmp->Ycoordinate);
@@ -164,7 +197,7 @@ int Word::HitWord(string typingword,int *wordlength)
 					if (m_wTmp->next != NULL)
 					{
 						tmp3 = m_wTmp->next;
-						if (tmp3->effect >= 0 && tmp3->effect <= BLIND)
+						if (tmp3->effect >= 0 && tmp3->effect <= STOP)
 						{
 							m_wTmp = m_wTmp->next;
 							continue;

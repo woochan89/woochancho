@@ -58,6 +58,7 @@ void Draw::DrawTextWithBox(string str, int x, int y)
 
 void Draw::DrawBox()
 {
+	SKY_BLUE
 	for (int height = 0; height < HEIGHT; height++)
 	{
 		for (int width = 0; width < WIDTH; width++)
@@ -90,6 +91,7 @@ void Draw::DrawBox()
 			}
 		}
 	}
+	ORIGINAL
 }
 
 void Draw::DrawSmallBox(int x, int y, int Width, int Height)
@@ -161,8 +163,10 @@ void Draw::DrawHeart(int Heart)
 {
 	gotoxy(1, HEIGHT + 2);
 	cout << "Life : ";
+	RED
 	for (int i = 0; i < Heart; i++)
 	 cout << "¢¾";
+	ORIGINAL
 	cout << "                  ";
 }
 
@@ -178,11 +182,11 @@ void Draw::DrawName(string Name)
 	cout << "Name : " << Name<<"      ";
 }
 
-void Draw::Drawinterface(string Name)
+void Draw::Drawinterface(string Name,int Heart)
 {
 	system("cls");
 	DrawBox();
-	DrawHeart();
+	DrawHeart(Heart);
 	DrawScore();
 	DrawName(Name);
 }

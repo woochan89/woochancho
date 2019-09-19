@@ -21,7 +21,7 @@ public:
 	void Introchange(string str[],int num);
 	string Getname();
 	bool GetWord();
-	void Gameplay(int stage);
+	void Gameplay(int stage=1);
 	Play();
 	~Play();
 };

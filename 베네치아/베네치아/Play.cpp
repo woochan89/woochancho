@@ -19,7 +19,9 @@ void Play::Menu()
 	while (true)
 	{
 		Drawmanager.Drawinterface();
+		YELLOW
 		Drawmanager.DrawTextWithBox("★ ☆ 베 네 치 아 ☆ ★", WIDTH, HEIGHT*0.2);
+		ORIGINAL
 		Drawmanager.DrawMidText("1. 게임 시작", WIDTH, HEIGHT*0.5 - 2);
 		Drawmanager.DrawMidText("2. 랭킹", WIDTH, HEIGHT*0.5);
 		Drawmanager.DrawMidText("3. 나가기", WIDTH, HEIGHT*0.5 + 2);
@@ -31,7 +33,7 @@ void Play::Menu()
 			Drawmanager.Drawinterface();
 			//Intro();
 			m_sName=Getname();
-			Gameplay(1);
+			Gameplay();
 			break;
 		case 2:
 			Rankmanager.Showrank();
@@ -151,16 +153,16 @@ void Play::Gameplay(int stage)
 	int Effect;
 	int TimeCounter = 0;
 	int StopCounter = 0;
-	int BlindCounter = 0;
+	int ErrorCounter=0;
 	int Curclock, Wordclock;
 	int wordlength=0;
 	int loseheart=0;
 	int Score=0;
-	int Gamespeed=0;
+	int Gamespeed;
+	float SpeedChange = 1;
 	char tmp[20];
-	char ch;
 	sprintf(tmp, "%d stage", stage);
-	Drawmanager.Drawinterface(m_sName);
+	Drawmanager.Drawinterface(m_sName, m_iHeart);
 	Drawmanager.DrawMidText(tmp, WIDTH, HEIGHT*0.5);
 	Sleep(1000);
 	Drawmanager.DrawMidText("       ", WIDTH, HEIGHT*0.5);
@@ -171,47 +173,59 @@ void Play::Gameplay(int stage)
 		Curclock = clock();
 		if (kbhit())
 		{
-			if (GetWord())
-			{
-				Effect=Word::HitWord(m_cWord,&wordlength);
-				for (int i = 0; i < 11; i++)
-					m_cWord[i] = NULL;
-				Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
-				if (Effect == SLOW)
+				if (ErrorCounter == NULL&&GetWord())
 				{
-					Gamespeed = 500;
-					TimeCounter = 4;
+					Effect = Word::HitWord(m_cWord, &wordlength);
+					if (wordlength == NULL)
+					{
+						Drawmanager.DrawMidText("MISS!", WIDTH, HEIGHT*0.5 + 4);
+						ErrorCounter = 4;
+						for (int i = 0; i < 11; i++)
+							m_cWord[i] = NULL;
+					}
+					else
+					{
+						for (int i = 0; i < 11; i++)
+							m_cWord[i] = NULL;
+						Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
+					}
+					if (Effect == SLOW)
+					{
+						SpeedChange = 1.5;
+						TimeCounter = 4;
+					}
+					else if (Effect == FAST)
+					{
+						SpeedChange = 0.5;
+						TimeCounter = 4;
+					}
+					else if (Effect == STOP)
+						StopCounter = 4;
+					if (wordlength != 0)
+					{
+						Score += wordlength * 10;
+						Drawmanager.DrawScore(Score);
+					}
+					if (Score >= 200 + stage * 200)
+					{
+						Drawmanager.DrawTextWithBox("STAGE CLEAR!!", WIDTH, HEIGHT*0.5);
+						system("pause");
+						Word::WordReset();
+						Gameplay(++stage);
+						return;
+					}
 				}
-				else if (Effect == FAST)
-				{
-					Gamespeed = -500;
-					TimeCounter = 4 ;
-				}
-				else if (Effect == STOP)
-					StopCounter = 4;
-				else if (Effect == BLIND)
-				{
-					BlindCounter = 4;
-				}
-				if (wordlength != 0)
-				{
-					Score += wordlength * 10;
-					Drawmanager.DrawScore(Score);
-				}
-				if (Score >= 10000)
-				{
-					Drawmanager.DrawMidText("STAGE CLEAR!!",WIDTH,HEIGHT*0.5);
-					system("pause");
-					Word::WordReset();
-					return;
-				}
-			}
+			
 		}
-		if (Curclock - Wordclock >= 700 + Gamespeed)
+		Gamespeed = 1000 - (100 * stage);
+		if (Gamespeed <= 400)
+			Gamespeed = 400;
+		Gamespeed *= SpeedChange;
+		if (Curclock - Wordclock >= Gamespeed)
 		{
 			if (StopCounter == 0)
 			{
-				loseheart = Word::Dropword(BlindCounter);
+				loseheart = Word::Dropword();
 				if (loseheart != 0)
 				{
 					m_iHeart -= loseheart;
@@ -219,14 +233,14 @@ void Play::Gameplay(int stage)
 					loseheart = 0;
 					if (m_iHeart <= 0)
 					{
-						Drawmanager.DrawMidText("STAGE FAIL", WIDTH, HEIGHT*0.5);
+						Drawmanager.DrawTextWithBox("STAGE FAIL", WIDTH, HEIGHT*0.5);
 						system("pause");
 						Word::WordReset();
 						m_iHeart = 9;
 						return;
 					}
 				}
-				Word::Makeword(BlindCounter);
+				Word::Makeword();
 			}
 			else
 				StopCounter--;
@@ -235,7 +249,13 @@ void Play::Gameplay(int stage)
 			{
 				TimeCounter--;
 				if (TimeCounter == 0)
-					Gamespeed = 0;
+					SpeedChange = 1;
+			}
+			if (ErrorCounter > 0)
+			{
+				ErrorCounter--;
+				if(ErrorCounter==0)
+					Drawmanager.DrawMidText("     ", WIDTH, HEIGHT*0.5 + 4);
 			}
 		}
 	}
