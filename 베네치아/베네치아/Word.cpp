@@ -125,6 +125,8 @@ void Word::Makeword()
 			}
 		}
 	}
+	Drawmanager.gotoxy(WIDTH, HEIGHT*0.5 + 7);
+
 }
 
 int Word::Dropword()
@@ -134,7 +136,19 @@ int Word::Dropword()
 	m_wTmp = m_wDroppingword;
 	for (int i=0;i<m_iWordmax;i++)
 	{
-		EraseWord(m_wTmp);
+		if (m_wTmp->Ycoordinate >= HEIGHT * 0.5 + 5 && m_wTmp->Ycoordinate <= HEIGHT * 0.5 + 7)
+		{
+			if (m_wTmp->Ycoordinate == HEIGHT * 0.5 + 5)
+				EraseWord(m_wTmp);
+			if (m_wTmp->Xcoordinate + m_wTmp->word.length()>WIDTH*0.5 - 6&&m_wTmp->Xcoordinate<WIDTH*0.5+6)
+			{
+				m_wTmp->Ycoordinate++;
+				m_wTmp = m_wTmp->next;
+				continue;
+			}
+		}
+		if(!(m_wTmp->Ycoordinate==HEIGHT*0.5+8&& m_wTmp->Xcoordinate + m_wTmp->word.length() > WIDTH*0.5 - 6 && m_wTmp->Xcoordinate < WIDTH*0.5 + 6))
+			EraseWord(m_wTmp);
 		m_wTmp->Ycoordinate++;
 		if (m_wTmp->Ycoordinate >= HEIGHT-2)
 		{
@@ -155,6 +169,7 @@ int Word::Dropword()
 			m_wTmp = m_wTmp->next;
 		}
 	}
+	Drawmanager.gotoxy(WIDTH, HEIGHT*0.5 + 7);
 	return Dropcheck;
 }
 

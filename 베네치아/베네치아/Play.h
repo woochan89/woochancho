@@ -18,7 +18,6 @@ private:
 public:
 	void Menu();
 	void Intro();
-	void Introchange(string str[],int num);
 	string Getname();
 	bool GetWord();
 	void Gameplay(int stage=1);

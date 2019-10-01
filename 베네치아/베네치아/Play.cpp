@@ -31,7 +31,7 @@ void Play::Menu()
 		{
 		case 1:
 			Drawmanager.Drawinterface();
-			//Intro();
+			Intro();
 			m_sName=Getname();
 			Gameplay();
 			break;
@@ -46,7 +46,9 @@ void Play::Menu()
 
 void Play::Intro()
 {
+	char ch;
 	int max;
+	int Curclock, Wordclock;
 	ifstream load;
 	string *str;
 	load.open("베네치아_스토리.txt");
@@ -55,32 +57,36 @@ void Play::Intro()
 	for (int i=0;!load.eof();i++)
 	{
 		getline(load, str[i]);
-		if (i + 1 == max)
-			str[i] = " ";
 	}
-	Introchange(str, 0);
-
-}
-
-void Play::Introchange(string str[],int num)
-{
-	if (str[num] == " ")
-		return;
-	for (int i = 0; i <= num; i++)
+	Drawmanager.DrawSmallBox(WIDTH*0.5 - 6, HEIGHT*0.5 + 6, 12, 3);
+	Drawmanager.DrawMidText("Skip : s", WIDTH, HEIGHT*0.5 + 7);
+	Wordclock = clock();
+	for (int i = 0; i <= max;)
 	{
-		if (i >= 12)
+		Curclock = clock();
+		if (Curclock - Wordclock >= 500)
 		{
-			for (int j = i-12, k=0 ; k < 12; j++,k++)
+			i++;
+			if (i >= 12)
 			{
-				Drawmanager.DrawMidText("                                       ", WIDTH, HEIGHT*0.5 - 7 + k);
-				Drawmanager.DrawMidText(str[j+1], WIDTH, HEIGHT*0.5 - 7 + k);
+				for (int j = i - 12, k = 0; k < 12; j++, k++)
+				{
+					Drawmanager.DrawMidText("                                       ", WIDTH, HEIGHT*0.5 - 7 + k);
+					Drawmanager.DrawMidText(str[j + 1], WIDTH, HEIGHT*0.5 - 7 + k);
+				}
+				continue;
 			}
-			continue;
+			Drawmanager.DrawMidText(str[i], WIDTH, HEIGHT*0.5 - 7 + i);
+			Wordclock = Curclock;
 		}
-		Drawmanager.DrawMidText(str[i], WIDTH, HEIGHT*0.5 - 7 + i);
+		if (kbhit())
+		{
+			ch = getch();
+			if (ch == 's')
+				return;
+		}
 	}
-	Sleep(100);
-	Introchange(str, ++num);
+
 }
 
 string Play::Getname()
@@ -89,8 +95,8 @@ string Play::Getname()
 	int num=0;
 	char ch;
 	Drawmanager.Drawinterface();
-	Drawmanager.DrawSmallBox(23, HEIGHT*0.5 + 3, 15, 3);
-	Drawmanager.DrawMidText("이름 입력(영문,10글자 이하)", WIDTH, HEIGHT*0.5 + 2);
+	Drawmanager.DrawSmallBox(WIDTH*0.5 - 6, HEIGHT*0.5 + 6, 12, 3);
+	Drawmanager.DrawMidText("이름 입력(영문,10글자 이하)", WIDTH, HEIGHT*0.5 + 5);
 	while (true)
 	{
 		ch = getch();
@@ -106,8 +112,8 @@ string Play::Getname()
 			continue;
 		else
 			tmp[num++]=ch;
-		Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
-		Drawmanager.DrawMidText(tmp, WIDTH, HEIGHT*0.5 + 4);
+		Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 7);
+		Drawmanager.DrawMidText(tmp, WIDTH, HEIGHT*0.5 + 7);
 		if (num > 9)
 		{
 			Drawmanager.DrawTextWithBox("10글자 초과!!", WIDTH, HEIGHT*0.5);
@@ -142,8 +148,8 @@ bool Play::GetWord()
 		return false;
 	else
 		m_cWord[m_iTypingWordNum++] = ch;
-	Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
-	Drawmanager.DrawMidText(m_cWord, WIDTH, HEIGHT*0.5 + 4);
+	Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 7);
+	Drawmanager.DrawMidText(m_cWord, WIDTH, HEIGHT*0.5 + 7);
 
 	return false;
 }
@@ -163,10 +169,13 @@ void Play::Gameplay(int stage)
 	char tmp[20];
 	sprintf(tmp, "%d stage", stage);
 	Drawmanager.Drawinterface(m_sName, m_iHeart);
+	Drawmanager.DrawSmallBox(WIDTH*0.5 - 6, HEIGHT*0.5 + 6, 12, 3);
 	Drawmanager.DrawMidText(tmp, WIDTH, HEIGHT*0.5);
+	Drawmanager.gotoxy(WIDTH, HEIGHT*0.5 + 7);
 	Sleep(1000);
 	Drawmanager.DrawMidText("       ", WIDTH, HEIGHT*0.5);
-	Sleep(1000);
+	Drawmanager.gotoxy(WIDTH, HEIGHT*0.5 + 7);
+	Sleep(500);
 	Wordclock = clock();
 	while (true)
 	{
@@ -178,7 +187,8 @@ void Play::Gameplay(int stage)
 					Effect = Word::HitWord(m_cWord, &wordlength);
 					if (wordlength == NULL)
 					{
-						Drawmanager.DrawMidText("MISS!", WIDTH, HEIGHT*0.5 + 4);
+						Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 7);
+						Drawmanager.DrawMidText("MISS!", WIDTH, HEIGHT*0.5 + 7);
 						ErrorCounter = 4;
 						for (int i = 0; i < 11; i++)
 							m_cWord[i] = NULL;
@@ -187,7 +197,7 @@ void Play::Gameplay(int stage)
 					{
 						for (int i = 0; i < 11; i++)
 							m_cWord[i] = NULL;
-						Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 4);
+						Drawmanager.DrawMidText("                    ", WIDTH, HEIGHT*0.5 + 7);
 					}
 					if (Effect == SLOW)
 					{
@@ -217,7 +227,7 @@ void Play::Gameplay(int stage)
 				}
 			
 		}
-		Gamespeed = 1000 - (100 * stage);
+		Gamespeed = 500 - (100 * stage);
 		if (Gamespeed <= 400)
 			Gamespeed = 400;
 		Gamespeed *= SpeedChange;
