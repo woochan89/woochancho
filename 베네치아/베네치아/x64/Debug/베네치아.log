@@ -1,48 +1,9 @@
-﻿  Play.cpp
+﻿  Word.cpp
 c:\users\a10\desktop\woochancho\베네치아\베네치아\draw.h(30): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(11): warning C4311: '형식 캐스트': 'time_t (__cdecl *)(time_t *const )'에서 'unsigned int'(으)로 포인터가 잘립니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(11): warning C4302: '형식 캐스트': 'time_t (__cdecl *)(time_t *const )'에서 'unsigned int'(으)로 잘립니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(9): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(23): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(25): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(26): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(27): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(28): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(61): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(62): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(74): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(75): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(79): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(82): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(459): note: 'kbhit' 선언을 참조하십시오.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(84): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(98): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(99): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(115): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(116): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(119): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(102): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(151): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(152): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(129): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(453): note: 'getch' 선언을 참조하십시오.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(172): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(173): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(174): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(176): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(177): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(190): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(191): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(200): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(221): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(233): warning C4244: '*=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(246): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(268): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(170): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1774): note: 'sprintf' 선언을 참조하십시오.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\play.cpp(183): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(459): note: 'kbhit' 선언을 참조하십시오.
+c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(117): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(123): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(128): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(172): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(203): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(244): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   베네치아.vcxproj -> C:\Users\A10\Desktop\woochancho\베네치아\x64\Debug\베네치아.exe

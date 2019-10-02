@@ -33,7 +33,7 @@ void Word::Makeword()
 	int effectchance;
 
 	int chance = rand() % 100;
-	if (chance <= 30)
+	if (chance <= 7)
 		words = 3;
 	else if (chance <= 15)
 		words = 2;

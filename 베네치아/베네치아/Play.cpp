@@ -53,20 +53,22 @@ void Play::Intro()
 	string *str;
 	load.open("베네치아_스토리.txt");
 	load >> max;
-	str = new string[max + 1];
+	str = new string[max];
 	for (int i=0;!load.eof();i++)
 	{
 		getline(load, str[i]);
 	}
+	load.close();
 	Drawmanager.DrawSmallBox(WIDTH*0.5 - 6, HEIGHT*0.5 + 6, 12, 3);
 	Drawmanager.DrawMidText("Skip : s", WIDTH, HEIGHT*0.5 + 7);
 	Wordclock = clock();
-	for (int i = 0; i <= max;)
+	for (int i = 0; i < max-1;)
 	{
 		Curclock = clock();
-		if (Curclock - Wordclock >= 500)
+		if (Curclock - Wordclock >= 300)
 		{
 			i++;
+			Wordclock = Curclock;
 			if (i >= 12)
 			{
 				for (int j = i - 12, k = 0; k < 12; j++, k++)
@@ -77,7 +79,6 @@ void Play::Intro()
 				continue;
 			}
 			Drawmanager.DrawMidText(str[i], WIDTH, HEIGHT*0.5 - 7 + i);
-			Wordclock = Curclock;
 		}
 		if (kbhit())
 		{
@@ -86,7 +87,6 @@ void Play::Intro()
 				return;
 		}
 	}
-
 }
 
 string Play::Getname()
@@ -104,6 +104,8 @@ string Play::Getname()
 			break;
 		else if (ch == 8)//백스페이스
 		{
+			if (num == 0)
+				continue;
 			tmp[num - 1] = NULL;
 			if (num > 0)
 				num--;
@@ -167,6 +169,7 @@ void Play::Gameplay(int stage)
 	int Gamespeed;
 	float SpeedChange = 1;
 	char tmp[20];
+	ofstream save;
 	sprintf(tmp, "%d stage", stage);
 	Drawmanager.Drawinterface(m_sName, m_iHeart);
 	Drawmanager.DrawSmallBox(WIDTH*0.5 - 6, HEIGHT*0.5 + 6, 12, 3);
@@ -216,7 +219,7 @@ void Play::Gameplay(int stage)
 						Score += wordlength * 10;
 						Drawmanager.DrawScore(Score);
 					}
-					if (Score >= 200 + stage * 200)
+					if (Score >= 300 + stage * 100)
 					{
 						Drawmanager.DrawTextWithBox("STAGE CLEAR!!", WIDTH, HEIGHT*0.5);
 						system("pause");
@@ -225,9 +228,8 @@ void Play::Gameplay(int stage)
 						return;
 					}
 				}
-			
 		}
-		Gamespeed = 500 - (100 * stage);
+		Gamespeed = 1000 - (100 * stage);
 		if (Gamespeed <= 400)
 			Gamespeed = 400;
 		Gamespeed *= SpeedChange;
@@ -245,6 +247,12 @@ void Play::Gameplay(int stage)
 					{
 						Drawmanager.DrawTextWithBox("STAGE FAIL", WIDTH, HEIGHT*0.5);
 						system("pause");
+						save.open("Rank.txt", ios::app);
+						if (save.is_open())
+						{
+							save << m_sName << " " << stage << " " << Score << endl;
+						}
+						save.close();
 						Word::WordReset();
 						m_iHeart = 9;
 						return;
@@ -265,7 +273,7 @@ void Play::Gameplay(int stage)
 			{
 				ErrorCounter--;
 				if(ErrorCounter==0)
-					Drawmanager.DrawMidText("     ", WIDTH, HEIGHT*0.5 + 4);
+					Drawmanager.DrawMidText("     ", WIDTH, HEIGHT*0.5 + 7);
 			}
 		}
 	}
