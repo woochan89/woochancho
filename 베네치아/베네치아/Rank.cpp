@@ -16,7 +16,7 @@ void Rank::Showrank()
 	int *stagelist;
 	int *scorelist;
 	load.open("Rank.txt");
-	for (; !load.eof(); max++)
+	for (; !load.eof(); max++)//맥스값 찾기
 	{
 		getline(load, str);
 	}
@@ -36,7 +36,7 @@ void Rank::Showrank()
 	}
 	load.close();
 
-	for (int i = 0; i < max-1; i++)
+	for (int i = 0; i < max-1; i++)//스테이지 기준 정렬
 	{
 		for (int j = i + 1; j < max; j++)
 		{
@@ -55,7 +55,7 @@ void Rank::Showrank()
 		}
 	}
 
-	for (int i = 0; i < max - 1; i++)
+	for (int i = 0; i < max - 1; i++)//스코어 기준 정렬
 	{
 		for (int j = i + 1; j < max; j++)
 		{
