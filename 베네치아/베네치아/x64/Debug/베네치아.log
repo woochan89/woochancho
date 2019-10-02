@@ -1,9 +1,0 @@
-﻿  Word.cpp
-c:\users\a10\desktop\woochancho\베네치아\베네치아\draw.h(30): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(117): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(123): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(128): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(172): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(203): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\a10\desktop\woochancho\베네치아\베네치아\word.cpp(244): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  베네치아.vcxproj -> C:\Users\A10\Desktop\woochancho\베네치아\x64\Debug\베네치아.exe
