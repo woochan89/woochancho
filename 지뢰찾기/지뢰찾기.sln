@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "지뢰찾기", "지뢰찾기\지뢰찾기.vcxproj", "{0405577E-2D11-458E-9EDC-09A1943CB367}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0405577E-2D11-458E-9EDC-09A1943CB367}.Debug|x64.ActiveCfg = Debug|x64
+		{0405577E-2D11-458E-9EDC-09A1943CB367}.Debug|x64.Build.0 = Debug|x64
+		{0405577E-2D11-458E-9EDC-09A1943CB367}.Debug|x86.ActiveCfg = Debug|Win32
+		{0405577E-2D11-458E-9EDC-09A1943CB367}.Debug|x86.Build.0 = Debug|Win32
+		{0405577E-2D11-458E-9EDC-09A1943CB367}.Release|x64.ActiveCfg = Release|x64
+		{0405577E-2D11-458E-9EDC-09A1943CB367}.Release|x64.Build.0 = Release|x64
+		{0405577E-2D11-458E-9EDC-09A1943CB367}.Release|x86.ActiveCfg = Release|Win32
+		{0405577E-2D11-458E-9EDC-09A1943CB367}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6F1E6A83-0545-4DCC-B01E-1DF560F06B14}
+	EndGlobalSection
+EndGlobal
