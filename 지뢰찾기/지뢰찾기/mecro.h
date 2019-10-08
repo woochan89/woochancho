@@ -6,3 +6,8 @@
 #include<conio.h>
 #include<fstream>
 using namespace std;
+
+enum level
+{
+	EASY = 1, NOMAL, HARD
+};

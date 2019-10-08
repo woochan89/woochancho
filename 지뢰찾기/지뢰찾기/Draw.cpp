@@ -107,6 +107,44 @@ void Draw::DrawMidTextWithBox(string str, int width, int y)
 	DrawMidText(str, width, y);
 }
 
+void Draw::DrawInterface(int width,int y,int level)
+{
+	string Level;
+	if (level == EASY)
+	Level = "초 급";
+	else if (level == NOMAL)
+	Level = "중 급";
+	else
+	Level = "고 급";
+
+	DrawMidText("< 조 작 >", width, y);
+	gotoxy(15, y + 1);
+	cout << "W A S D : 조작";
+	gotoxy(25, y + 1);
+	cout << "ENTER : 확인";
+	gotoxy(15, y + 2);
+	cout << "난이도 : " << Level;
+	DrawTurn(y+2);
+}
+
+void Draw::DrawTurn(int y,int turn)
+{
+	gotoxy(25, y);
+	cout << "턴 : " << turn;
+}
+
+void Draw::DrawTable(int x, int y)
+{
+	for (int Y = 1; Y <= y; Y++)
+	{
+		for (int X = 1; X <= x; X++)
+		{
+			gotoxy(X * 2, Y);
+			cout << "■";
+		}
+	}
+}
+
 Draw::~Draw()
 {
 }

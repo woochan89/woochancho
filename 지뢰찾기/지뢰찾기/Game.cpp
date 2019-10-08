@@ -59,20 +59,27 @@ int Game::Option()
 		if (select == 1 || select == 2 || select == 3)
 			return select;
 	}
+	if (select == EASY)
+		m_iWidth = 9, m_iHeight = 9;
+	else if (select == NOMAL)
+		m_iWidth = 16, m_iHeight = 16;
+	else if (select == HARD)
+		m_iWidth = 16, m_iHeight = 30;
+
 }
 
 void Game::Play(int level)
 {
-	int width,height;
-	if (level == EASY)
-		width = 9, height = 9;
-	else if (level == NOMAL)
-		width = 16, height = 16;
-	else if(level==HARD)
-		width = 16, height = 30;
-	cout << "플레이";
-	system("pause");
-	return;
+	system("cls");
+	Drawmanager.DrawBox(WIDTH, HEIGHT);
+
+	//세팅
+	while (true)
+	{
+		//controlcursor
+		//checkmine
+		//
+	}
 }
 
 Game::~Game()
