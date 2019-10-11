@@ -57,28 +57,33 @@ int Game::Option()
 		Drawmanager.DrawMidText("고 급( 16 X 30 , 지뢰 99개 )", WIDTH, HEIGHT*0.5+2);
 		select = Drawmanager.DrawArrow(WIDTH*0.5 - 10, HEIGHT*0.5 - 2, 3);
 		if (select == 1 || select == 2 || select == 3)
-			return select;
-	}
-	if (select == EASY)
-		m_iWidth = 9, m_iHeight = 9;
-	else if (select == NOMAL)
-		m_iWidth = 16, m_iHeight = 16;
-	else if (select == HARD)
-		m_iWidth = 16, m_iHeight = 30;
+		{
+			if (select == EASY)
+				m_iWidth = 9, m_iHeight = 9;
+			else if (select == NOMAL)
+				m_iWidth = 16, m_iHeight = 16;
+			else if (select == HARD)
+				m_iWidth = 16, m_iHeight = 30;
 
+			return select;
+		}
+	}
 }
 
 void Game::Play(int level)
 {
+	int select;
 	system("cls");
 	Drawmanager.DrawBox(WIDTH, HEIGHT);
 
-	//세팅
+	Play::Setting(level, m_iWidth, m_iHeight);
 	while (true)
 	{
-		//controlcursor
-		//checkmine
-		//
+		select=Play::ControlCursor(m_iWidth, m_iHeight);
+		if (select == 13)
+		{
+			Play::CheckBlock();
+		}
 	}
 }
 

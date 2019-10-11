@@ -3,7 +3,8 @@
 #include"Play.h"
 #define WIDTH 40
 #define HEIGHT 40
-class Game
+
+class Game:public Play
 {
 private :
 	Draw Drawmanager;
