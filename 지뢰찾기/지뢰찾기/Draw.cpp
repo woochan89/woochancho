@@ -133,11 +133,11 @@ void Draw::DrawTurn(int y,int turn)
 	cout << "ео : " << turn;
 }
 
-void Draw::DrawTable(int x, int y)
+void Draw::DrawTable(int width, int height, int x, int y)
 {
-	for (int Y = 1; Y <= y; Y++)
+	for (int Y = y; Y <= height; Y++)
 	{
-		for (int X = 1; X <= x; X++)
+		for (int X = x; X <= width; X++)
 		{
 			gotoxy(X * 2, Y);
 			cout << "║А";

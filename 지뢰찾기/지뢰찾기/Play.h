@@ -18,6 +18,9 @@ private:
 	int m_iTable[9][9];
 	int m_iLiveTable[9][9];
 	int m_iMineMax;
+	int m_iBlankMax;
+	int m_iX;
+	int m_iY;
 public:
 	void Setting(int level,int x,int y);
 	void MakeMine(int level,int x,int y);
@@ -26,8 +29,8 @@ public:
 	string DrawAssist(int X);
 	bool CheckBlock();
 	void BlankCheck(int x,int y);
+	bool WinCheck();
 	void Reset();
-
 	Play();
 	~Play();
 };

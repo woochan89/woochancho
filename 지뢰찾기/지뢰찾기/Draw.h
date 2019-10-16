@@ -18,7 +18,7 @@ public:
 	void DrawMidTextWithBox(string str, int width, int y);
 	void DrawInterface(int width, int y, int level);
 	void DrawTurn(int y,int turn=0);
-	void DrawTable(int x,int y);
+	void DrawTable(int width, int height, int x, int y);
 	inline void gotoxy(int x, int y)
 	{
 		COORD Pos = { x, y };

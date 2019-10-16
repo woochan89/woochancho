@@ -4,7 +4,7 @@
 
 Game::Game()
 {
-	srand((unsigned)time);
+	//srand((unsigned)time);
 	MainMenu();
 }
 
@@ -82,7 +82,20 @@ void Game::Play(int level)
 		select=Play::ControlCursor(m_iWidth, m_iHeight);
 		if (select == 13)
 		{
-			Play::CheckBlock();
+			if (!Play::CheckBlock())
+			{
+				Drawmanager.DrawMidTextWithBox("Game Over!", WIDTH, HEIGHT*0.5);
+				Drawmanager.gotoxy(0, HEIGHT + 1);
+				system("pause");
+				return;
+			}
+			if(Play::WinCheck())
+			{
+				Drawmanager.DrawMidTextWithBox("Stage Clear!", WIDTH, HEIGHT*0.5);
+				Drawmanager.gotoxy(0, HEIGHT + 1);
+				system("pause");
+				return;
+			}
 		}
 	}
 }

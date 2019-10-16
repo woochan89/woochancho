@@ -7,8 +7,24 @@ Play::Play()
 {
 }
 
-void Play::Setting(int level, int x, int y)
+void Play::Setting(int level, int width, int height)
 {
+
+	if (level == EASY)
+	{
+		m_iMineMax = 10;
+		m_iX = 1;
+		m_iY = 1;
+	}
+	else if (level == NOMAL)
+	{
+		m_iMineMax = 40;
+	}
+	else if (level == HARD)
+	{
+		m_iMineMax = 99;
+	}
+
 	for (int i = 0; i < 9; i++)
 	{
 		for (int j = 0; j < 9; j++)
@@ -17,23 +33,18 @@ void Play::Setting(int level, int x, int y)
 			m_iLiveTable[i][j] = BLOCK;
 		}
 	}
-	MakeMine(level,x,y);
+	m_iBlankMax = width * height - m_iMineMax;
+	MakeMine(level, width, height);
 	TableSetting();
-	Drawmanager.DrawTable(x, y);
-	m_iCursorX = x * 0.5+1;
-	m_iCursorY = y * 0.5+1;
-	Drawmanager.DrawPoint("в├", m_iCursorX * 2, m_iCursorY);
+	Drawmanager.DrawTable(width, height,m_iX+1,m_iY+1);
+	m_iCursorX = width * 0.5;
+	m_iCursorY = height * 0.5;
+	Drawmanager.DrawPoint("в├", (m_iCursorX+m_iX) * 2, m_iCursorY+m_iY);
 }
 
 void Play::MakeMine(int level,int x,int y)
 {
 	bool flag=true;
-	if (level == EASY)
-		m_iMineMax = 10;
-	else if (level == NOMAL)
-		m_iMineMax = 40;
-	else if (level == HARD)
-		m_iMineMax = 99;
 	m_mList = new Mine[m_iMineMax];
 
 	for (int i=0;i< m_iMineMax;i++)
@@ -139,19 +150,19 @@ int Play::ControlCursor(int width, int height, int x, int y)
 			{
 				if (m_iLiveTable[m_iCursorX - 1][m_iCursorY - 1] == BLOCK)
 				{
-					Drawmanager.DrawPoint("в╥", m_iCursorX * 2, m_iCursorY);
+					Drawmanager.DrawPoint("в╥", (m_iCursorX + m_iX) * 2, m_iCursorY + m_iY);
 					m_iLiveTable[m_iCursorX - 1][m_iCursorY - 1] = FLAG;
 				}
 				else if (m_iLiveTable[m_iCursorX - 1][m_iCursorY - 1] == FLAG)
 				{
-					Drawmanager.DrawPoint("бс", m_iCursorX * 2, m_iCursorY);
+					Drawmanager.DrawPoint("бс", (m_iCursorX + m_iX) * 2, m_iCursorY + m_iY);
 					m_iLiveTable[m_iCursorX - 1][m_iCursorY - 1] = BLOCK;
 				}
 			}
 			if (ch == 'w' || ch == 'a' || ch == 's' || ch == 'd')
 			{
 				Drawmanager.DrawPoint(DrawAssist(m_iLiveTable[m_iCursorX - 1]
-					[m_iCursorY - 1]),m_iCursorX*2, m_iCursorY);
+					[m_iCursorY - 1]),(m_iCursorX+m_iX)*2, m_iCursorY+m_iY);
 				switch (ch)
 				{
 				case 'w':
@@ -171,11 +182,10 @@ int Play::ControlCursor(int width, int height, int x, int y)
 					m_iCursorX++;
 					break;
 				}
-				Drawmanager.DrawPoint("в├", m_iCursorX*2, m_iCursorY);
+				Drawmanager.DrawPoint("в├", (m_iCursorX+ m_iX)*2, m_iCursorY+ m_iY);
 			}
 		}
 	}
-
 }
 
 string Play::DrawAssist(int X)
@@ -199,7 +209,7 @@ string Play::DrawAssist(int X)
 	else if (X == 8)
 		return"ию";
 	else if (X == MINE)
-		return"б┘";
+		return"б┌";
 	else if (X == BLOCK)
 		return"бс";
 	else if (X == FLAG)
@@ -208,11 +218,16 @@ string Play::DrawAssist(int X)
 
 bool Play::CheckBlock()
 {
+	m_iBlankMax--;
 	m_iLiveTable[m_iCursorX - 1][m_iCursorY - 1] 
 		= m_iTable[m_iCursorX - 1][m_iCursorY - 1];
 	Drawmanager.DrawPoint(DrawAssist(m_iLiveTable[m_iCursorX - 1][m_iCursorY - 1]), m_iCursorX*2, m_iCursorY);
+	if (m_iLiveTable[m_iCursorX - 1][m_iCursorY - 1] == MINE)
+		return false;
 	if (m_iLiveTable[m_iCursorX - 1][m_iCursorY - 1] == NULL)
-		BlankCheck(m_iCursorX, m_iCursorY);
+	{
+		BlankCheck(m_iCursorX - 1, m_iCursorY - 1);
+	}
 	return true;
 }
 
@@ -220,30 +235,44 @@ void Play::BlankCheck(int x,int y)
 {
 	int X = x;
 	int Y = y;
-	if (m_iTable[X + 1][Y] == NULL && m_iLiveTable[X + 1][Y] != NULL)
+	if (m_iTable[X + 1][Y] == NULL && m_iLiveTable[X + 1][Y] != NULL&&X+1!=9)
 	{
-		m_iLiveTable[X + 1][Y] == NULL;
-		Drawmanager.DrawPoint("бр", (X + 1)*2, Y);
+		m_iLiveTable[X + 1][Y] = NULL;
+		Drawmanager.DrawPoint("бр", (X + 1+1)*2, Y+1);
+		m_iBlankMax--;
 		BlankCheck(X + 1, Y);
 	}
-	if (m_iTable[X - 1][Y] == NULL && m_iLiveTable[X - 1][Y] != NULL)
+	if (m_iTable[X - 1][Y] == NULL && m_iLiveTable[X - 1][Y] != NULL&&X-1!=-1)
 	{
-		m_iLiveTable[X - 1][Y] == NULL;
-		Drawmanager.DrawPoint("бр", (X - 1)*2, Y);
+		m_iLiveTable[X - 1][Y] = NULL;
+		Drawmanager.DrawPoint("бр", (X - 1+1)*2, Y+1);
+		m_iBlankMax--;
 		BlankCheck(X - 1, Y);
 	}
-	if (m_iTable[X][Y + 1] == NULL && m_iLiveTable[X][Y + 1] != NULL)
+	if (m_iTable[X][Y + 1] == NULL && m_iLiveTable[X][Y + 1] != NULL&&Y+1!=9)
 	{
-		m_iLiveTable[X][Y + 1] == NULL;
-		Drawmanager.DrawPoint("бр", X*2, Y + 1);
+		m_iLiveTable[X][Y + 1] = NULL;
+		Drawmanager.DrawPoint("бр", (X+1)*2, Y + 1+1);
+		m_iBlankMax--;
 		BlankCheck(X, Y + 1);
 	}
-	if (m_iTable[X][Y - 1] == NULL && m_iLiveTable[X][Y - 1] != NULL)
+	if (m_iTable[X][Y - 1] == NULL && m_iLiveTable[X][Y - 1] != NULL&&Y-1!=-1)
 	{
-		m_iLiveTable[X][Y - 1] == NULL;
-		Drawmanager.DrawPoint("бр", X*2, Y - 1);
+		m_iLiveTable[X][Y - 1] = NULL;
+		Drawmanager.DrawPoint("бр", (X+1)*2, Y - 1+1);
+		m_iBlankMax--;
 		BlankCheck(X, Y - 1);
 	}
+
+}
+
+bool Play::WinCheck()
+{
+	if (m_iBlankMax <= 10)
+		return false;
+	if (m_iBlankMax==1)
+		return true;
+	return false;
 }
 
 void Play::Reset()
