@@ -72,24 +72,33 @@ int Game::Option()
 
 void Game::Play(int level)
 {
+	int mine;
+	if (level = EASY)
+		mine = 10;
+	else if (level = NOMAL)
+		mine = 40;
+	else if (level = HARD)
+		mine = 99;
+	int turn=0;
 	int select;
 	system("cls");
 	Drawmanager.DrawBox(WIDTH, HEIGHT);
-
+	Drawmanager.DrawInterface(m_iWidth, HEIGHT + 2, level,mine);
 	Play::Setting(level, m_iWidth, m_iHeight);
 	while (true)
 	{
 		select=Play::ControlCursor(m_iWidth, m_iHeight);
 		if (select == 13)
 		{
-			if (!Play::CheckBlock())
+			Drawmanager.DrawTurn(HEIGHT + 2, ++turn);
+			if (!Play::CheckBlock(m_iWidth,m_iHeight,mine))
 			{
 				Drawmanager.DrawMidTextWithBox("Game Over!", WIDTH, HEIGHT*0.5);
 				Drawmanager.gotoxy(0, HEIGHT + 1);
 				system("pause");
 				return;
 			}
-			if(Play::WinCheck())
+			if(Play::WinCheck(m_iWidth, m_iHeight)==1)
 			{
 				Drawmanager.DrawMidTextWithBox("Stage Clear!", WIDTH, HEIGHT*0.5);
 				Drawmanager.gotoxy(0, HEIGHT + 1);
