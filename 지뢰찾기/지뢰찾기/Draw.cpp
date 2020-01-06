@@ -125,7 +125,7 @@ void Draw::DrawInterface(int width,int y,int level,int mine)
 	gotoxy(15, y + 2);
 	cout << "난이도 : " << Level;
 	DrawTurn(y+2,0);
-	DrawRemainMine(y+2,)
+	DrawRemainMine(y + 2, mine);
 }
 
 void Draw::DrawTurn(int y,int turn)
@@ -136,8 +136,8 @@ void Draw::DrawTurn(int y,int turn)
 
 void Draw::DrawRemainMine(int y, int mine)
 {
-	gotoxy(70, y);
-	cout << "턴 : " << mine;
+	gotoxy(60, y);
+	cout << "남은지뢰 : " << mine;
 }
 
 void Draw::DrawTable(int width, int height, int x, int y)

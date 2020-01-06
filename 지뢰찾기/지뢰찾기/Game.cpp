@@ -4,7 +4,7 @@
 
 Game::Game()
 {
-	//srand((unsigned)time);
+	srand((unsigned)time);
 	MainMenu();
 }
 
@@ -21,7 +21,7 @@ void Game::MainMenu()
 		Drawmanager.DrawMidText("설 정",WIDTH,HEIGHT*0.5+2);
 		Drawmanager.DrawMidText("랭 킹",WIDTH,HEIGHT*0.5+4);
 		Drawmanager.DrawMidText("종 료",WIDTH,HEIGHT*0.5+6);
-		select=Drawmanager.DrawArrow(WIDTH*0.5 - 4, HEIGHT*0.5, 4);
+		select = Drawmanager.DrawArrow (WIDTH * 0.5 - 4, HEIGHT * 0.5, 4);
 		switch (select)
 		{
 		case 1:
@@ -56,46 +56,49 @@ int Game::Option()
 		Drawmanager.DrawMidText("중 급( 16 X 16 , 지뢰 40개 )", WIDTH, HEIGHT*0.5);
 		Drawmanager.DrawMidText("고 급( 16 X 30 , 지뢰 99개 )", WIDTH, HEIGHT*0.5+2);
 		select = Drawmanager.DrawArrow(WIDTH*0.5 - 10, HEIGHT*0.5 - 2, 3);
-		if (select == 1 || select == 2 || select == 3)
+		switch (select)
 		{
-			if (select == EASY)
-				m_iWidth = 9, m_iHeight = 9;
-			else if (select == NOMAL)
-				m_iWidth = 16, m_iHeight = 16;
-			else if (select == HARD)
-				m_iWidth = 16, m_iHeight = 30;
-
-			return select;
+		case EASY:
+			m_iWidth = 9, m_iHeight = 9;
+			break;
+		case NOMAL:
+			m_iWidth = 16, m_iHeight = 16;
+			break;
+		case HARD:
+			m_iWidth = 16, m_iHeight = 30;
+			break;
 		}
+			return select;
 	}
 }
 
 void Game::Play(int level)
 {
 	int mine;
-	if (level = EASY)
+	if (level == EASY)
 		mine = 10;
-	else if (level = NOMAL)
+	else if (level == NOMAL)
 		mine = 40;
-	else if (level = HARD)
+	else
 		mine = 99;
-	int turn=0;
+	int turn = 0;
 	int select;
 	system("cls");
 	Drawmanager.DrawBox(WIDTH, HEIGHT);
-	Drawmanager.DrawInterface(m_iWidth, HEIGHT + 2, level,mine);
+	Drawmanager.DrawInterface(WIDTH, HEIGHT + 2, level,mine);
 	Play::Setting(level, m_iWidth, m_iHeight);
 	while (true)
 	{
-		select=Play::ControlCursor(m_iWidth, m_iHeight);
+		select=Play::ControlCursor(m_iWidth, m_iHeight, mine);
 		if (select == 13)
 		{
 			Drawmanager.DrawTurn(HEIGHT + 2, ++turn);
-			if (!Play::CheckBlock(m_iWidth,m_iHeight,mine))
+			if (!Play::CheckBlock(m_iWidth,m_iHeight))
 			{
 				Drawmanager.DrawMidTextWithBox("Game Over!", WIDTH, HEIGHT*0.5);
 				Drawmanager.gotoxy(0, HEIGHT + 1);
 				system("pause");
+				Play::Reset();
 				return;
 			}
 			if(Play::WinCheck(m_iWidth, m_iHeight)==1)
@@ -103,6 +106,7 @@ void Game::Play(int level)
 				Drawmanager.DrawMidTextWithBox("Stage Clear!", WIDTH, HEIGHT*0.5);
 				Drawmanager.gotoxy(0, HEIGHT + 1);
 				system("pause");
+				Play::Reset();
 				return;
 			}
 		}

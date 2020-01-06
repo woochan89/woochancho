@@ -1,8 +1,6 @@
 #pragma once
 #include"Draw.h"
 #include"Play.h"
-#define WIDTH 40
-#define HEIGHT 40
 
 class Game:public Play
 {

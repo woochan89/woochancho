@@ -24,8 +24,8 @@ private:
 public:
 	void Setting(int level,int x,int y);
 	void MakeMine(int level,int x,int y);
-	void TableSetting(int x=9,int y=9);
-	int ControlCursor(int width, int height,int mine, int x=1, int y=1);//수정
+	void TableSetting(int width, int height, int x=9,int y=9);
+	int ControlCursor(int width, int height,int mine, int x=1, int y=1);//수정확인
 	string DrawAssist(int X);
 	bool CheckBlock(int width, int height);
 	void BlankCheck(int width, int height,int x,int y);

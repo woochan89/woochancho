@@ -6,6 +6,9 @@
 #include<conio.h>
 #include<fstream>
 using namespace std;
+#define WIDTH 40
+#define HEIGHT 40
+
 
 enum level
 {
