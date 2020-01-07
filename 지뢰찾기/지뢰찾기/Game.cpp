@@ -18,20 +18,17 @@ void Game::MainMenu()
 		Drawmanager.DrawBox(WIDTH, HEIGHT);
 		Drawmanager.DrawMidTextWithBox("지 뢰 찾 기",WIDTH,HEIGHT*0.5-4);
 		Drawmanager.DrawMidText("게 임 실 행",WIDTH,HEIGHT*0.5);
-		Drawmanager.DrawMidText("설 정",WIDTH,HEIGHT*0.5+2);
 		Drawmanager.DrawMidText("랭 킹",WIDTH,HEIGHT*0.5+4);
 		Drawmanager.DrawMidText("종 료",WIDTH,HEIGHT*0.5+6);
-		select = Drawmanager.DrawArrow (WIDTH * 0.5 - 4, HEIGHT * 0.5, 4);
+		select = Drawmanager.DrawArrow (WIDTH * 0.5 - 4, HEIGHT * 0.5, 3);
 		switch (select)
 		{
 		case 1:
 			Play(Option());
 			break;
-		case 2:
+		case 2://랭킹
 			break;
 		case 3:
-			break;
-		case 4:
 			return;
 		}
 	}
@@ -85,28 +82,28 @@ void Game::Play(int level)
 	int select;
 	system("cls");
 	Drawmanager.DrawBox(WIDTH, HEIGHT);
-	Drawmanager.DrawInterface(WIDTH, HEIGHT + 2, level,mine);
+	Drawmanager.DrawInterface(WIDTH, HEIGHT, level,mine);
 	Play::Setting(level, m_iWidth, m_iHeight);
 	while (true)
 	{
-		select=Play::ControlCursor(m_iWidth, m_iHeight, mine);
+		select=Play::ControlCursor(m_iWidth, m_iHeight, &mine);
 		if (select == 13)
 		{
-			Drawmanager.DrawTurn(HEIGHT + 2, ++turn);
+			Drawmanager.DrawTurn(HEIGHT + 3, ++turn);
 			if (!Play::CheckBlock(m_iWidth,m_iHeight))
 			{
 				Drawmanager.DrawMidTextWithBox("Game Over!", WIDTH, HEIGHT*0.5);
-				Drawmanager.gotoxy(0, HEIGHT + 1);
+				Drawmanager.gotoxy(0, HEIGHT + 4);
 				system("pause");
-				Play::Reset();
+				Play::Reset(m_iHeight);
 				return;
 			}
 			if(Play::WinCheck(m_iWidth, m_iHeight)==1)
 			{
 				Drawmanager.DrawMidTextWithBox("Stage Clear!", WIDTH, HEIGHT*0.5);
-				Drawmanager.gotoxy(0, HEIGHT + 1);
+				Drawmanager.gotoxy(0, HEIGHT + 4);
 				system("pause");
-				Play::Reset();
+				Play::Reset(m_iHeight);
 				return;
 			}
 		}

@@ -1,0 +1,24 @@
+int array[Y축][X축]
+
+
+c++ 이중배열 포인터
+
+	int **arr=new int*[10];//동적할당
+	for (int i = 0; i < 10; i++)
+	{
+		arr[i] = new int[5];
+	}
+	for (int i = 0; i < 10; i++)//입력
+	{
+		for (int y = 0; y < 5; y++)
+		{
+			arr[i][y] = i + y;
+			cout << arr[i][y] << "  ";
+		}
+		cout << endl;
+	}
+	for (int i = 0; i < 10; i++)//내부 먼저 할당해제
+	{
+		delete[] arr[i];
+	}
+	delete[] arr;//전체 할당 해제

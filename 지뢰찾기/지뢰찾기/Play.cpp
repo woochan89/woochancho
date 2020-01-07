@@ -28,6 +28,13 @@ void Play::Setting(int level, int width, int height)
 		m_iX = 1;
 		m_iY = 1;
 	}
+	m_iTable = new int*[height];
+	m_iLiveTable = new int*[height];
+	for (int i = 0; i < height; i++)
+	{
+		m_iTable[i] = new int[width];
+		m_iLiveTable[i] = new int[width];
+	}
 
 	for (int i = 0; i < 9; i++)
 	{
@@ -77,7 +84,7 @@ void Play::TableSetting(int width, int height, int x, int y)
 	int X, Y;
 	for (int i = 0; i < m_iMineMax; i++)
 	{
-		m_iTable[m_mList[i].X][m_mList[i].Y] = MINE;
+		m_iTable[m_mList[i].Y][m_mList[i].X] = MINE;
 	}
 
 	for (int i = 0; i < 9; i++)
@@ -128,7 +135,7 @@ void Play::TableSetting(int width, int height, int x, int y)
 						X = i + 1;
 						Y = j + 1;
 					}
-					if (m_iTable[X][Y] == MINE || X < 0 || Y < 0 || X>=width || Y>=height)//수정 확인요
+					if (m_iTable[X][Y] == MINE || X < 0 || Y < 0 || X>=width || Y>=height)//여기서 오류발생
 						continue;
 					m_iTable[X][Y]++;
 				}
@@ -137,7 +144,7 @@ void Play::TableSetting(int width, int height, int x, int y)
 	}
 }
 
-int Play::ControlCursor(int width, int height, int mine, int x, int y)
+int Play::ControlCursor(int width, int height, int *mine, int x, int y)
 {
 	char ch;
 	while (true)
@@ -151,16 +158,17 @@ int Play::ControlCursor(int width, int height, int mine, int x, int y)
 			}
 			if (ch == 32)
 			{
-				if (m_iLiveTable[m_iCursorX][m_iCursorY] == BLOCK)
+				if (m_iLiveTable[m_iCursorX][m_iCursorY] == BLOCK && *mine > 0)
 				{
 					Drawmanager.DrawPoint("¶", (m_iCursorX + m_iX) * 2, m_iCursorY + m_iY);
 					m_iLiveTable[m_iCursorX ][m_iCursorY] = FLAG;
-					Drawmanager.DrawRemainMine(HEIGHT+2,mine);
+					Drawmanager.DrawRemainMine(HEIGHT + 3, --(*mine));
 				}
 				else if (m_iLiveTable[m_iCursorX][m_iCursorY] == FLAG)
 				{
 					Drawmanager.DrawPoint("■", (m_iCursorX + m_iX) * 2, m_iCursorY + m_iY);
 					m_iLiveTable[m_iCursorX][m_iCursorY] = BLOCK;
+					Drawmanager.DrawRemainMine(HEIGHT + 3, ++(*mine));
 				}
 			}
 			if (ch == 'w' || ch == 'a' || ch == 's' || ch == 'd')
@@ -297,25 +305,35 @@ void Play::BlankCheck(int width, int height,int x,int y)//빈칸 선택시 주변 빈칸 
 			BlankCheck(width, height, x, y - 1);
 		}
 	}
+	bool diagonalFlag=FALSE;
 	if (flagR == true && flagU == true && m_iTable[x + 1][y - 1] != MINE)//대각선 체크
 	{
 		m_iLiveTable[x + 1][y - 1] = m_iTable[x + 1][y - 1];
 		Drawmanager.DrawPoint(DrawAssist(m_iLiveTable[x + 1][y - 1]), (x + 1 + m_iX) * 2, y - 1 + m_iY);
+		if (m_iLiveTable[x + 1][y - 1] == NULL)//대각선 위치가 빈공간일때 함수 재진입
+		{BlankCheck(width, height, x + 1, y - 1);}
 	}
 	if (flagR == true && flagD == true && m_iTable[x + 1][y + 1] != MINE)
 	{
 		m_iLiveTable[x + 1][y + 1] = m_iTable[x + 1][y + 1];
 		Drawmanager.DrawPoint(DrawAssist(m_iLiveTable[x + 1][y + 1]), (x + 1 + m_iX) * 2, y + 1 + m_iY);
+		if (m_iLiveTable[x + 1][y + 1] == NULL)
+		{BlankCheck(width, height, x + 1, y + 1); }
 	}
 	if (flagL == true && flagU == true && m_iTable[x - 1][y - 1] != MINE)
 	{
 		m_iLiveTable[x - 1][y - 1] = m_iTable[x - 1][y - 1];
 		Drawmanager.DrawPoint(DrawAssist(m_iLiveTable[x - 1][y - 1]), (x - 1 + m_iX) * 2, y - 1 + m_iY);
+		if (m_iLiveTable[x - 1][y - 1] == NULL)
+		{BlankCheck(width, height, x - 1, y - 1);}
+
 	}
 	if (flagL == true && flagD == true && m_iTable[x - 1][y + 1] != MINE)
 	{
 		m_iLiveTable[x - 1][y + 1] = m_iTable[x - 1][y + 1];
 		Drawmanager.DrawPoint(DrawAssist(m_iLiveTable[x - 1][y + 1]), (x - 1 + m_iX) * 2, y + 1 + m_iY);
+		if (m_iLiveTable[x - 1][y + 1] == NULL)
+		{BlankCheck(width, height, x - 1, y + 1);}
 	}
 
 }
@@ -336,9 +354,17 @@ bool Play::WinCheck(int width,int height)
 	return false;
 }
 
-void Play::Reset()
+void Play::Reset(int height)
 {
-	delete m_mList;
+	delete[] m_mList;//지뢰 할당해제
+	for (int i = 0; i < height; i++)//테이블 할당해제
+	{
+		delete[] m_iTable[i];
+		delete[] m_iLiveTable[i];
+
+	}
+	delete[] m_iTable;
+	delete[] m_iLiveTable;
 }
 
 Play::~Play()

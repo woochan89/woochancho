@@ -120,24 +120,24 @@ void Draw::DrawInterface(int width,int y,int level,int mine)
 	DrawMidText("< 조 작 >", width, y);
 	gotoxy(15, y + 1);
 	cout << "W A S D : 조작";
-	gotoxy(25, y + 1);
+	gotoxy(50, y + 1);
 	cout << "ENTER : 확인";
-	gotoxy(15, y + 2);
+	gotoxy(15, y + 3);
 	cout << "난이도 : " << Level;
-	DrawTurn(y+2,0);
-	DrawRemainMine(y + 2, mine);
+	DrawTurn(y+3,0);
+	DrawRemainMine(y + 3, mine);
 }
 
 void Draw::DrawTurn(int y,int turn)
 {
-	gotoxy(30, y);
+	gotoxy(35, y);
 	cout << "턴 : " << turn;
 }
 
 void Draw::DrawRemainMine(int y, int mine)
 {
-	gotoxy(60, y);
-	cout << "남은지뢰 : " << mine;
+	gotoxy(50, y);
+	cout << "남은지뢰 : " << mine<<"  ";
 }
 
 void Draw::DrawTable(int width, int height, int x, int y)
