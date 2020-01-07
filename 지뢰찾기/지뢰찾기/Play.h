@@ -24,7 +24,7 @@ private:
 public:
 	void Setting(int level,int x,int y);
 	void MakeMine(int level,int x,int y);
-	void TableSetting(int width, int height, int x=9,int y=9);
+	void TableSetting(int width, int height);
 	int ControlCursor(int width, int height,int *mine, int x=1, int y=1);
 	string DrawAssist(int X);
 	bool CheckBlock(int width, int height);

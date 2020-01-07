@@ -1,7 +1,0 @@
-이중배열 이중포인터?	
-
-	int **arr=new int*[10];
-	for (int i = 0; i < 5; i++)
-	{
-		arr[i] = new int[5];
-	}

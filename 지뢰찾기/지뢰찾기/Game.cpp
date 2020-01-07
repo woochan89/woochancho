@@ -18,17 +18,14 @@ void Game::MainMenu()
 		Drawmanager.DrawBox(WIDTH, HEIGHT);
 		Drawmanager.DrawMidTextWithBox("지 뢰 찾 기",WIDTH,HEIGHT*0.5-4);
 		Drawmanager.DrawMidText("게 임 실 행",WIDTH,HEIGHT*0.5);
-		Drawmanager.DrawMidText("랭 킹",WIDTH,HEIGHT*0.5+4);
-		Drawmanager.DrawMidText("종 료",WIDTH,HEIGHT*0.5+6);
-		select = Drawmanager.DrawArrow (WIDTH * 0.5 - 4, HEIGHT * 0.5, 3);
+		Drawmanager.DrawMidText("종 료",WIDTH,HEIGHT*0.5+4);
+		select = Drawmanager.DrawArrow (WIDTH * 0.5 - 4, HEIGHT * 0.5, 4);
 		switch (select)
 		{
 		case 1:
 			Play(Option());
 			break;
-		case 2://랭킹
-			break;
-		case 3:
+		case 2:
 			return;
 		}
 	}
@@ -100,6 +97,7 @@ void Game::Play(int level)
 			}
 			if(Play::WinCheck(m_iWidth, m_iHeight)==1)
 			{
+				Drawmanager.DrawTurn(HEIGHT + 3, ++turn);
 				Drawmanager.DrawMidTextWithBox("Stage Clear!", WIDTH, HEIGHT*0.5);
 				Drawmanager.gotoxy(0, HEIGHT + 4);
 				system("pause");
