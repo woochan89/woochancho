@@ -1,0 +1,62 @@
+#include"iostream"
+using namespace std;
+
+int tower[3][3] = { 0 };
+
+void FindStone(int target,int &tow,int &sto)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (tower[i][j] == target)
+			{
+				tow = i;
+				sto = j;//?
+			}
+		}
+	}
+}
+
+bool StoneCheck(int target,int tow,int sto)
+{
+	if (tower[tow][sto + 1] != 0)
+	{
+		StoneCheck(target, tow, sto);
+	}
+	return false;
+}
+
+void StoneMove(int target)
+{
+
+}
+
+void hanoi(int num)
+{
+
+}
+
+void main()
+{
+	tower[0][0] = 3;
+	tower[0][1] = 2;
+	tower[0][2] = 1;
+
+	system("cls");
+	int num;
+
+	while (true)
+	{
+		cout << "1에서 15사이의 숫자를 입력해주세요 : " ;
+		cin >> num;
+		if (num < 1 || num >> 15)
+		{
+			cout << "숫자를 다시 입력해주세요" << endl;
+			system("pause");
+		}
+		else
+		{
+		}
+	}
+}

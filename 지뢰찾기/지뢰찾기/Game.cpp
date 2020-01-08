@@ -1,7 +1,6 @@
 #include "Game.h"
 
 
-
 Game::Game()
 {
 	srand((unsigned)time);
@@ -19,11 +18,11 @@ void Game::MainMenu()
 		Drawmanager.DrawMidTextWithBox("지 뢰 찾 기",WIDTH,HEIGHT*0.5-4);
 		Drawmanager.DrawMidText("게 임 실 행",WIDTH,HEIGHT*0.5);
 		Drawmanager.DrawMidText("종 료",WIDTH,HEIGHT*0.5+4);
-		select = Drawmanager.DrawArrow (WIDTH * 0.5 - 4, HEIGHT * 0.5, 4);
+		select = Drawmanager.DrawArrow (WIDTH * 0.5 - 4, HEIGHT * 0.5, 2,4);
 		switch (select)
 		{
 		case 1:
-			Play(Option());
+			PlayGame(Option());
 			break;
 		case 2:
 			return;
@@ -66,8 +65,9 @@ int Game::Option()
 	}
 }
 
-void Game::Play(int level)
+void Game::PlayGame(int level)
 {
+	Playmanager = new Play();
 	int mine;
 	if (level == EASY)
 		mine = 10;
@@ -80,32 +80,33 @@ void Game::Play(int level)
 	system("cls");
 	Drawmanager.DrawBox(WIDTH, HEIGHT);
 	Drawmanager.DrawInterface(WIDTH, HEIGHT, level,mine);
-	Play::Setting(level, m_iWidth, m_iHeight);
+	Playmanager->Setting(level, m_iWidth, m_iHeight);
 	while (true)
 	{
-		select=Play::ControlCursor(m_iWidth, m_iHeight, &mine);
+		select=Playmanager->ControlCursor(m_iWidth, m_iHeight, &mine);
 		if (select == 13)
 		{
 			Drawmanager.DrawTurn(HEIGHT + 3, ++turn);
-			if (!Play::CheckBlock(m_iWidth,m_iHeight))
+			if (!Playmanager->CheckBlock(m_iWidth,m_iHeight))
 			{
 				Drawmanager.DrawMidTextWithBox("Game Over!", WIDTH, HEIGHT*0.5);
 				Drawmanager.gotoxy(0, HEIGHT + 4);
 				system("pause");
-				Play::Reset(m_iHeight);
+				Playmanager->Reset(m_iHeight);
 				return;
 			}
-			if(Play::WinCheck(m_iWidth, m_iHeight)==1)
+			if(Playmanager->WinCheck(m_iWidth, m_iHeight)==1)
 			{
 				Drawmanager.DrawTurn(HEIGHT + 3, ++turn);
 				Drawmanager.DrawMidTextWithBox("Stage Clear!", WIDTH, HEIGHT*0.5);
 				Drawmanager.gotoxy(0, HEIGHT + 4);
 				system("pause");
-				Play::Reset(m_iHeight);
+				Playmanager->Reset(m_iHeight);
 				return;
 			}
 		}
 	}
+	delete[] Playmanager;
 }
 
 Game::~Game()

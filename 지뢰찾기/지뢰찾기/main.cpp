@@ -1,6 +1,6 @@
-#include"Game.h"
-
-void main()
-{
-	Game Gamemanager;
-}
+//#include"Game.h"
+//
+//void main()
+//{
+//	Game Gamemanager;
+//}
