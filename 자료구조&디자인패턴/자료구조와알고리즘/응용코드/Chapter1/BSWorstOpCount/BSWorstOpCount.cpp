@@ -39,7 +39,7 @@ int BSearch(int ar[], int len, int target)
 
 int main(void)
 {
-	int arr1[500] = { 0, };    // 모든 요소 0으로 초기화
+	int arr1[500] = { 0 };    // 모든 요소 0으로 초기화
 	int arr2[5000] = { 0, };    // 모든 요소 0으로 초기화
 	int arr3[50000] = { 0, };    // 모든 요소 0으로 초기화
 	int idx;

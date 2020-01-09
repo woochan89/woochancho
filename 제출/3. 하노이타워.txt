@@ -1,35 +1,67 @@
 #include"iostream"
 using namespace std;
 
-int tower[3][3] = { 0 };
+int Tower[3][3] = { 0 };
+int CheckTower(int tNum, int stone = 0);
+void MoveStone(int tNum, int sNum);
 
-void FindStone(int target,int &tow,int &sto)
+void FindStone(int target, int *tNum, int *sNum)//원하는 돌 위치 찾기
 {
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			if (tower[i][j] == target)
+			if (Tower[i][j] == target)
 			{
-				tow = i;
-				sto = j;//?
+				*tNum = i;
+				*sNum = j;
+				return;
 			}
 		}
 	}
 }
 
-bool StoneCheck(int target,int tow,int sto)
+int CheckStone(int target, int tNum, int sNum)
 {
-	if (tower[tow][sto + 1] != 0)
+	int MoveStoneNum;
+	if (sNum != 2)
 	{
-		StoneCheck(target, tow, sto);
+		if (Tower[tNum][sNum + 1] != 0)
+			MoveStoneNum = CheckStone(target, tNum, sNum + 1);
 	}
-	return false;
+	else
+		MoveStoneNum = 2;
+	MoveStone(tNum, sNum);
+	return MoveStoneNum;
 }
 
-void StoneMove(int target)
+void MoveStone(int tNum,int sNum)
 {
+	int MoveTower = CheckTower(tNum);
+	if (MoveTower == -1)
+	{
+		if (CheckTower(tNum, Tower[tNum][sNum]) == -1)//타겟 돌을 옮길 다른 기둥이 있는지 확인해보고
 
+		{
+			//다른 기둥에 있는 돌을 하나로 합치기(크기 비교해서 작은걸 큰거 위로 올리기)
+			//자리 만들기(만약 제일 큰 돌이면 3번 자리로 옮길수 잇게 하기)
+		}
+	}
+	Tower[MoveTower][0] = Tower[tNum][sNum];
+	Tower[tNum][sNum] = NULL;
+
+	cout << tNum + 1 << "번 기둥의 " << Tower[MoveTower][0] << "번 돌을 " << MoveTower + 1 << "번 기둥으로 이동" << endl;
+}
+
+int CheckTower(int tNum,int stone)//총 돌갯수에 따라 변수 만들기
+{
+	if (Tower[0][0] == NULL&&tNum!=0)
+		return 0;
+	if (Tower[1][0] == NULL && tNum != 1)
+		return 1;
+	if (Tower[2][0] == NULL && tNum != 2)
+		return 2;
+	return -1;
 }
 
 void hanoi(int num)
@@ -39,16 +71,17 @@ void hanoi(int num)
 
 void main()
 {
-	tower[0][0] = 3;
-	tower[0][1] = 2;
-	tower[0][2] = 1;
+	int tNum, sNum;
+	Tower[0][0] = 3;
+	Tower[0][1] = 2;
+	Tower[0][2] = 1;
 
 	system("cls");
 	int num;
-
+/*
 	while (true)
 	{
-		cout << "1에서 15사이의 숫자를 입력해주세요 : " ;
+		cout << "1에서 15사이의 숫자를 입력해주세요 : ";
 		cin >> num;
 		if (num < 1 || num >> 15)
 		{
@@ -58,5 +91,25 @@ void main()
 		else
 		{
 		}
-	}
+	}*/
+
+
+
+	//3번 돌 찾기
+	FindStone(3, &tNum, &sNum);
+	//3번 돌 이 3번기둥에 있는지 확인
+	//3번 기둥에 없다면 3번돌 위에 다른돌이 있는지 확인
+	//3번돌 위의 다른돌 위에 또 다른돌이 있는지 확인
+	//또 다른돌을 다른 기둥으로 이동(이동시 이동하는 돌이 이동 자리에 있는 돌보다 크면 안됨)
+	//3번위의 2번돌을 다른 기둥으로 이동
+	//1번돌을 2번돌 위로 이동
+	//3번돌을 3번 기둥으로 이동
+	sNum= CheckStone(3, tNum, sNum);
+	//1번 돌을 3번 기둥이 아닌 비어있는 기둥으로 이동
+	//2번돌을 3번기둥 3번돌 위로 이동
+	FindStone(2, &tNum, &sNum);
+	sNum= CheckStone(2, tNum, sNum);
+	//1번돌을 3번돌 위로 이동
+	FindStone(1, &tNum, &sNum);
+	sNum= CheckStone(1, tNum, sNum);
 }
