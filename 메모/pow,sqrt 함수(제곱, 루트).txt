@@ -1,0 +1,23 @@
+C, C++둘다 사용가능한 표준 라이브러리 함수
+
+C 에서 #include<math.h>
+C++ 에서 #include<cmath>
+
+pow란?
+
+double형의 두 가지 값을 받아서, 가령 입력값 A,B가 인자로 전달되었다면, A^B를 계산한 값을 반환하는 함수
+
+ex)
+int a = 5;
+std::cout << pow(a, 3.0) << std::endl;
+
+5의 3승인 125가 출력됨
+
+
+sqrt란?
+
+매개변수로 들어온 숫자에 루트를 씌워서 계산한 값을 반환
+
+ex)
+sqrt(double or float or lone double or T 인 변수)
+sqrt(9) 는 3

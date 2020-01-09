@@ -19,6 +19,7 @@ void Game::MainMenu()
 		Drawmanager.DrawMidText("게 임 실 행",WIDTH,HEIGHT*0.5);
 		Drawmanager.DrawMidText("종 료",WIDTH,HEIGHT*0.5+4);
 		select = Drawmanager.DrawArrow (WIDTH * 0.5 - 4, HEIGHT * 0.5, 2,4);
+		select = Drawmanager.DrawArrow (WIDTH * 0.5 - 4, HEIGHT * 0.5, 2 ,4);
 		switch (select)
 		{
 		case 1:
