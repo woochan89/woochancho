@@ -4,13 +4,14 @@
 class Move
 {
 private:
-	Check checkmanager;
+	Check *checkmanager;
 	int m_itNum;
 	int m_isNum;
 public:
-	void movestone(int target, int *tower[],int sNum = DEFAULT,int tNum = DEFAULT);
+	void controlstone(int target, int *tower[], int sNum = 0, int tNum = 0, int targettower = -2);
+	void movestone(int target, int *tower[],int sNum = 0,int tNum = 0,int targettower=-2);
 
-	Move();
+	Move(int stonemax);
 	~Move();
 };
 

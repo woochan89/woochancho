@@ -31,7 +31,7 @@ void main()
 			continue;
 		}
 		menu.maketower(stonemax,&tower[TOWERMAX]);
-		movemanager = new Move(stonemax, tower);
+		movemanager = new Move();
 		for (int i = stonemax; i > 0; i--)
 		{
 			movemanager->movestone(i, tower);
