@@ -6,99 +6,66 @@ Move::Move(int stonemax)
 {
 	m_itNum = 0;
 	m_isNum = 0;
+	m_iStoneMax = stonemax;
 	checkmanager = new Check(stonemax);
 }
 
-void Move::controlstone(int target, int *tower[], int sNum, int tNum, int targettower)//확인해보기
+void Move::controlstone(int target, int *tower[])
 {
-	int TargetTower[2];
-	int movetower = targettower;
 	int tnum, snum;
 
-	checkmanager->findstone(tower[tNum][sNum], tower, &tnum, &snum);
+	checkmanager->findstone(target, tower, &tnum, &snum);
 
-	if (tower[tNum][sNum + 1] != 0)//동적할당 범위 초과로 오류 위험
-	{
-		//m_isNum = checkmanager.checkstone(tower, m_itNum, m_isNum);타겟돌이 움직일수있는 상태인지 확인
-		movestone(tower[tNum][sNum + 1], tower, sNum, tNum);//타겟돌을 움직이기
-	}
+	movestone(tower[tnum][snum], tower, snum, tnum);
+
+	tower[2][checkmanager->findtowertopstone(tower, 2)] = tower[tnum][snum];
+	tower[tnum][snum] = NULL;
+	cout << tnum + 1 << "번 기둥의 " << tower[2][checkmanager->findtowertopstone(tower, 2)] << "번 돌을 " << 3 << "번 기둥으로 이동" << endl;
+
 
 }
 
-void Move::movestone(int target,int *tower[],int sNum,int tNum,int targettower)
+void Move::movestone(int target,int *tower[], int evade, int sNum,int tNum)
 {
 	int TargetTower[2];
-	int movetower=targettower;
-	int tnum,snum;
-
-	checkmanager->findstone(tower[tNum][sNum],tower, &tnum, &snum);
+	int evadeL = -1;
+	int MoveTower;
 
 	if (tower[tNum][sNum + 1] != 0)//동적할당 범위 초과로 오류 위험
 	{
-		//m_isNum = checkmanager.checkstone(tower, m_itNum, m_isNum);타겟돌이 움직일수있는 상태인지 확인
-		movestone(tower[tNum][sNum + 1], tower, sNum, tNum);//타겟돌을 움직이기
+		if (m_iStoneMax % 2 == 1 && target == 1 && tNum==0 && sNum == m_iStoneMax - 1)//1번 돌이 1번 기둥의 맨 위에 있을때 2번 기둥이 아닌 3번기둥으로 이동
+			evadeL == 1;
+		movestone(tower[tNum][sNum + 1], tower, evadeL, sNum, tNum);//타겟돌을 움직이기
 	}
-	if(targettower!=-2)
-		movetower = checkmanager->checktower(tower, tNum, sNum);
-	int movestone = checkmanager->findtowertopstone(tower, movetower);
+
+	MoveTower = checkmanager->checktower(tower, tNum, sNum);//회피할 자리 변수 만들어 넣기
 
 
-	if (movetower == -1)
+
+	if (MoveTower == -1)
 	{
+		if(tNum==0)
+		{
+			if (tower[1][checkmanager->findtowertopstone(tower, 1)] > tower[2][checkmanager->findtowertopstone(tower, 2)])
+				movestone(tower[1][checkmanager->findtowertopstone(tower, 1)], tower, checkmanager->findtowertopstone(tower, 1), 1);
+			else
+				movestone(tower[2][checkmanager->findtowertopstone(tower, 2)], tower, checkmanager->findtowertopstone(tower, 2), 2);
+		}
+		else if (tNum == 1)
+		{
 
+		}
+		else
+		{
+
+		}
 		//타겟돌이 있는 기둥 제외 나머지 두돌의 크기를 비교하고 
 		//원하는 자리 제외한 다른 기둥으로 옮기기
 		//
 
-
-		if (checkmanager->checktower(tNum, tower[tNum][sNum]) == -1)//타겟 돌을 옮길 다른 기둥이 있는지 확인해보고
-
-		{
-			if (tower[1][FindTowerTopStone(1)] > tower[2][FindTowerTopStone(2)])//해당 기둥의 제일 위에있는 돌 찾는 함수 만들어야됨
-			{
-				tower[1][1] = tower[2][0];
-				tower[2][0] = NULL;
-				cout << tNum + 1 << "번 기둥의 " << tower[movetower][0] << "번 돌을 " << MoveTower + 1 << "번 기둥으로 이동" << endl;
-			}
-			else
-			{
-				tower[2][1] = tower[1][0];
-				tower[1][0] = NULL;
-				cout << tNum + 1 << "번 기둥의 " << tower[movetower][0] << "번 돌을 " << MoveTower + 1 << "번 기둥으로 이동" << endl;
-			}
-		}
-
-		for (int i = 0; i < 3; i++)
-		{
-			if (tNum == i)
-			{
-				for (int j = 0, k = 0; j < 3; j++)
-				{
-					if (j != tNum)
-						TargetTower[k++] = j;
-				}
-				if (tower[TargetTower[0]][0] == NULL)
-				{
-					tower[Targettower[0]][0] = tower[tNum][sNum];
-				}
-				else if (tower[TargetTower[1]][0] == NULL)
-				{
-					tower[TargetTower[1]][0] = tower[tNum][sNum];
-				}
-				cout << tNum + 1 << "번 기둥의 " << tower[tNum][sNum] << "번 돌을 " << TargetTower[1] + 1 << "번 기둥으로 이동" << endl;
-				tower[tNum][sNum] = NULL;
-			}
-		}
 	}
-	else
-	{
-		tower[movetower][movestone] = tower[tNum][sNum];
-		tower[tNum][sNum] = NULL;
 
-		cout << tNum + 1 << "번 기둥의 " << tower[movetower][movestone] << "번 돌을 " << movetower + 1 << "번 기둥으로 이동" << endl;
-	}
 }
-
 
 Move::~Move()
 {

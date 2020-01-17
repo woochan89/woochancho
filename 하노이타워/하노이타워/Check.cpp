@@ -39,11 +39,15 @@ int Check::checkstone(int *tower[],int tNum, int sNum)
 
 int Check::checktower(int *tower[],int tNum, int sNum)//총 돌갯수에 따라 변수 만들기
 {
-	if (m_iStoneMax % 2 == 1)
+	int Num[2];
+	//빈 곳이 있다면 빈 곳으로 우선 이동
+	for (int i = 0,j = 0; i < 3; i++)
 	{
-		//1번 돌을 3번 기둥으로 먼저 이동
+		if (i == tNum)
+			continue;
+		Num[j++] = i;
 	}
-
+	
 	int Tower[2][2] = {0};
 	for (int i = 0, j = 0, k = 0; i < 3; i++)
 	{
@@ -52,6 +56,20 @@ int Check::checktower(int *tower[],int tNum, int sNum)//총 돌갯수에 따라 변수 만
 		Tower[j][k] = i;
 		Tower[j++][k+1]= findtowertopstone(tower, i);
 	}
+
+
+	if (tower[Num[0]][findtowertopstone(tower, Num[0])] == 0 || tower[Num[1]][findtowertopstone(tower, Num[1])] == 0)//빈자리가 있을떄 빈자리로 우선 이동
+	{
+		if (tower[Num[0]][findtowertopstone(tower, Num[0])] == 0)
+		{
+			return Num[0];
+		}
+		else if (tower[Num[1]][findtowertopstone(tower, Num[1])] == 0)
+		{
+			return Num[1];
+		}
+	}
+
 
 	if (tower[tNum][sNum] < tower[Tower[0][0]][Tower[0][1]])
 	{
@@ -65,13 +83,18 @@ int Check::checktower(int *tower[],int tNum, int sNum)//총 돌갯수에 따라 변수 만
 		return -1;
 
 
-	//if (tower[0][0] == NULL && tNum != 0)
-	//	return 0;
-	//if (tower[1][0] == NULL && tNum != 1)
-	//	return 1;
-	//if (tower[2][0] == NULL && tNum != 2)
-	//	return 2;
-	//return -1;
+
+	//다른 두기둥 제일 위쪽 돌 크기를 비교하여 크기차가 작은 쪽으로 이동
+
+	if (tower[Num[0]][findtowertopstone(tower, Num[0])]-tower[tNum][sNum] <= tower[Num[1]][findtowertopstone(tower, Num[1])] - tower[tNum][sNum])
+	{
+		return Num[0];
+	}
+	else
+	{
+		return Num[1];
+	}
+
 }
 
 
