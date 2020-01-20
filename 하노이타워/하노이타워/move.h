@@ -9,6 +9,8 @@ private:
 	int m_isNum;
 	int m_iStoneMax;
 public:
+	void TowerMove(int Num, char from='A', char by='B', char to='C');
+
 	void controlstone(int target, int *tower[]);
 	void movestone(int target, int *tower[], int evade = -2,int sNum = 0,int tNum = 0);
 

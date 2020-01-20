@@ -10,6 +10,20 @@ Move::Move(int stonemax)
 	checkmanager = new Check(stonemax);
 }
 
+void Move::TowerMove(int Num, char from, char by, char to)
+{
+	if (Num == 1)
+	{
+		cout << Num << "번 돌을 " << from << "기둥에서 " << to << "기둥으로 이동" << endl;
+	}
+	else
+	{
+		TowerMove(Num - 1, from, to, by);
+		cout << Num << "번 돌을 " << from << "기둥에서 " << to << "기둥으로 이동" << endl;
+		TowerMove(Num - 1, by, from, to);
+	}
+}
+
 void Move::controlstone(int target, int *tower[])
 {
 	int tnum, snum;
