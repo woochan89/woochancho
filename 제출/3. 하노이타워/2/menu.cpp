@@ -18,6 +18,6 @@ void main()
 		}
 		movemanager = new Move(num);
 		system("pause");
-
+		delete movemanager;
 	}
 }

@@ -1,0 +1,10 @@
+﻿  draw.cpp
+c:\users\a10\desktop\woochancho\제출\3. 하노이타워\2\draw.h(16): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+  menu.cpp
+c:\users\a10\desktop\woochancho\제출\3. 하노이타워\2\draw.h(16): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+c:\users\a10\desktop\woochancho\제출\3. 하노이타워\2\menu.cpp(4): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+  move.cpp
+c:\users\a10\desktop\woochancho\제출\3. 하노이타워\2\draw.h(16): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+  코드를 생성하고 있습니다...
+c:\users\a10\desktop\woochancho\제출\3. 하노이타워\2\move.cpp(76): warning C4715: 'Move::FindTarget': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  2.vcxproj -> C:\Users\A10\Desktop\woochancho\제출\3. 하노이타워\x64\Debug\2.exe

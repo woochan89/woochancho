@@ -8,7 +8,7 @@ class draw
 private:
 	int m_iTowerMax;
 public:
-	void DrawTower();
+	void DrawTower(int *tower[]);
 	void EraseStone(int tNum,int sNum);
 	void DrawStone(int *tower[], int tNum, int sNum);
 	void inline gotoxy(int x, int y)
