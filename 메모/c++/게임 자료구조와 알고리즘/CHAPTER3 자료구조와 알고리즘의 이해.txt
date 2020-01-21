@@ -1,0 +1,23 @@
+gets 함수
+
+헤더파일 <stdio.h> <cstdio>
+
+
+표준입력으로 들어온 문자열을 'C언어'스타일 문자열인 char*,char[]타입으로 저장하는 함수
+c의scanf 와 c++의 cin>> 과 같다
+ex)
+char str[100];
+gets(str);
+printf("%s",str);
+
+
+puts 함수
+
+헤더파일 <stdio.h> <cstdio>
+
+gets인 처럼 C언어 스타일의 출력함수
+printf와 비슷
+ex)
+char str[100]="BlockDMask";
+puts(str);
+
