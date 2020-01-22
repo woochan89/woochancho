@@ -29,6 +29,7 @@ nlong 은 O(n)에 살짝씩 가까워짐
 배열의 최대값 구하는식 = sizeof(arr1) / sizeof(int)  arr1의 사이즈/int의 사이즈
 
 
+
 재귀
 
 자기참조 구조체 쓸때 for문 말고 재귀함수 이용하기
