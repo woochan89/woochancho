@@ -9,20 +9,17 @@ using namespace std;
 
 typedef struct __namecard
 {
-	char name[NAME_LEN];
-	char phone[PHONE_LEN];
+	char name[NAME_LEN] = {0};
+	char phone[PHONE_LEN] = {0};
 } NameCard;
 
 // NameCard 구조체 변수의 동적 할당 및 초기화 후 주소 값 반환
 NameCard * MakeNameCard(char * name, char * phone);
 
-// NameCard 구조체 변수의 정보 출력
+
 void ShowNameCardInfo(NameCard * pcard);
-
-// 이름이 같으면 0, 다르면 0이 아닌 값 반환
-int NameCompare(NameCard * pcard, char * name);
-
-// 전화번호 정보를 변경
-void ChangePhoneNum(NameCard * pcard, char * phone);
+bool NameCompare(NameCard * pcard, char * name);
+void ChangePhoneNum(NameCard * pcard, char *phone);
+void DeleteData(NameCard* pcard);
 
 #endif
