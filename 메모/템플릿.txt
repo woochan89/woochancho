@@ -1,0 +1,68 @@
+1. 함수나 클래스를 다시 작성하지 않아도 여러 자료형으로 사용할수 있도록 만들어 놓은 틀
+2. 함수 템플릿과 클래스 템플릿으로 나뉜다
+3. 템플릿을 사용하여 프로그래밍 하는것을 일반화(Genetic)프로그래밍 이라고 한다
+4. 템플릿을 사용한 함수를 전방선언시 템플릿도 따라서 전방선언 필요
+5. 템플릿을 불러올때 함수나 클래스명 뒤에 <자료형>을 붙혀 어떤 형식으로 사용할지 지정 가능
+
+ex)
+template<typename T>
+T sum(T t1,T t2) {
+return t1+t2; 
+}
+
+인자를 여러개 사용할수도 있다
+template<typename T1,typename T2>
+
+void func(T1 t1, T2 t2) {
+cout<<"T1 : "<<t1<<endl;
+cout<<"T2 : "<<t2<<endl;
+}
+
+
+T1 func(T2 t2) {
+return t2;
+}
+
+특징 5번 설명
+함수
+template<>    <<어떤 자료형으로 사용할지 설정 해놓지 않았을때
+func<int>(변수명)    << 상황에 따라서 어떤 자료형으로 반환 또는 사용할지 설정 가능
+
+template<typename T>
+void func(T t1)
+{
+}
+
+template<>   <<이걸 반드시 넣어줘야 함수명 뒤에 <>사용가능
+void func<char>(char c1)
+{
+}
+
+
+클래스
+
+#include<iostream>
+using namespace std;
+
+template<typename T1,typename T2>
+class CLASS
+{
+private:
+	T1 a;
+	T2 b;
+public:
+	CLASS(T1 t1, T2 t2)
+	{
+		a = t1;
+		b = t2;
+	}
+	void print() { cout << a <<"\t"<< b; }
+};
+
+void main()
+{
+	CLASS <int, double> classintdouble(1,2.2);
+	//클래스 선언시에 반드시 반환자료형을 <>안에 넣어서 지정해 줘야함
+
+	classintdouble.print();
+}
