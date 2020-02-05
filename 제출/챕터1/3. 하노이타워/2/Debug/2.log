@@ -1,4 +1,0 @@
-﻿  move.cpp
-c:\users\a10\desktop\woochancho\하노이타워2\2\draw.h(16): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-c:\users\a10\desktop\woochancho\하노이타워2\2\move.cpp(81): warning C4715: 'Move::FindTarget': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  2.vcxproj -> C:\Users\A10\Desktop\woochancho\하노이타워2\Debug\2.exe

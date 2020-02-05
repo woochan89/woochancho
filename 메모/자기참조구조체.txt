@@ -1,0 +1,15 @@
+typedef struct _node
+{
+	Data data;
+	struct _node *next;  << typedef 에의해 Node라고 변수명이 변경되기 전이니 이렇게 사용
+}Node;
+
+C++에선
+
+struct Node
+{
+	Data data;
+	Node *next; 
+};
+
+이렇게 사용해도 된다

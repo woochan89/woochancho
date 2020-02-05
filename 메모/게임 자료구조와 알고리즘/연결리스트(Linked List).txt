@@ -1,0 +1,54 @@
+*순차or선형 리스트는 크기가 정적이기 때문에 유연하지 못하다
+*연결리스트에서는 이것을 보완해서 동적할당을 이용해 유연하게 구현
+*연결리스트 에는 시작과 끝이 있꼬 각 data끼리 연결되어 잇기 때문에 headnode, tail node가 필요	하고 검색에 사용하기 위해 curPoint가 필요
+
+ex)
+main에 사용시
+
+Node *head = NULL; //리스트의 머리를 가리키는 포인터 변수
+Node *tail = NULL; //     "        꼬리를 가리키는 포인터 변수
+Node* cur = NULL; // 저장된 데이터의 조회에 사용되는 포인터 변수
+
+-삽입
+*삽입을 실행하게 되면 데이터가 새로 생성되어서 연결 되어야 한다
+1. Node를 생성해주고 Node에 데이터를 저장해주고 해당 Node의 다음 Node를 NULL로 초기화
+2. 생성한 Node가 첫 번째라면 head부분이 첫 번째 Node를 가리키게 하고 두 번째 이 후 Node라면 다음 Node를 가리키게 한다.
+
+-순서
+While(1)
+{
+newNode = (Node*)malloc(sizeof(Node)); // Node 생성
+newNode -> data = readData; // Node에 데이터 저장
+newNode -> next = NULL; // Node의 next를 NULL로 초기화
+
+if(head == NULL) // 첫 번째 Node라면!
+head -> next = newNode; // 첫 번째 Node를 head가 가리키게.
+else // 두 번째 Node라면!
+tail -> next = newNode; //tail의 next에 새로 만든 node를 이어 붙이기
+
+tail = newNode; //tail이 방금 이어 붙힌 node의 끝을 가리키게 한다
+}
+
+
+-삭제
+if(head == NULL)
+{
+return 0;
+}
+
+else
+{
+Node* delNode = head;
+Node* delNextNode = head -> next;
+
+printf(“%d을(를) 삭제합니다. \n”, head->data);
+free(delNode); // 첫 번째 Node삭제
+
+while(deleNextNode != NULL) // 두 번째 이후 Node 삭제
+{
+delNode = delNextNode;
+delNextNode = delNextNode -> next;
+printf(“%d을(를) 삭제합니다. \n”, delNode->data);
+free(delNode);
+}
+}
