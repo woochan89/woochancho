@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+
+typedef int pdata;
+
+typedef struct _node
+{
+	pdata data;
+	_node *next;
+}Node;
+
+
+int main()
+{
+	Node *head = NULL;
+	Node *tail = NULL;
+	Node *cur = NULL;
+	pdata num;
+
+	while (1)// 데이터 입력
+	{
+		printf("숫자 입력 : ");
+		scanf("%d", &num);
+		if (num < 1)
+			break;
+		Node *newNode = new Node;
+		newNode->data = num;
+		newNode->next = NULL;
+		if (tail == NULL)
+			tail = newNode;
+		else
+			newNode->next = head;
+		head = newNode;
+	}
+	printf("\n");
+	// 데이터 출력
+	printf("저장된 숫자 모두 출력\n");
+	if (head == NULL)
+	{
+		printf("저장된 숫자가 없습니다\n");
+		system("pause");
+	}
+	else {
+		cur = head;
+		printf("%d\n", cur->data);
+		while (cur->next != NULL)
+		{
+			cur = cur->next;
+			printf("%d\n", cur->data);
+		}
+	}
+	// 할당 해제
+	printf("\n");
+	if (head == NULL)
+		printf("해제할 노드가 없습니다\n");
+	else
+	{
+		Node *dNode = head;
+		Node *dnNode = head->next;
+		printf("%d 해제완료\n", dNode->data);
+		delete dNode;
+		while (dnNode != NULL)
+		{
+			dNode = dnNode;
+			dnNode = dnNode->next;
+			printf("%d 해제완료\n", dNode->data);
+			delete dNode;
+		}
+	}
+
+	return 0;
+}
