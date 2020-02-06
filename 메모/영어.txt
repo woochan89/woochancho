@@ -5,5 +5,9 @@
 함수 = 메소드
 
 declaration 선언,공표,신고서
-
 implicit 암시된, 내포된
+overview 개관,개요
+flash card 플래시 카드(단어*숫자*그림 등이 적힌 연습용 카드), 채점 카드
+succeed 성공하다, 뒤를잇다
+succeeding 계속해서 일어나는, 계속되는, 다음의
+distinct 뚜렷한, 별개의, 분명한, 확실한
