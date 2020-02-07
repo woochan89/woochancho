@@ -19,6 +19,34 @@ void InputData(List *list, Point data)//삽입
 	list->numOfdata++;
 }
 
+void ArrayInputData(List *list, Point data)//정렬 삽입
+{
+	//새 Point생성
+	list->numOfdata++;
+	Node *newNode = new Node;
+	newNode->data = data;
+	//임시 Point 변수 만들어서 head->next 지정
+	Node *tmpNode = list->head->next;
+	//while문 조건 찾기
+	if (tmpNode == NULL) {
+		newNode->next = tmpNode;
+		list->head->next = newNode;
+		return;
+	}
+	
+	//데이터 삽입(이어 붙히기)
+	if (Lfirst(list, &data))
+	{
+		Lnext(list, &data);
+		while (list->comp(list->cur, list->cur->next))
+		{
+			Lnext(list, &data);
+		}
+		newNode->next = list->cur->next;
+		list->cur = newNode;
+	}
+}
+
 bool Lfirst(List *list, Point *data)//참조
 {
 	if (list->numOfdata == 0)
@@ -48,5 +76,9 @@ void Lremove(List *list, Point *data)//삭제
 	list->cur->next = dNode->next;
 	delete dNode;
 	list->numOfdata--;
+}
 
+void SetFunc(List *list, int(*comp)(Node*, Node*))
+{
+	list->comp = comp;
 }

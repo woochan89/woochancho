@@ -1,5 +1,14 @@
 #include"DLinkedList.h"
 
+int Comp(Node *Before, Node *After)//X좌표 만을 기준으로 비교
+{
+	if (After == NULL)//다음 노드가 NULL이면 0 반환
+		return 0;
+	int num;
+	(Before->data.xpos > After->data.xpos) ? num = 1 : num = 0;
+	return num;
+}
+
 int main()
 {
 	List list;
@@ -7,11 +16,17 @@ int main()
 	Point comp;
 
 	init(&list);//초기화
+	SetFunc(&list, Comp);
 
-	for (int i = 1; i <= 5; i++) {//리스트에 데이터 삽입
+	for (int i = 1; i <= 3; i++) {//리스트에 데이터 삽입
 		tmp = InputPos(i, i + 1);
-		InputData(&list, tmp);
+		ArrayInputData(&list, tmp);
 	}
+	for (int i = 1; i <= 2; i++) {//리스트에 데이터 삽입
+		tmp = InputPos(i, i + 2);
+		ArrayInputData(&list, tmp);
+	}
+
 
 	printf("데이터 갯수 : %d\n", list.numOfdata);//데이터 출력
 	if (Lfirst(&list, &tmp))//numOfdata가 0이 아니라면 실행
