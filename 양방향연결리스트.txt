@@ -1,0 +1,81 @@
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+
+typedef struct _node {
+	int data;
+	struct _node *before;
+	struct _node *next;
+}Node;
+
+typedef struct _list{
+	Node *head;
+	Node *tail;
+	Node *cur;
+	int numOfdata;
+}List;
+
+void Linit(List *list) {
+	list->head = (Node*)malloc(sizeof(Node));
+	list->head->next = NULL;
+	list->cur = NULL;
+	list->tail = NULL;
+	list->numOfdata = 0;
+}
+
+void Linsert(List *list, int data) {
+	Node *newNode = (Node*)malloc(sizeof(Node));
+	newNode->data = data;
+	newNode->next = NULL;
+
+	if (list->numOfdata == NULL)
+	{
+		newNode->before = list->head;
+		list->head->next = newNode;
+	}
+	else {
+		newNode->before = list->tail;
+		list->tail->next = newNode;
+	}
+	list->tail = newNode;
+	list->numOfdata++;
+}
+
+void LFinsert(List *list, int data) {
+	Node *newNode = (Node*)malloc(sizeof(Node));
+	newNode->data = data;
+	newNode->next = NULL;
+
+	newNode->before = list->head;
+	if (list->numOfdata == NULL)
+		list->tail = newNode;
+	else
+		newNode->next = list->head->next;
+	list->head->next = newNode;
+	list->numOfdata++;
+}
+
+bool Lfirst(List *list, int *data) {
+	if (list->head->next == NULL)
+		return 0;
+	list->cur = list->head->next;
+	*data = list->cur->data;
+	return 1;
+}
+
+bool Lnext(List *list, int *data) {
+	if (list->cur->next == NULL)
+		return 0;
+	list->cur = list->cur->next;
+	*data = list->cur->data;
+	return 1;
+}
+
+void Lremove(List *list, int *data) {
+
+}
+
+int main()
+{
+	return 0;
+}
