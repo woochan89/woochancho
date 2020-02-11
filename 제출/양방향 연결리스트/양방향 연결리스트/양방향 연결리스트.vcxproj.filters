@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CircularLinkedList.cpp">
+    <ClCompile Include="dbLinkedList.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CircularLinkedList.h">
+    <ClInclude Include="dbLinkedList.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

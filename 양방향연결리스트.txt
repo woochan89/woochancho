@@ -1,6 +1,6 @@
 #include<iostream>
 #include<stdio.h>
-using namespace std;
+//using namespace std;
 
 typedef struct _node {
 	int data;
@@ -8,7 +8,7 @@ typedef struct _node {
 	struct _node *next;
 }Node;
 
-typedef struct _list{
+typedef struct _list {
 	Node *head;
 	Node *tail;
 	Node *cur;
@@ -47,6 +47,7 @@ void LFinsert(List *list, int data) {
 	newNode->next = NULL;
 
 	newNode->before = list->head;
+	list->head->next->before = newNode;
 	if (list->numOfdata == NULL)
 		list->tail = newNode;
 	else
@@ -71,11 +72,72 @@ bool Lnext(List *list, int *data) {
 	return 1;
 }
 
-void Lremove(List *list, int *data) {
+int Lremove(List *list) {
+	Node *tmp=list->cur;
+	int dData=list->cur->data;
 
+	list->cur->before->next = list->cur->next;
+	list->cur->next->before = list->cur->before;
+	list->cur = list->cur->before;
+	free(tmp);
+	list->numOfdata--;
+	return dData;
 }
 
 int main()
 {
+	List list;
+	int data;
+
+	//초기화
+	Linit(&list);
+	//삽입
+	Linsert(&list, 3);
+	Linsert(&list, 4);
+	Linsert(&list, 5);
+	LFinsert(&list, 2);
+	LFinsert(&list, 1);
+	//출력
+	if (Lfirst(&list, &data)) {
+		printf("%d\n", data);
+		while (Lnext(&list, &data)) 
+			printf("%d\n", data);
+		printf("\n\n");
+	}
+	//삭제
+	if (Lfirst(&list, &data)) {
+		if (data % 2 == 0)
+			Lremove(&list);
+		while (Lnext(&list, &data))
+		{
+			if (data % 2 == 0)
+				Lremove(&list);
+		}
+	}
+	//출력
+	printf("2의 배수를 삭제한 후의 노드\n");
+	if (Lfirst(&list, &data)) {
+		printf("%d\n", data);
+		while (Lnext(&list, &data))
+			printf("%d\n", data);
+		printf("\n\n");
+	}
+	//할당해제
+	printf("더미노드 할당해제\n");
+	if (list.numOfdata != 0)
+	{
+		Node *dNode = list.head;
+		Node *dnNode = list.head->next;
+		free(dNode);
+		while (dnNode != NULL) {
+			dNode = dnNode;
+			dnNode = dnNode->next;
+			printf("%d할당해제\n", dNode->data);
+			free(dNode);
+		}
+	}
+	else
+		free(list.head);//더미노드 해제
+
 	return 0;
 }
