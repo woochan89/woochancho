@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<iostream>
+
+
+
+typedef int sdata;
+
+typedef struct _stack{
+	sdata data;
+	struct _stack *next;
+}Stack;
+
+typedef struct _list {
+	Stack *head;
+}List;
+
+
+void Sinit(List *list) 
+{
+	list->head = NULL;
+}
+
+void Spush(List *list, sdata data) {
+	Stack *newStack = (Stack*)malloc(sizeof(Stack));
+	newStack->data = data;
+	newStack->next = list->head;
+	list->head = newStack;
+}
+
+sdata Spop(List *list) {
+	Stack *tmpStack = list->head;
+	sdata tmpData = list->head->data;
+	list->head = list->head->next;
+	free(tmpStack);
+	return tmpData;
+}
+
+int main()
+{
+	List list;
+
+	Sinit(&list);
+
+	Spush(&list, 5);
+	Spush(&list, 4);
+	Spush(&list, 3);
+	Spush(&list, 2);
+	Spush(&list, 1);
+
+	while (list.head!=NULL)
+		std::cout << Spop(&list) << std::endl;
+
+	return 0;
+}

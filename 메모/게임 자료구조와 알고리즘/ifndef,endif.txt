@@ -1,3 +1,8 @@
+*ifndef를 inclusion guard라고도 한다
+
+*#pragma once는 해당 파일이 이미 포함되어 있다면 열지조차 않고 ifndef는 한번 열어서 전처리문 실행하므로 #pragma once가 좀 더 빠르지만 구형 컴파일러 에서 #pragma once를 지원하지 않는 기능이란 단점이 있다
+
+
 #ifndef STRING
 #define STRING
  
@@ -25,3 +30,5 @@
 #ifndef STDIO_H__
 #define STDIO_H__
 가 선언되어 있다. 만약 STDIO_H가 선언되어 있지 않다면 선언한다는 뜻이다. 그 뒤 (b)에서는 이미 (a)쪽에서 STDIO_H__ 을 선언한 상태이기 때문에 전처리기 쪽에서 무시해버린다. 그러므로 컴파일러는 (a)만 검사한다.
+
+
