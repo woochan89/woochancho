@@ -1,0 +1,13 @@
+if not defined 의 약자
+
+* 만약 ifndef 뒤의 이름이 define(정의)되이 않았다면 include영역에 포함
+	->만약 이미 정의 되어 있다면 포함X
+
+ex)
+#ifndef _WOOCHAN_  #define _WOOCHAN이 정의 되어 있지 않다면 include영역에 포함
+#define _WOOCHAN_
+
+...
+
+
+#endif
