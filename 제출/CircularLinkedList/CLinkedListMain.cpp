@@ -18,10 +18,13 @@ int main(void)
 	LInsertFront(&list, 5);
 
 	//제거 및 출력
-	while ()
+	LFirst(&list, &data);
+	do
 	{
-		std::cout << LRemove(&list) << std::endl;
-	}
+		printf("%d\n", LRemove(&list));
+		LNext(&list, &data);
+	} while (list.numOfData != 0);
+
 
 	return 0;
 }
