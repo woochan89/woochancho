@@ -8,7 +8,12 @@
 
 *rear에서 삽입 되므루 rear가 점차 증가하여 rean=n-1인 경우 큐는 full인 상태
 
-
+용어
+1. peek : front에 위치한 데이터를 읽음, 다음 서비스를 받을 손님이 누구인지 확인
+2. front : 큐의 맨 앞의 위치,다음 서비스를 받을 손님의 번호
+3. rear : 큐의 맨 뒤의 위치, 마지막에 온 손님의 번호
+4. enqueue : 큐 맨뒤에 어떠한 요소를 추가
+5. dequeue : 큐 맨 앞쪽의 요소를 삭제
 
 
 단점
@@ -22,3 +27,83 @@
 원형 큐
 
 *큐의 순차표현시 원형큐를 이용하면 원소의 이동없이 사용할 수 있다
+
+
+
+원형 큐 예시)
+#include<stdio.h>
+#include<iostream>
+
+typedef struct _node {
+	int data;
+}Node;
+
+typedef struct _CircularQueue {
+	Node* node;
+
+	int front;
+	int rear;
+	int capacity;
+}CircularQueue;
+
+void CreateQueue(CircularQueue **queue, int capacity) {
+	(*queue) = (CircularQueue*)malloc(sizeof(CircularQueue));
+	(*queue)->node = (Node*)malloc(sizeof(Node)*capacity+1);
+	(*queue)->front = 0;
+	(*queue)->rear = 0;
+	(*queue)->capacity = capacity;
+}
+
+void Enqueue(CircularQueue* queue, int data) 
+{
+	int Position = 0;
+	Position = queue->rear;
+	queue->rear = (queue->rear + 1) % (queue->capacity + 1);
+	queue->node[Position].data = data;
+}
+
+int Dequeue(CircularQueue* queue) 
+{
+	int Position = queue->front;
+	queue->front = (queue->front + 1) % (queue->capacity + 1);
+	return queue->node[Position].data;
+}
+
+int IsEmpty(CircularQueue* queue)
+{
+	return (queue->front == queue->rear);
+}
+
+int IsFULL(CircularQueue* queue)
+{
+	if (queue->front < queue->rear)
+		return (queue->rear - queue->front) == queue->capacity;
+	else
+		return (queue->rear + 1) == queue->front;
+}
+
+int main()
+{
+	CircularQueue *queue;
+	int max = 0;
+	int data;
+
+	printf("용량 입력 : ");
+	scanf("%d", &max);
+
+	CreateQueue(&queue,max);
+	for (int i = 0; i < max;i++) {
+		printf("%d회 데이터 입력 : ",i+1);
+		scanf("%d", &data);
+
+		Enqueue(queue, data);
+	}
+
+	for (int i = 0; i < max; i++) {
+		printf("%d회 데이터 출력 : %d\n", i + 1, Dequeue(queue));
+	}
+
+	
+
+	return 0;
+}

@@ -17,6 +17,6 @@ int main(void)
 		printf("%d ", Dequeue(&q));
 
 	printf("\n\n");
-
+	QPeek(&q);
 	return 0;
 }
