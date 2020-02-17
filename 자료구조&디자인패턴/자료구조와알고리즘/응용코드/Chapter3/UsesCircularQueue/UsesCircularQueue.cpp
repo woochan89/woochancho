@@ -48,7 +48,7 @@ int main(void)
 			}
 		}
 
-		if (makeProc == 0 && !QIsEmpty(&que))
+		if (makeProc <= 0 && !QIsEmpty(&que))
 			makeProc = Dequeue(&que);
 
 		makeProc--;
