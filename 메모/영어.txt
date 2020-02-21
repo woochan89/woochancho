@@ -13,4 +13,9 @@ succeed 성공하다, 뒤를잇다
 succeeding 계속해서 일어나는, 계속되는, 다음의
 distinct 뚜렷한, 별개의, 분명한, 확실한
 binary 이진
+
 traverse 순회하다,가로지르다,횡단하다
+
+priority 우선사항,우선
+
+element 요소,성분
