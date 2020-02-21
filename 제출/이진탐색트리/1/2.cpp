@@ -24,6 +24,6 @@ int main(void)
 	InputData(bt1, 2);
 	InputData(bt1, 3);
 
-	InorderTraverse(bt1, PrintData);
-	InorderTraverse(bt1, DeleteTree);
+	InorderTraverse(bt1, PrintData);//데이터 중위순회 출력
+	InorderTraverse(bt1, DeleteTree);//데이터 중위순회 삭제
 }

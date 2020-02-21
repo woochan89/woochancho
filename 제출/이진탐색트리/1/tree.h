@@ -18,8 +18,7 @@ void InputData(BTreeNode *bt, BTData data);
 
 
 //typedef void(*func)(BTreeNode*);
-typedef void VisitFuncPtr(BTData data);
+typedef void func(BTreeNode*);
 //Á¶È¸
-void InorderTraverse(BTreeNode *bt, VisitFuncPtr function);
-void InorderTraverse(BTreeNode *bt, void(*func()));
+void InorderTraverse(BTreeNode *bt, func function);
 #endif // !_BTREE_
