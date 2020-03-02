@@ -1,4 +1,1 @@
-﻿  UsefulHeapMain.cpp
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1193,5): warning MSB8030: The linker switch "Minimum Required Version" requires "SubSystem" to be set.  Without "SubSystem", the "Minimum Required Version" would not be passed to linker and could prevent to the output binary from running on older Operating Systems.
-  UsefulHeap.vcxproj -> C:\Users\B-03\Desktop\이승준\LeeSeoungJun\자료구조&디자인패턴\자료구조와알고리즘\예제\Chapter_4\UsefulHeap\Debug\UsefulHeap.exe
-  UsefulHeap.vcxproj -> C:\Users\B-03\Desktop\이승준\LeeSeoungJun\자료구조&디자인패턴\자료구조와알고리즘\예제\Chapter_4\UsefulHeap\Debug\UsefulHeap.pdb (Partial PDB)
+﻿  UsefulHeap.vcxproj -> C:\work\woochancho\자료구조&디자인패턴\자료구조와알고리즘\예제\Chapter_4\UsefulHeap\Debug\UsefulHeap.exe

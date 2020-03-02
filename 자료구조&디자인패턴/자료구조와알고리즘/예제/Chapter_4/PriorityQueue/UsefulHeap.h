@@ -1,6 +1,7 @@
 #ifndef __USEFUL_HEAP_H__
 #define __USEFUL_HEAP_H__
 
+
 #define TRUE	1
 #define FALSE	0
 
