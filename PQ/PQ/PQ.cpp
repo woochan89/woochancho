@@ -2,21 +2,18 @@
 
 
 void PQInit(Heap *h, PriorityComp func) {
-	h->numOfdata = 0;
-	h->func = ;
+	HInit(h, func);
 }
 
 bool PQisEmpty(Heap *h)
 {
-	if (h->numOfdata == 0)
-		return 1;
-	else return 0;
+	return HisEmpty(h);
 }
 
-int GetHiPriChildIDX(Heap *h, int idx) {
-
+void Penqueue(Heap *h, Data data) {
+	Hinsert(h, data);
 }
 
-void Penqueue(Heap *h, Data data);
-
-Data Pdequeue(Heap *h);
+Data Pdequeue(Heap *h) {
+	return Hdelete(h);
+}
