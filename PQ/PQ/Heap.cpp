@@ -14,16 +14,13 @@ bool HisEmpty(Heap *h) {
 int GetHiPriChildIDX(Heap *h, int idx) {
 	if (GetLChildIDX(idx) > h->numOfdata)
 		return 0;
-
 	else if (GetLChildIDX(idx) == h->numOfdata)
 		return GetLChildIDX(idx);
-
 	else
 	{
-		if (h->func(h->heapArr[GetLChildIDX(idx)],h->heapArr[GetRChildIDX(idx)]) < 0)
+		if (h->func(h->heapArr[GetLChildIDX(idx)],h->heapArr[GetRChildIDX(idx)]) != true)
 			return GetRChildIDX(idx);
-		else
-			return GetLChildIDX(idx);
+		else return GetLChildIDX(idx);
 	}
 }
 
@@ -31,7 +28,7 @@ void Hinsert(Heap *h, Data data) {
 	int idx = h->numOfdata + 1;
 
 	while (idx != 1) {
-		if (h->func(data, h->heapArr[GetParentIDX(idx)]) > 0) 
+		if (h->func(data, h->heapArr[GetParentIDX(idx)]) == true) 
 		{
 			h->heapArr[idx] = h->heapArr[GetParentIDX(idx)];
 			idx = GetParentIDX(idx);
@@ -51,7 +48,7 @@ Data Hdelete(Heap *h) {
 
 	while (childIdx = GetHiPriChildIDX(h, parentIdx))
 	{
-		if (h->func(lastData, h->heapArr[childIdx]) >= 0)
+		if (h->func(lastData, h->heapArr[childIdx]) == true)
 			break;
 		h->heapArr[parentIdx] = h->heapArr[childIdx];
 		parentIdx = childIdx;
@@ -59,5 +56,5 @@ Data Hdelete(Heap *h) {
 
 	h->heapArr[parentIdx] = lastData;
 	h->numOfdata--;
-	return lastData;
+	return firstData;
 }

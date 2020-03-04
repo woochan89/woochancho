@@ -6,7 +6,7 @@
 using namespace std;
 
 typedef string Data;
-typedef bool PriorityComp(Data, Data);
+typedef bool PriorityComp(Data D1, Data D2);
 
 
 typedef struct _heap {
