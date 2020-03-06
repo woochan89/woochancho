@@ -45,7 +45,7 @@ int partitionQuickSort(int value[], int start, int end)
 
 			printf("start-[%d], end-[%d], pivot-[%d], in-loop, ", start, end, value[pivot]);
 
-			printArray(value, end - start + 1);
+			printArray(value, 8);
 		}
 	}
 
@@ -54,7 +54,7 @@ int partitionQuickSort(int value[], int start, int end)
 	value[right] = temp;
 
 	printf("start-[%d], end-[%d], pivot-[%d], out-loop, ", start, end, value[right]);
-	printArray(value, end - start + 1);
+	printArray(value, 8);
 
 	return right;
 }

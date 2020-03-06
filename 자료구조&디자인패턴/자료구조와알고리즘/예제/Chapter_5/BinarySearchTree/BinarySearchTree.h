@@ -2,6 +2,7 @@
 #define __BINARY_SEARCH_TREE_H__
 
 #include "BinaryTree.h"
+#include<iostream>
 
 typedef BTData	BSTData;
 
