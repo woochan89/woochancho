@@ -1,2 +1,0 @@
-﻿BinarySearchTreeMain.obj : error LNK2005: _main이(가) BinarySearchTree.obj에 이미 정의되어 있습니다.
-C:\work\woochancho\자료구조&디자인패턴\자료구조와알고리즘\예제\Chapter_5\BinarySearchTree\Debug\BinarySearchTree.exe : fatal error LNK1169: 여러 번 정의된 기호가 있습니다.
