@@ -1,0 +1,10 @@
+c++에서 문자열 상수의 자료형을 'char*'이 아닌 'const char*'로 처리하기 때문에 char을 매개변수와 인자값으로 사용할때 주의가 필요하다
+
+
+ex)
+
+void func(const char* name)
+
+
+func((char*)"아텐츠");
+
