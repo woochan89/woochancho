@@ -15,9 +15,8 @@ void TBLinsert(Table *tbl, Value data)
 {
 	int key = tbl->func(data->ssn);
 	tbl->tblarr[key].value = data;
-
-
 	tbl->tblarr[key].key = key;
+
 }
 
 //Á¶È¸

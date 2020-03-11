@@ -10,8 +10,8 @@ typedef struct _person
 	char	addr[STR_LEN];
 } Person;
 
-int GetSSN(Person* p);
+inline int GetSSN(Person* p){return p->ssn;}
 void ShowPerInfo(Person* p);
-Person* MakePersonData(int ssn, const char name[], const char addr[]);
+Person* MakePersonData(int ssn, const char* name, const char* addr);
 
 #endif

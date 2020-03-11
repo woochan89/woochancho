@@ -3,11 +3,6 @@
 #include<stdlib.h>
 #include<string.h>
 
-int GetSSN(Person* p)
-{
-	return p->ssn;
-}
-
 void ShowPerInfo(Person* p)
 {
 	if (p == NULL)return;
