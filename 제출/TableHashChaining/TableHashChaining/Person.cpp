@@ -13,5 +13,6 @@ void PrintPerson(Person p)
 void InputPerson(Person &p, int ssn, const char name[], const char addr[])
 {
 	p.ssn = ssn;
-	strcpy
+	strcpy(p.name, name);
+	strcpy(p.addr, addr);
 }
