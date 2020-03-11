@@ -1,0 +1,6 @@
+간혹 vs2017버전에서 strcpy함수 사용시 C4996에러가 발생하면 stdio.h 파일 인클루드'전'에 
+
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable: 4996)
+
+위 두가지 중 하나를 사용하여야 한다
