@@ -1,0 +1,20 @@
+구조체 데이터 삽입시 초기화 뿐만 아니라 어떤 상태에서도 StructA={1,2}; 요런식으로 사용할수있다
+
+
+
+ex)
+typedef struct _node           >> C방식
+{
+	int a;
+	int b;
+	struct _node *next;
+}Node;
+
+struct Node                       >> C++방식
+{
+	int a;
+	int b;
+	Node next;
+}
+
+
