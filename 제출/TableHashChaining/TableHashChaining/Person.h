@@ -16,6 +16,6 @@ inline int Getssn(Person p) { return p.ssn; }
 void PrintPerson(Person p);
 
 //데이터 입력
-void InputPerson(Person &p,int ssn, const char name[], const char addr[]);
+Person* InputPerson(int ssn, const char name[], const char addr[]);
 
 #endif // !__PERSON__

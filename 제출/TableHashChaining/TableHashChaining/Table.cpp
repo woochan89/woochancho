@@ -1,5 +1,5 @@
 #include "Table.h"
-
+#include"DLinkedList.h"
 
 //ÃÊ±âÈ­
 void TBLinit(Table* tbl, func f)
@@ -12,6 +12,10 @@ void TBLinit(Table* tbl, func f)
 //»ðÀÔ
 void TBLinsert(Table *tbl, Key k, Value v)
 {
+	int hv = tbl->hf(k);
+	Slot ns = { v, k };
+
+	FInsert(&(tbl->tbl[hv]), ns);
 
 }
 
@@ -23,7 +27,7 @@ Value TBLdelete(Table* tbl, Key k)
 
 	if (LFirst(&tbl->tbl[hk], &cSlot))
 	{
-		if (cSlot.key = k) 
+		if (cSlot.key = k && cSlot.v->ssn == k)
 		{
 			LRemove(&tbl->tbl[hk]);
 			return cSlot.v;
@@ -51,7 +55,7 @@ Value TBLsearch(Table* tbl, Key k)
 
 	if (LFirst(&tbl->tbl[hk], &cSlot))
 	{
-		if (cSlot.key = k)
+		if (cSlot.key = k&&cSlot.v->ssn==k)
 			return cSlot.v;
 		else
 		{
