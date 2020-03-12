@@ -36,7 +36,7 @@ Value TBLdelete(Table* tbl, Key k)
 		{
 			while (LNext(&tbl->tbl[hk], &cSlot))
 			{
-				if (cSlot.key == k)
+				if (cSlot.key == k && cSlot.v->ssn == k)
 				{
 					LRemove(&tbl->tbl[hk]);
 					return cSlot.v;
@@ -46,6 +46,27 @@ Value TBLdelete(Table* tbl, Key k)
 	}
 	return NULL;
 }
+
+void TBLdeleteALL(Table* tbl)
+{
+	Slot cSlot;
+	for (int i = 0; i < MAX_TBL; i++) 
+	{
+		if (LFirst(&tbl->tbl[i], &cSlot))
+		{
+			LRemove(&tbl->tbl[i]);
+			PrintPerson(*cSlot.v);
+			printf("삭제완료\n\n");
+			while (LNext(&tbl->tbl[i], &cSlot))
+			{
+				LRemove(&tbl->tbl[i]);
+				PrintPerson(*cSlot.v);
+				printf("삭제완료\n\n");
+			}
+		}
+	}
+}
+
 
 //검색
 Value TBLsearch(Table* tbl, Key k)
@@ -61,7 +82,7 @@ Value TBLsearch(Table* tbl, Key k)
 		{
 			while (LNext(&tbl->tbl[hk], &cSlot))
 			{
-				if (cSlot.key == k)
+				if (cSlot.key == k&&cSlot.v->ssn == k)
 					return cSlot.v;
 			}
 		}

@@ -18,6 +18,8 @@ void TBLinit(Table* tbl, func f);
 void TBLinsert(Table *tbl, Key k, Value v);
 //삭제
 Value TBLdelete(Table* tbl, Key k);
+//남은 데이터 전부 삭제
+void TBLdeleteALL(Table* tbl);
 //검색
 Value TBLsearch(Table* tbl, Key k);
 
