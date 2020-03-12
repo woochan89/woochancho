@@ -1,39 +1,40 @@
-#ifndef __DLINKEDLIST__
-#define __DLINKEDLIST__
-#include"Slot.h"
+#ifndef __D_LINKED_LIST_H__
+#define __D_LINKED_LIST_H__
 
-typedef struct _node {
-	Slot data;
-	struct _node *prev;
-	struct _node *next;
-}Node;
+#include "Slot.h"
 
-typedef struct _dlinkedlist {
-	Node *head;
-	Node *tail;
-	Node *cur;
-	int numOfdata;
+#define TRUE	1
+#define FALSE	0
 
-}DLinkedList;
+typedef Slot LData;
 
-typedef DLinkedList List;
+typedef struct _node
+{
+	LData data;
+	struct _node * next;
+} Node;
 
-//초기화
-void listInit(List *list);
+typedef struct _linkedList
+{
+	Node * head;
+	Node * cur;
+	Node * before;
+	int numOfData;
+	int(*comp)(LData d1, LData d2);
+} LinkedList;
 
-//삽입
-void InsertData(List *list, Slot data);
 
-//체크
-bool LIsEmpty(List list);
+typedef LinkedList List;
 
-//퍼스트조회
-Slot Lfirst(List *list, Slot data);
+void ListInit(List * plist);
+void LInsert(List * plist, LData data);
 
-//넥스트조회
-Slot Lnext(List *list, Slot data);
+int LFirst(List * plist, LData * pdata);
+int LNext(List * plist, LData * pdata);
 
-//삭제
-void Lremove(List *list,Slot data);
+LData LRemove(List * plist);
+int LCount(List * plist);
 
-#endif // !__DLINKEDLIST__
+void SetSortRule(List * plist, int(*comp)(LData d1, LData d2));
+
+#endif

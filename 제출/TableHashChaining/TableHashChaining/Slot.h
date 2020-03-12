@@ -2,7 +2,7 @@
 #define __SLOT__
 #include"Person.h"
 
-typedef Person Value;
+typedef Person* Value;
 typedef int Key;
 
 typedef struct _slot {
