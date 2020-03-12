@@ -67,6 +67,8 @@ void TBLdeleteALL(Table* tbl)
 				printf("삭제완료\n\n");
 			}
 		}
+		else
+			free(tbl->tbl->head);
 	}
 }
 
