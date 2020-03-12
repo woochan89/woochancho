@@ -39,6 +39,7 @@ int main()
 		if (v = TBLdelete(&tbl, key))
 		{
 			PrintPerson(*v);
+			free(v);
 			printf("삭제 완료!\n");
 		}
 		else printf("등록된 사람이 아닙니다\n");

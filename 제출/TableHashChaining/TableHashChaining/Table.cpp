@@ -1,5 +1,6 @@
 #include "Table.h"
 #include"DLinkedList.h"
+#include<stdlib.h>
 
 //초기화
 void TBLinit(Table* tbl, func f)
@@ -56,11 +57,13 @@ void TBLdeleteALL(Table* tbl)
 		{
 			LRemove(&tbl->tbl[i]);
 			PrintPerson(*cSlot.v);
+			free(cSlot.v);
 			printf("삭제완료\n\n");
 			while (LNext(&tbl->tbl[i], &cSlot))
 			{
 				LRemove(&tbl->tbl[i]);
 				PrintPerson(*cSlot.v);
+				free(cSlot.v);
 				printf("삭제완료\n\n");
 			}
 		}
