@@ -58,5 +58,8 @@ int main()
 		system("pause");
 	}
 
+	for (int i = 0; i < MAX_TBL; i++)
+		TBLdelete(&tbl, i);
+
 	return 0;
 }

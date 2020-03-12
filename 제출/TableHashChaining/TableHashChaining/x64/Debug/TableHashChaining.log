@@ -1,4 +1,5 @@
-﻿  THCmain.cpp
+﻿  DLinkedList.cpp
+  THCmain.cpp
 c:\work\woochancho\제출\tablehashchaining\tablehashchaining\thcmain.cpp(24): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1274): note: 'scanf' 선언을 참조하십시오.
 c:\work\woochancho\제출\tablehashchaining\tablehashchaining\thcmain.cpp(26): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
@@ -7,8 +8,7 @@ c:\work\woochancho\제출\tablehashchaining\tablehashchaining\thcmain.cpp(28): w
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1274): note: 'scanf' 선언을 참조하십시오.
 c:\work\woochancho\제출\tablehashchaining\tablehashchaining\thcmain.cpp(36): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1274): note: 'scanf' 선언을 참조하십시오.
-c:\work\woochancho\제출\tablehashchaining\tablehashchaining\thcmain.cpp(53): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\work\woochancho\제출\tablehashchaining\tablehashchaining\thcmain.cpp(52): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1274): note: 'scanf' 선언을 참조하십시오.
-  Table.cpp
   코드를 생성하고 있습니다...
   TableHashChaining.vcxproj -> C:\work\woochancho\제출\TableHashChaining\x64\Debug\TableHashChaining.exe
