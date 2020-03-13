@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "DLinkedList.h"
+#include<crtdbg.h>
 
 //정렬조건
 int WhoIsPrecede(int d1, int d2)
@@ -13,6 +14,7 @@ int WhoIsPrecede(int d1, int d2)
 int main(void)
 {
 	// List의 생성 및 초기화  ////////////
+	_CrtSetBreakAlloc(72);
 	List list;
 	int data;
 	ListInit(&list);
@@ -61,5 +63,8 @@ int main(void)
 			printf("%d ", data);
 	}
 	printf("\n\n");
+
+
+	_CrtDumpMemoryLeaks();
 	return 0;
 }
