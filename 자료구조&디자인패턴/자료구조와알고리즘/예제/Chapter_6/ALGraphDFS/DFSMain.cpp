@@ -17,8 +17,11 @@ int main(void)
 	ShowGraphEdgeInfo(&graph);
 
 	DFShowGraphVertex(&graph, A); printf("\n");
+	DFShowGraphVertex(&graph, B); printf("\n");
 	DFShowGraphVertex(&graph, C); printf("\n");
+	DFShowGraphVertex(&graph, D); printf("\n");
 	DFShowGraphVertex(&graph, E); printf("\n");
+	DFShowGraphVertex(&graph, F); printf("\n");
 	DFShowGraphVertex(&graph, G); printf("\n");
 
 	GraphDestroy(&graph);
