@@ -1,23 +1,28 @@
-#ifndef _GRAPH_드
+#ifndef _GRAPH_
 #define _GRAPH_
+
+#define NAME_LEN 30
 #include"LinkedList.h"
 #include"CircleQueue.h"
 
-enum
-{
-	A=0,B,C,D,E,F,G,H,I,J
-};
 
 typedef struct _graph
 {
 	int numV;
 	int numE;
+	//char **name;
+	List NameList;
 	List *edgeList;
 	bool *visitInfo;
 }Graph;
 
+int GetIDX(Graph* g, int visitV);
+
+
+void VertexInit(Graph* g);
+
 //초기화
-void GraphInit(Graph* g, int nv);
+void GraphInit(Graph* g);
 
 //할당 해제
 void GraphDestroy(Graph* g);

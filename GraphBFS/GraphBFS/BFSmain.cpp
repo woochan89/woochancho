@@ -4,22 +4,24 @@
 int main(void)
 {
 	Graph graph;
-	GraphInit(&graph, 7);
 
-	AddEdge(&graph, A, B);
-	AddEdge(&graph, A, D);
-	AddEdge(&graph, B, C);
-	AddEdge(&graph, D, C);
-	AddEdge(&graph, D, E);
-	AddEdge(&graph, E, F);
-	AddEdge(&graph, E, G);
+	VertexInit(&graph);
+	GraphInit(&graph);
+
+	AddEdge(&graph, 1, 2);
+	AddEdge(&graph, 1, 4);
+	AddEdge(&graph, 2, 3);
+	AddEdge(&graph, 4, 3);
+	AddEdge(&graph, 4, 5);
+	AddEdge(&graph, 5, 6);
+	AddEdge(&graph, 5, 7);
 
 	ShowEdge(&graph);
 
-	BFSshowGraphVertex(&graph, A); printf("\n");
-	BFSshowGraphVertex(&graph, C); printf("\n");
-	BFSshowGraphVertex(&graph, E); printf("\n");
-	BFSshowGraphVertex(&graph, G); printf("\n");
+	BFSshowGraphVertex(&graph, 1); printf("\n");
+	BFSshowGraphVertex(&graph, 2); printf("\n");
+	BFSshowGraphVertex(&graph, 3); printf("\n");
+	BFSshowGraphVertex(&graph, 4); printf("\n");
 
 	GraphDestroy(&graph);
 	return 0;

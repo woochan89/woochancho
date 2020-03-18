@@ -33,8 +33,8 @@ void Enqueue(Queue* q, Data data)
 		printf("큐 메모리 에러\n");
 		exit(-1);
 	}
+	q->rear= NextPosIdx(q->rear);
 	q->queueArr[q->rear] = data;
-	NextPosIdx(q->rear);
 }
 
 //제거
