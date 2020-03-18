@@ -22,7 +22,7 @@ int NextPosIdx(int idx)
 {
 	if (idx + 1 == MAX)
 		return 0;
-	else return idx++;
+	else return ++idx;
 }
 
 //»ğÀÔ

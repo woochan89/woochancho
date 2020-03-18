@@ -26,8 +26,8 @@ void LInsert(List * list, Data data);
 void FInsert(List* list, Data data);
 void SInsert(List* list, Data data);
 
-int LFirst(List* list, Data& data);
-int LNext(List* list, Data& data);
+bool LFirst(List* list, Data& data);
+bool LNext(List* list, Data& data);
 
 Data LRemove(List* list);
 

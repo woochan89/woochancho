@@ -5,6 +5,7 @@
 void ListInit(List *list)
 {
 	list->head = (Node*)malloc(sizeof(Node));
+	list->head->next = NULL;
 	list->cur = NULL;
 	list->before = NULL;
 	list->numOfdata = 0;
