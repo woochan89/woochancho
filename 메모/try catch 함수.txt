@@ -1,0 +1,62 @@
+* if문을 사용하여 예외문을 구성할 수 있지만, 코드의 가독성을 위해 C++ 에서 try catch 기능을 제공(C에서는 기본적으로 제공되지 않는다)
+
+* try블록 내에서 예외가 발생하면 catch 블록이 실행되고, 예외가 발생한 지점 이후를 싱행하는 것이 아니라, catch블록의 이후가 실행된다
+
+
+구성
+
+- try  : try내부에서 예외가 있는지 탐색하는 부분
+- throw : try에서 예외를 탐색하면 throw의 인자로 준 변수를 catch로 던짐
+-catch -  throw에서 던진 변수를 인자로 받아서 catch 내부의 예외처리를 실시
+
+
+
+
+
+
+out_of_range 는 예외타입
+ex)
+catch(out_of_range &e)   에서 out_of_range 는 자료형 &e는 매개변수
+
+
+
+
+ex)
+
+#include<iostream>
+using namespace std;
+
+void swap(int &a, int &b)
+{
+	int tmp;
+
+	if (a == b)throw a;
+
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
+void main()
+{
+	int num1, num2;
+
+	try
+	{
+		cin >> num1;
+		cin >> num2;
+
+		swap(num1, num2);
+
+		cout << "\n swap완료" << endl;
+		cout << "num1 : " << num1 << ", num2 : " << num2 << endl;
+
+	}
+
+	catch (int expn)
+	{
+		cout << "\n swap실패" << endl;
+		cout << "num1, num2 : " << expn << "으로 동일합니다" << endl;
+	}
+
+}
