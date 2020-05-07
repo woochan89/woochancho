@@ -19,3 +19,5 @@ traverse 순회하다,가로지르다,횡단하다
 priority 우선사항,우선
 
 element 요소,성분
+
+iterator 반복자
