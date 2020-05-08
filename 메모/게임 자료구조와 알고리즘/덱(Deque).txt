@@ -1,0 +1,89 @@
+덱(Deque)
+스택(stack)과 큐(queue)의 장점만 모은것 -> 선입선출 선입후출 둘다 사용가능
+
+특징
+
+장점)
+1. 리스트와 같이 크기가 가변적임
+2. 앞,뒤에서 삽입&삭제가 간편
+3. 연결리스트처럼 처음부터 탐색하지 않고 원하는 요소에 바로 접근가능
+
+단점)
+1. 중간의 데이터 삽입 삭제가 쉽지 않다 -> 삽입 또는 삭제후 데이터 전후의 모든 데이터를 한칸씩 이동
+2. 구현이 쉽지 않다 -> 스택 과 큐가 결합된 만큼 연결리스트 보다 구현이 어려움
+
+
+
+사용경우
+1. 앞뒤에서만 삽입 삭제하는 경우
+2. 저장할 데이터가 가변적인 경우
+3. 검색을 거의 하지 않는 경우->많은 데이터를 저장한다면 map,set,hash_map을 사용하는게 좋음
+4. 데이터를 랜덤하게 접근하고 싶은 경우->vector와 같이 랜덤 접근이 가능
+
+
+Vector와의 비교
+
+deque와 vector은 함수의 기능이나 사용법이 거의 동일하다. 하지만 vector는 삽입과 삭제를 뒤에서만 해야 성능이 좋지만, deque는 삽입과 삭제를 앞과 뒤에서 해도 좋으며 앞뒤 삽입, 삭제 성능도 vector보다 좋습니다. 하지만 deque는 앞뒤에서 삽입, 삭제하는 것을 제외한 다른 위치에서의 삽입과 삭제는 vector보다 좋지 않음(deque가 vetor보다 단순 삽입에선 3배정도 느리다).
+
+
+
+사용방법
+
+#include<deque>
+
+void main()
+{
+deque<int> dq;
+deque<int> dqp = new deque<int>;  //동적할당 가능
+
+deque<int>::iterator iter = dq.behin(); //반복자 사용
+}
+
+
+생성자
+deque dq : 빈컨테이너 생성
+deque dq(n) : dq는 기본값(0)으로 초기화된 n개의 원소를 가짐
+deque dq(n,x) : dq는 x값으로 초기화된 n개의 원소를 가짐
+deque dq(dq2) : dq는 dq2 컨테이너의 복사본(복사생성자 호출)
+deque dq(b,e) : dq는 반복자 구간[b,e)로 초기화된 원소를 갖는다 -> 다른 덱 컨테이너가 먼저 생성되있어야 함
+
+
+멤버 형식     ex) deque<int>::size_type i;
+
+allocator_type : 메모리 관리자 형식
+const_iterator : cinst 반복자 형식
+const_pointer : const value_type* 형식
+const_reference : const value_type& 형식
+const_reverse_iterator : const 역 반복자 형식
+defference_type : 두 반복자 차이의 형식
+iterator : 반복자 형식 -> 사용 많이 함
+pointer : value_type* 형식
+reference : value_type& 형식
+reverse_iterator : 역 반복자 형식
+size_type : 첨자(index)나 원소의 개수 등의 형식 -> 사용빈도 높음
+value_type : 원소의 형식
+
+
+멤버 함수
+
+assign(n,x) : 기존에 있던 모든 원소를 삭제하고 x값 n개를 할당
+assign(b,e) : 기존에 있던 모든 원소를 삭제하고 반복자 구간 [b,e)를 할당  
+at(i) : i번째 원소를 참조(const,비const 버전이 있으며 범위 점검 포함)
+back() : 마지막 원소를 참조(")
+begin() : 첫 번째 원소의 반복자를 반환 -> ex)iter=dq.begin();
+end()	마지막 원소 다음의(NULL) 반복자를 반환
+clear() : 모든 원소를 삭제
+empty() : 아무것도 없으면 true 반환
+erase(p) : p가 가리키는 원소를 제거후 p다음 원소를 반환 -> ex)q = dq.erase(p);
+front() : 첫 번째 원소의 참조를 반환
+insert	특정 위치에 원소 삽입
+pop_back	마지막 원소를 삭제
+pop_front	첫 번째 원소를 삭제
+push_back	마지막에 원소를 추가
+push_front	제일 앞에 원소 추가
+rbegin	역방향으로 첫 번째 원소의 반복자를 반환
+rend	역방향으로 마지막 원소 다음의 반복자를 반환
+reserve	지정된 크기의 저장 공간을 확보
+size	원소의 개소를 반환
+swap	두 개의 vector의 원소를 서로 맞바꾼다
+
