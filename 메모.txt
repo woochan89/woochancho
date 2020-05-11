@@ -55,3 +55,5 @@ out_of_range는 타입명
 
 
 list와 vector의 삽입동작 차이?
+
+pr=s.insert 시 삽입여부에 따라서 자동 true,false가 되는지?

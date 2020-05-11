@@ -1,0 +1,20 @@
+pair
+
+1. 두 객체를 하나의 객체로 취급 할수있게 묶어줌
+2. STL에서 데이터 "쌍"을 표현할때 사용
+3. 비교연산자(==, !=, <, >, <=, >=) 사용가능
+4. sort 알고리즘에 의해 정렬 가능
+5. uitility 헤더에 존재
+6. set과 multiset 에서 많이 쓰임
+
+템플릿 형식
+template<class T1,class T2>struct pair;
+
+template<typename T1,typename T2>struct pair;
+
+멤버함수
+
+pair<[type1],[type2]>p : 사용할 데이터 타입1,2를 넣고 그 타입의 pair 클래스인 p를 생성
+p.first : p의 첫번쨰 인자 반환
+p.second : p의 두번째 인자를 반환해 줌
+make_pair(변수1,변수2) : 변수1과 변수2가 들어간 pair 생성
