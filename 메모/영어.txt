@@ -37,3 +37,9 @@ allocate 할당하다
 variable 변동이 심한,가변적인, (변수)
 
 initialized 초기화된
+
+adjacent 인접한,가까운
+
+explicit 분명한, 명쾌한
+
+parameter 매개변수
