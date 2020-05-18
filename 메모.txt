@@ -58,3 +58,7 @@ vector<int>::reverse_iterator riter(v.rbegin()); == 	vector<int>::reverse_iterat
 
 벡터는 기본으로 포함되지 않음
 sort는 퀵정렬
+
+end==NULL ?
+
+컨테이너 조건이랑 반복자 조건이랑 같지 않아도 되는지?
