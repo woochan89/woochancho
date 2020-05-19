@@ -48,9 +48,6 @@ out_of_range는 타입명
 
 
 
-일정크기의 정적인 구간 을 사용해서 과제
-
-
 vector<int>::reverse_iterator riter(v.rbegin()); == 	vector<int>::reverse_iterator riter=v.begin();
 
 
@@ -62,3 +59,14 @@ sort는 퀵정렬
 end==NULL ?
 
 컨테이너 조건이랑 반복자 조건이랑 같지 않아도 되는지?
+
+
+
+
+널 안넣어주면 오류남
+
+
+템플릿으로 다른클래스가 적용되서 
+
+
+하나 이상 있을시 오류가 나진 않음

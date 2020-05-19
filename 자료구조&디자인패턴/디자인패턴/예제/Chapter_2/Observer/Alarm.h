@@ -101,6 +101,7 @@ class Player : public Observer
 
 public:
 	Player(string name) : name(name) { }
+	//Player(string name) { this->name = name; }
 
 	//등록된 노티피 케이션 호출
 	void Notify(string name) override
