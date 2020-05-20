@@ -1,0 +1,87 @@
+
+ex)
+#include <iostream>
+
+class Foo {
+public:
+  int bar;
+  Foo(int num): bar(num) {};//초기화 리스트
+};
+
+int main(void) {
+  std::cout << Foo(42).bar << std::endl;
+  return 0;
+}
+
+
+
+
+
+//초기화 리스트
+Foo(int num): bar(num),b(num),c(num) {};
+
+//함수에서 초기화
+Foo(int num)
+{
+   bar = num;
+}
+
+초기화 리스트에서 초기화를 하는 경우, 생성자가 호출될 때 객체의 생성과 초기화가 한 번에 이루어진다
+
+반면
+
+생성자 함수 내에서 초기화 하는경우, 객체가 생성되어, 디폴트 생성자로 초기화 된 상태에서 다시 한 번 할당받게 됨
+
+
+초기화 리스트 사용예시
+
+1. 클래스가 래퍼런스를 멤버로 가질 때
+2. non static const 멤버가 있을 때
+3. 디폴트 생성자가 없을 때
+4. base class를 초기화 할 떄
+5. 생성자 파라미터의 이름이 데이터 멤버랑 같을 때(this를 사용해서 해결가능)
+
+ex)
+class MyClass
+{
+    public:
+        int &i; //레퍼런스 멤버. 초기화 리스트를 써야 함
+        int b;
+        const int k;  //Non static const 멤버. 초기화 리스트를 써야 함
+
+    //생성자 파라미터의 이름이 데이터 멤버랑 같음. 초기화 리스트를 쓸수 있음(선택 가능)
+    MyClass(int a, int b, int c):i(a),b(b),k(c)
+    {
+        /*
+        초기화 리스트를 쓰고 싶지 않은 경우
+        this->a = a
+        같이 써야 함
+        */
+    }
+};
+
+class MyClass2:public MyClass
+{
+    public:
+        int p;
+        int q;
+        //base class인 MyClass가 default생성자가 없기 때문에 무조건 초기화 리스트에서 초기화해줘야 함
+        MyClass2(int x,int y,int z,int l,int m):MyClass(x,y,z),p(l),q(m)
+        {
+        }
+
+};
+
+int main()
+{
+    int x = 10;
+    int y = 20;
+    int z = 30;
+    MyClass obj(x,y,z);
+
+    int l = 40;
+    int m = 50;
+    MyClass2 obj2(x,y,z,l,m);
+
+    return 0;
+}

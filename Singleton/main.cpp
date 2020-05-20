@@ -15,6 +15,7 @@ void main()
 		cin >> Select;
 		switch (Select)
 		{
+			//IntManager::GetInstance()->
 			case 1:
 				IntManager::GetInstance()->Insert();
 				break;

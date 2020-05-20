@@ -7,6 +7,7 @@
 
 class IntManager : public Singleton<IntManager> 
 {
+private:
 	vector<Int*> m_vecIntList;
 public:
 	int GetSize()

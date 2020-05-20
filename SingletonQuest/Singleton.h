@@ -8,10 +8,14 @@ private:
 	static T * m_hThis;
 protected:
 	Singleton()
-	{};
+	{
+		check = 1;
+	};
 	virtual ~Singleton()
 	{};
 public:
+	int check;
+
 	static T * GetInstance()
 	{
 		if (m_hThis == NULL)
@@ -30,4 +34,4 @@ public:
 	}
 };
 
-template <typename T> T* Singleton<T>::m_hThis = 0;
+//template <typename T> T* Singleton<T>::m_hThis = 0;
