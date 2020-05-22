@@ -1,4 +1,5 @@
 #include"IntManager.h"
+#include"Singleton.h"
 #include<Windows.h>
 
 void main()
