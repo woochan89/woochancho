@@ -4,7 +4,7 @@ void main()
 {
 	int select;
 	Drawmanager draw;
-	draw.DrawInterface();
+	draw.DrawInterface(TOWER_MAX);
 	while (true)
 	{
 		cin >> select;

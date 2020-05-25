@@ -9,7 +9,7 @@ class Drawmanager
 {
 public:
 	void DrawTower(list<int> tower,int tower_max);
-	void DrawInterface();
+	void DrawInterface(int tower_max);
 	inline void gotoxy(int x, int y)
 	{
 		COORD pos = { x,y };

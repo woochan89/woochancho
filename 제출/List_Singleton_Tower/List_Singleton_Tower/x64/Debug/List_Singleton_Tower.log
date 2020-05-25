@@ -1,4 +1,4 @@
 ﻿  Gamemanager.cpp
-c:\users\user\desktop\woochancho\제출\list_singleton_tower\list_singleton_tower\drawmanager.h(15): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-c:\users\user\desktop\woochancho\제출\list_singleton_tower\list_singleton_tower\gamemanager.cpp(3): warning C4356: 'Singleton<Gamemanager>::m_tThis': 정적 데이터 멤버는 파생 클래스를 통해 초기화할 수 없습니다.
-  List_Singleton_Tower.vcxproj -> C:\Users\user\Desktop\woochancho\제출\List_Singleton_Tower\x64\Debug\List_Singleton_Tower.exe
+c:\work\woochancho\제출\list_singleton_tower\list_singleton_tower\drawmanager.h(15): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+c:\work\woochancho\제출\list_singleton_tower\list_singleton_tower\gamemanager.cpp(3): warning C4356: 'Singleton<Gamemanager>::m_tThis': 정적 데이터 멤버는 파생 클래스를 통해 초기화할 수 없습니다.
+  List_Singleton_Tower.vcxproj -> C:\work\woochancho\제출\List_Singleton_Tower\x64\Debug\List_Singleton_Tower.exe
