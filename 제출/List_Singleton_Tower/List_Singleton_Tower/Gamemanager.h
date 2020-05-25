@@ -1,16 +1,16 @@
 #pragma once
 #include"Singleton.h"
-#include<list>
-#include<string>
-using namespace std;
+#include"Drawmanager.h"
+#define TOWER_MAX 10
 
-class Gamemanager
+class Gamemanager:public Singleton<Gamemanager>
 {
 	list<int> m_sTower;
+	Drawmanager Draw;
 public:
 
-	void stacktower(int num);
-	void removetower(int num);
+	void stacktower();
+	void removetower();
 
 	Gamemanager();
 	~Gamemanager();

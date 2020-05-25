@@ -1,7 +1,7 @@
 #pragma once
 #include<iostream>
-template<typename T>
 
+template<typename T>
 class Singleton
 {
 	static T* m_tThis;
@@ -18,8 +18,8 @@ public:
 
 	static void DestroyInstance()
 	{
-		if (m_pThis != NULL)
-			delete m_pThis;
+		if (m_tThis != NULL)
+			delete m_tThis;
 	}
 
 };
