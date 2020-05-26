@@ -1,18 +1,19 @@
 #pragma once
-#include"Inventory.h"
+#include"Item.h"
 #include"Mecro.h"
 
 
-class Bag :public Inventory
+class Bag :public Item
 {
 private:
-	vector<Inventory*> inventoryList;
+	vector<Item*> ItemList;
 public:
-	 void View();
-	 void AddInventory(Inventory* inventory);
-	 void RemoveInventory(Inventory* inventory);
+	 int View();
+	 void AddItem(Item* _item);
+	 void RemoveItem(Item* _item);
+	 Item* finditem(int num);
 
-	Bag(string name, int atk=0, int def=0);
+	Bag(string name);
 	~Bag();
 };
 

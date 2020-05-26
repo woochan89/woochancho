@@ -141,7 +141,8 @@
   <ItemGroup>
     <ClCompile Include="Armor.cpp" />
     <ClCompile Include="Bag.cpp" />
-    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Gamemanager.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ring.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -149,7 +150,8 @@
   <ItemGroup>
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Bag.h" />
-    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Gamemanager.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Mecro.h" />
     <ClInclude Include="Ring.h" />
     <ClInclude Include="Weapon.h" />

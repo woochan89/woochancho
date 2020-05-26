@@ -1,13 +1,18 @@
 #pragma once
-#include"Inventory.h"
+#include"Item.h"
 #include"Mecro.h"
 
 
-class Armor :public Inventory
+class Armor :public Item
 {
-	
+	int m_iDef;
 public:
-	Armor();
+	int View();
+	void AddItem(Item* inventory) {};
+	void RemoveItem(Item* inventory) {};
+	Item* finditem(int num) { return NULL; };
+
+	Armor(string name,int def);
 	~Armor();
 };
 

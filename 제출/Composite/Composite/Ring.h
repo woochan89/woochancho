@@ -1,11 +1,17 @@
 #pragma once
-#include"Inventory.h"
+#include"Item.h"
 #include"Mecro.h"
 
-class Ring:public Inventory
+class Ring:public Item
 {
+	int m_iInt;
 public:
-	Ring();
+	int View();
+	void AddItem(Item* item) {};
+	void RemoveItem(Item* item) {};
+	Item* finditem(int num) { return NULL; };
+
+	Ring(string name,int Int);
 	~Ring();
 };
 

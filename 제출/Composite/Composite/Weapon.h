@@ -1,15 +1,20 @@
 #pragma once
-#include"Inventory.h"
+#include"Item.h"
 #include"Mecro.h"
 
-class Weapon :public Inventory
+class Weapon :public Item
 {
-public:
-	void View();
-	void AddInventory(Inventory* inventory) {};
-	void RemoveInventory(Inventory* inventory) {};
+private:
+	int m_iATK;
+	int m_iInt;
 
-	Weapon(string name, int atk, int def);
+public:
+	int View();
+	void AddItem(Item* inventory) {};
+	void RemoveItem(Item* inventory) {};
+	Item* finditem(int num) { return NULL; };
+
+	Weapon(string name, int atk, int Int);
 	~Weapon();
 };
 

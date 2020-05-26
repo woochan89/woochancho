@@ -1,46 +1,63 @@
 #include "Bag.h"
-#include<vector>
-#include<iostream>
-#include <iomanip>
 
 using namespace std;
 
 
 
-Bag::Bag(string name, int atk, int def):Inventory(name, atk, def)
+Bag::Bag(string name):Item(name)
 {
 }
 
-void Bag::View()
+int Bag::View()
 {
-	cout << setiosflags(ios::right) << setw(GetSize());
-	cout << setfill(' ') << GetName().c_str() << " - Bag" << endl;
-
-	vector<Inventory*>::iterator begin = inventoryList.begin();
-	vector<Inventory*>::iterator end = inventoryList.end();
+	//cout << setiosflags(ios::right) << setw(GetSize());
+	//cout << setfill(' ') << GetName().c_str() << " - Bag" << endl;
+	cout << GetName() << endl;
+	int item_max = 0;
+	int add_item = 0;
+	vector<Item*>::iterator begin = ItemList.begin();
+	vector<Item*>::iterator end = ItemList.end();
 
 	while (begin != end)
 	{
 		(*begin)->View();
 		begin++;
+		item_max++;
 	}
+	return item_max+add_item;
 }
 
-void Bag::AddInventory(Inventory* inventory)
+void Bag::AddItem(Item* _item)
 {
-	inventory->SetParent(this);
-	inventoryList.push_back(inventory);
+	_item->SetParent(this);
+	ItemList.push_back(_item);
 }
 
-void Bag::RemoveInventory(Inventory* inventory)
+void Bag::RemoveItem(Item* _item)
 {
-	vector<Inventory*>::iterator remove = find(inventoryList.begin(), inventoryList.end(), inventory);
+	vector<Item*>::iterator remove = find(ItemList.begin(), ItemList.end(), _item);
 
-	if (remove != inventoryList.end())
+	if (remove != ItemList.end())
 	{
-		inventoryList.erase(remove);
+		ItemList.erase(remove);
 	}
 }
+
+Item* Bag::finditem(int num)
+{
+	vector<Item*>::iterator iter = ItemList.begin();
+	int n=1;
+	while (iter!=ItemList.end() && n != num)
+	{
+		n++;
+		iter++;
+	}
+	if (iter == ItemList.end())
+		return 0;
+	else 
+		return *iter;
+}
+
 
 Bag::~Bag()
 {
