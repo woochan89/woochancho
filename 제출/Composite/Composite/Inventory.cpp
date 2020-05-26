@@ -2,8 +2,11 @@
 
 
 
-Inventory::Inventory(string name,string stat):m_sName(name),m_sStat(stat)
+Inventory::Inventory(string name,int atk,int def)
 {
+	m_sItem.name = name;
+	m_sItem.atk = atk;
+	m_sItem.def = def;
 	parent = NULL;
 }
 
@@ -15,9 +18,9 @@ Inventory* Inventory::GetParent()
 {
 	return parent;
 }
-string Inventory::GetName()
+item Inventory::GetItem()
 {
-	return m_sName;
+	return m_sItem;
 }
 
 int Inventory::Getlevel()

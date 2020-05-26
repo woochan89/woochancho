@@ -1,0 +1,32 @@
+필요헤더
+#include<string>
+
+
+
+
+
+
+함수
+
+
+
+
+string 형변환
+
+
+
+char* -> string : char* cstr="cstring";
+	         string cppstr=cStr;
+함수 필요없이 그냥 대힘하면 됨
+
+string -> char* : string cppstr="string";
+	         const char* cStr2=cppstr.c_str();
+사용함수 : c_str()-> const char* 형태로 보내기 때문에 꼭 형식에 맞춰서 받아야함
+
+char* -> int : char* cstr = "20170711";
+	      int num = atoi(cstr);
+사용함수 : atoi() -> char 내부에 숫자만 넘기는데 예를들어 123abc456이 있으면 123만 넘기고 abc뒤의 456은 버려진다, 그리고 숫자가 하나도 없다면 0이 넘어감(오류는 나지않음)
+
+
+string -> char -> int :string s = "2020"
+	          int num = atoi(s.c_str());

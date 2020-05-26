@@ -12,7 +12,7 @@ public:
 	 void AddInventory(Inventory* inventory);
 	 void RemoveInventory(Inventory* inventory);
 
-	Bag(string name,string stat);
+	Bag(string name, int atk=0, int def=0);
 	~Bag();
 };
 

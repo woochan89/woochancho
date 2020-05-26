@@ -2,7 +2,7 @@
 
 
 
-Weapon::Weapon(string name, string stat) :Inventory(name, stat)
+Weapon::Weapon(string name, int atk, int def) :Inventory(name, atk,def)
 {
 
 }

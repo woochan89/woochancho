@@ -1,0 +1,27 @@
+특징
+
+1. 다른 매개 변수를 가진 같은 이름의 여러 함수를 만들 수 있는 C++의 기능(C도 가능하지만 번거로움)
+2. 매개변수의 종류에 따른 오버로딩, 개수에 따른 오버로딩이 있음
+3.함수의 반환 타입은 함수 오버로딩에서 고려되지 않는다->함수는 인수에만 기반하여 호출됨. 반환 값이 포함된 경우 함수의 어떤 버전이 호출되었는지 쉽게 알수 있는 구문 방식이 없다
+4. typedef로 변경된 자료형과 기존 자료형으로 오버로딩은 불가능-> typedef 선언은 새로운 타입을 만드는 것이 아님
+5. C++에서 오버로딩은 정확하게 일치하는 함수를 찾으려고 함
+ex)
+void print(char* value); 
+void print(int value); 
+print(0); // exact match with print(int)
+-> 0은 기술적으로 printf(char*)와 일치할 수 있지만 print(int)와 정확히 일치함
+6. 정확히 일치하는 항목이 없으면 C++은 승격(promotion)을 통해 일치하는 함수를 찾으려 한다-> 암시적 형 변환 참고
+https://boycoding.tistory.com/221 
+
+아래 예시에서 두개의 int를 매개변수로 제공하면 add(int,int)가 호출되고 두개의 double를 제공하면 add(double,double)가 호출된다
+ex) -> 매개변수의 자료형에 따른 오버로딩
+int add(int x, int y) 
+{ return x + y; } 
+double add(double x, double y) 
+{ return x + y; }
+
+ex)-> 매개변수의 갯수에 따른 오버로딩
+int add(int x,int y)
+{ return x+y; }
+int add(int x,int y,int z)
+{ return x+y+z; }

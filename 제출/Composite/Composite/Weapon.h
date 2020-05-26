@@ -9,7 +9,7 @@ public:
 	void AddInventory(Inventory* inventory) {};
 	void RemoveInventory(Inventory* inventory) {};
 
-	Weapon(string name,string stat);
+	Weapon(string name, int atk, int def);
 	~Weapon();
 };
 

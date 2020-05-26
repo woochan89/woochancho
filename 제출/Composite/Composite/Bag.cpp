@@ -7,7 +7,7 @@ using namespace std;
 
 
 
-Bag::Bag(string name, string stat):Inventory(name, stat)
+Bag::Bag(string name, int atk, int def):Inventory(name, atk, def)
 {
 }
 

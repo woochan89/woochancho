@@ -1,5 +1,12 @@
+char name[10]방식이 아닌 char* name으로 문자열을 넣을땐 반드시 const 를 사용해서 const char* name ="우찬"; 형식으로 만들어 줘야한다
+
 c++에서 문자열 상수의 자료형을 'char*'이 아닌 'const char*'로 처리하기 때문에 char을 매개변수와 인자값으로 사용할때 주의가 필요하다
 
+사용예시
+
+const char *str="abc"; -> 알아서 4만큼 딱맞게 할당됨
+char str2[] = "abc"; -> 알아서 4만큼 딱맞게 할당됨
+char str3[4]="abc";'
 
 ex)
 
@@ -8,3 +15,13 @@ void func(const char* name)
 
 func((char*)"아텐츠");
 
+
+
+char* 과 char[]의 차이점
+
+char str[]="abc";
+char* str = "abc";
+똑같이 abc가 찍혀나와 별 차이가 없다고 생각할 수도 있지만 두 선언은 엄연히 다르다. 
+*str은 읽기 전용 데이터 영역에 있는 "abc"에 대한 포인터 값이므로 이 값을 바꾸려고 하면 오류가 발생
+하지만 str[]은 함수 호출시 "abc"문자열을 함수의 스택으로 복사해오기 때문에 std[1]=b; 처럼 수정이 가능하다
+또 다른 차이점은 char* 의 경우 포인터 변수를 할당하여 주소 값을 가지고 있는데 비해 char[]의 경우 str 그 자체가 주소값이 된다
