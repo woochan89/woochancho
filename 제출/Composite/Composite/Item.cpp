@@ -11,10 +11,12 @@ void Item::SetParent(Item* _parent)
 {
 	parent = _parent;
 }
+
 Item* Item::GetParent()
 {
 	return parent;
 }
+
 string Item::GetName()
 {
 	return m_sName;
@@ -22,7 +24,22 @@ string Item::GetName()
 
 int Item::Getlevel()
 {
-	return 1;
+	int level = 0;
+
+	Item* _item = GetParent();
+
+	while (_item != NULL)
+	{
+		level++;
+		_item = _item->GetParent();
+	}
+
+	return level;
+}
+
+int Item::GetSize()
+{
+	return m_sName.size() + Getlevel() * 2;
 }
 
 

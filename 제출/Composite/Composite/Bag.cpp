@@ -10,21 +10,18 @@ Bag::Bag(string name):Item(name)
 
 int Bag::View()
 {
-	//cout << setiosflags(ios::right) << setw(GetSize());
-	//cout << setfill(' ') << GetName().c_str() << " - Bag" << endl;
-	cout << GetName() << endl;
-	int item_max = 0;
-	int add_item = 0;
+	cout << setw(Getlevel()) << setfill(' ') << '-';
+	cout <<  GetName() <<  endl;
+	int item_max = 1;
 	vector<Item*>::iterator begin = ItemList.begin();
 	vector<Item*>::iterator end = ItemList.end();
 
 	while (begin != end)
 	{
-		(*begin)->View();
+		item_max+=(*begin)->View();
 		begin++;
-		item_max++;
 	}
-	return item_max+add_item;
+	return item_max;
 }
 
 void Bag::AddItem(Item* _item)
@@ -55,7 +52,9 @@ Item* Bag::finditem(int num)
 	if (iter == ItemList.end())
 		return 0;
 	else 
-		return *iter;
+		return *
+		
+		;
 }
 
 

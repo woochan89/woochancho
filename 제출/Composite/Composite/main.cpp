@@ -29,10 +29,10 @@ int main()
 		switch (select)
 		{
 		case 1:
-			Game.drawitem(shopbag, playerbag);
+			Game.ShopInterface(shopbag, playerbag);
 			break;
 		case 2:
-			playerbag->View();
+			Game.ShowPlayerInventory(playerbag);
 			break;
 		case 3:
 

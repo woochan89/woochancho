@@ -9,6 +9,7 @@ Armor::Armor(string name,int def):Item(name)
 
 int Armor::View()
 {
+	cout << setw(Getlevel()) << setfill(' ') << '-';
 	cout << GetName() << " ¹æ¾î·Â : " << m_iDef  << endl;
 	return 1;
 

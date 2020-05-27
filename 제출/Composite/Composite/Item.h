@@ -20,6 +20,6 @@ public:
 	Item(string name);
 	~Item();
 protected:
-	//int GetSize();
+	int GetSize();
 };
 

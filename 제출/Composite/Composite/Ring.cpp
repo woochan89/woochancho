@@ -9,6 +9,8 @@ Ring::Ring(string name,int Int):Item(name)
 
 int Ring::View()
 {
+	cout << setw(Getlevel()) << setfill(' ') << '-';
+
 	return 1;
 
 }
