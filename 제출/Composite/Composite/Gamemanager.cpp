@@ -23,7 +23,7 @@ void Gamemanager::ShopInterface(Item* shop,Item* player)
 	}
 	sel=controlcursor(item_max);
 	tmp= shop->finditem(sel);
-	gotoxy(2, 5);
+	gotoxy(2, 8);
 	tmp->View();
 	while (1)
 	{

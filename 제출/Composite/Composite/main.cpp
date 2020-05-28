@@ -14,10 +14,15 @@ int main()
 	Item* item1 = new Weapon("단검", 2, 0);
 	Item* item2 = new Weapon("롱소드", 4, 0);
 	Item* item3 = new Weapon("대검", 8, 0);
+	Item* item4 = new Armor("레더아머", 3);
+	Item* item5 = new Ring("은반지", 2);
+
 
 	shopbag->AddItem(item1);
 	shopbag->AddItem(item2);
 	shopbag->AddItem(item3);
+	shopbag->AddItem(item4);
+	shopbag->AddItem(item5);
 
 	while (true)
 	{

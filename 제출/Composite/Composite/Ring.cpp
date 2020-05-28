@@ -9,8 +9,8 @@ Ring::Ring(string name,int Int):Item(name,RING)
 
 int Ring::View()
 {
-	cout << setw(Getlevel()) << setfill(' ') << '-';
-
+	cout << setw(Getlevel() + 2) << setfill(' ') << '-';
+	cout << GetName() << " ÁÖ¹®·Â : " << m_iInt << endl;
 	return 1;
 
 }

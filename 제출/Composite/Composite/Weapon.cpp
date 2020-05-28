@@ -13,7 +13,6 @@ int Weapon::View()
 	cout << setw(Getlevel()+2) << setfill(' ') << '-';
 	cout << GetName() << " 공격력 : " << m_iATK << " 주문력 : " << m_iInt << endl;
 	return 1;
-
 }
 
 
