@@ -2,7 +2,7 @@
 
 
 
-Armor::Armor(string name,int def):Item(name)
+Armor::Armor(string name,int def):Item(name,ARMOR)
 {
 	m_iDef = def;
 }

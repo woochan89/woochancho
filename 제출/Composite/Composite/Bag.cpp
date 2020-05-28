@@ -4,7 +4,7 @@ using namespace std;
 
 
 
-Bag::Bag(string name):Item(name)
+Bag::Bag(string name):Item(name,BAG)
 {
 }
 
@@ -12,9 +12,9 @@ int Bag::View()
 {
 	cout << setw(Getlevel()) << setfill(' ') << '-';
 	cout <<  GetName() <<  endl;
-	int item_max = 1;
-	vector<Item*>::iterator begin = ItemList.begin();
-	vector<Item*>::iterator end = ItemList.end();
+	int item_max = 0;
+	list<Item*>::iterator begin = ItemList.begin();
+	list<Item*>::iterator end = ItemList.end();
 
 	while (begin != end)
 	{
@@ -32,7 +32,7 @@ void Bag::AddItem(Item* _item)
 
 void Bag::RemoveItem(Item* _item)
 {
-	vector<Item*>::iterator remove = find(ItemList.begin(), ItemList.end(), _item);
+	list<Item*>::iterator remove = find(ItemList.begin(), ItemList.end(), _item);
 
 	if (remove != ItemList.end())
 	{
@@ -42,7 +42,7 @@ void Bag::RemoveItem(Item* _item)
 
 Item* Bag::finditem(int num)
 {
-	vector<Item*>::iterator iter = ItemList.begin();
+	list<Item*>::iterator iter = ItemList.begin();
 	int n=1;
 	while (iter!=ItemList.end() && n != num)
 	{
@@ -52,9 +52,7 @@ Item* Bag::finditem(int num)
 	if (iter == ItemList.end())
 		return 0;
 	else 
-		return *
-		
-		;
+		return *iter;
 }
 
 

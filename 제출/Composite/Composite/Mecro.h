@@ -2,7 +2,7 @@
 #include<iostream>
 #include<string>
 #include<iomanip>
-#include<vector>
+#include<list>
 #include<Windows.h>
 #include<conio.h>
 
@@ -13,3 +13,10 @@ inline void gotoxy(int x, int y)
 	COORD pos = { x,y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
+
+enum item_type {
+	BAG,
+	WEAPON,
+	ARMOR,
+	RING
+};

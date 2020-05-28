@@ -7,6 +7,7 @@ using namespace std;
 class Item
 {
 	Item *parent;
+	item_type m_eType;
 	const string m_sName;
 public:
 	virtual int View() = 0;
@@ -17,7 +18,7 @@ public:
 	Item* GetParent();
 	string GetName();
 	int Getlevel();
-	Item(string name);
+	Item(string name,item_type type);
 	~Item();
 protected:
 	int GetSize();

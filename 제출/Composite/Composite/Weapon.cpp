@@ -2,7 +2,7 @@
 
 
 
-Weapon::Weapon(string name, int atk, int Int) :Item(name)
+Weapon::Weapon(string name, int atk, int Int) :Item(name,WEAPON)
 {
 	m_iATK = atk;
 	m_iInt = Int;

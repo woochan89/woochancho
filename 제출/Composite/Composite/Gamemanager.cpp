@@ -14,10 +14,16 @@ void Gamemanager::ShopInterface(Item* shop,Item* player)
 	int item_max;
 
 	system("cls");
-	gotoxy(3, 4);
 	item_max= shop->View();
+	if (item_max == 0)
+	{
+		cout << "보유중인 아이템이 없습니다" << endl;
+		system("pause");
+		return;
+	}
 	sel=controlcursor(item_max);
 	tmp= shop->finditem(sel);
+	gotoxy(2, 5);
 	tmp->View();
 	while (1)
 	{
@@ -40,14 +46,23 @@ void Gamemanager::ShopInterface(Item* shop,Item* player)
 
 void Gamemanager::ShowPlayerInventory(Item* player)
 {
-	player->View();
+	int item_max;
+
+	item_max=player->View();
+	if (item_max == 0)
+	{
+		cout << "보유중인 아이템이 없습니다" << endl;
+		system("pause");
+		return;
+	}
+
 	system("pause");
 }
 
 
 int Gamemanager::controlcursor(int item_max)
 {
-	int y = 3;
+	int y = 0;
 	int item_num = 1;
 	char ch;
 	gotoxy(0, y + item_num);
@@ -68,7 +83,7 @@ int Gamemanager::controlcursor(int item_max)
 				item_num++;
 			break;
 		case 13:
-			return y;
+			return item_num;
 		}
 		gotoxy(0, y + item_num);
 		cout << "▷";

@@ -2,7 +2,7 @@
 
 
 
-Ring::Ring(string name,int Int):Item(name)
+Ring::Ring(string name,int Int):Item(name,RING)
 {
 	m_iInt = Int;
 }

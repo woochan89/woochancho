@@ -6,7 +6,7 @@
 class Bag :public Item
 {
 private:
-	vector<Item*> ItemList;
+	list<Item*> ItemList;
 public:
 	 int View();
 	 void AddItem(Item* _item);

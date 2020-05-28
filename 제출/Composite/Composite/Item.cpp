@@ -2,7 +2,7 @@
 
 
 
-Item::Item(string name) :m_sName(name)
+Item::Item(string name,item_type type) :m_sName(name), m_eType(type)
 {
 	parent = NULL;
 }
