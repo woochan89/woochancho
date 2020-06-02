@@ -5,14 +5,14 @@
 using namespace std;
 
 //알람 목록을 작성하고 알람을 감시할 클래스
-class Observer
+class Observer //구독개체
 {
 public:
 	virtual void Notify(string name) = 0;
 };
 
 //보스 알람 생성 클래스
-class BossAlarm
+class BossAlarm // 주체개체(subject)
 {
 	//Observer
 	vector<Observer*> players;
