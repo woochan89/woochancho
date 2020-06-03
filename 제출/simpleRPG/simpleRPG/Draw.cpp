@@ -1,12 +1,12 @@
-#include "Draw.h"
-
-
-
-Draw::Draw()
-{
-}
-
-
-Draw::~Draw()
-{
-}
+//#include "Draw.h"
+//
+//
+//
+//Draw::Draw()
+//{
+//}
+//
+//
+//Draw::~Draw()
+//{
+//}

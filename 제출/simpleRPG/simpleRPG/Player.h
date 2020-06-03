@@ -1,22 +1,21 @@
 #pragma once
 #include"Mecro.h"
-#include"Monster.h"
 #include"Weapon.h"
+#include"Observer.h"
 
-class Obserber
-{
-public:
-	virtual void notify(string boss_name) = 0;
-};
 
-class Player:public Obserber
+
+
+class Player:public Observer
 {
 protected:
-	PlayerStat* m_cPlayer;
-	Weapon* m_cWeapon;
+	ObjectStat *m_cPlayerStat;
+	//Weapon* m_cWeapon;
+	bool alarmState;
 public:
-	virtual void notify(string boss_name);
+	virtual void notify (string boss_name);
+	void AlarmControl(bool flag) { alarmState = flag; }
 
-	Player();
+	Player(ObjectStat *stat);
 	~Player();
 };

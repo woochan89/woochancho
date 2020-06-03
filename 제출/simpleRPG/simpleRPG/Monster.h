@@ -1,20 +1,16 @@
 #pragma once
 #include"Mecro.h"
-#include"Player.h"
-class BossAlarm
-{
-	string name;
-	vector<Player*> noticelist;
-public:
-	virtual void notice()=0;
-	void addObserver();
-};
+#include"Subject.h"
 
-class Monster:public BossAlarm
+
+
+class Monster:public Subject
 {
+
 public:
-	virtual void notice();
-	Monster();
-	~Monster();
+	void SpawnBoss()
+	{ isAppear = true; }
+	Monster(ObjectStat* stat) { m_cMonster = stat; }
+	~Monster() {}
 };
 
