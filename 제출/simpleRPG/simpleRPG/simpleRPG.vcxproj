@@ -139,18 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Abstract_Factory.cpp" />
     <ClCompile Include="Draw.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Skill.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Abstract_Factory.h" />
     <ClInclude Include="Draw.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Mecro.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Skill.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>

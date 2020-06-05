@@ -3,7 +3,7 @@
 
 
 
-Subject::Subject():isAppear(false)
+Subject::Subject():m_eCondition(NOMAL)
 {
 }
 
@@ -29,9 +29,9 @@ void Subject::Notification()
 {
 	vector<Observer*>::iterator iter = m_vNoticelist.begin();
 	
-	while (isAppear == true && iter!= m_vNoticelist.end())
+	while (m_eCondition != NOMAL && iter!= m_vNoticelist.end())
 	{
-		(*iter)->notify(m_cMonster->Name);
+		(*iter)->notify(m_cMonster->Name,m_eCondition);
 		iter++;
 	}
 
@@ -39,9 +39,9 @@ void Subject::Notification()
 
 void Subject::Notification(Observer* target)
 {
-	if (isAppear == true)
+	if (m_eCondition != NOMAL)
 	{
-		target->notify(m_cMonster->Name);
+		target->notify(m_cMonster->Name, m_eCondition);
 	}
 }
 

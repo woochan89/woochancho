@@ -2,6 +2,7 @@
 #include"Mecro.h"
 #include"Weapon.h"
 #include"Observer.h"
+#include"Skill.h"
 
 
 
@@ -11,11 +12,38 @@ class Player:public Observer
 protected:
 	ObjectStat *m_cPlayerStat;
 	//Weapon* m_cWeapon;
-	bool alarmState;
+	list<Skill*> m_cSkill;
 public:
-	virtual void notify (string boss_name);
-	void AlarmControl(bool flag) { alarmState = flag; }
+	virtual void notify (string boss_name, Condition condition);
+	string ReturnCondition(Condition condition);
+	Player(string name);
+	virtual ~Player();
+};
 
-	Player(ObjectStat *stat);
-	~Player();
+
+class Warrior :public Player
+{
+public:
+	Warrior(string name);
+	~Warrior();
+};
+
+class Rogue :public Player
+{
+
+};
+
+class Hunter :public Player
+{
+
+};
+
+class Priest :public Player
+{
+
+};
+
+class Magician :public Player
+{
+
 };

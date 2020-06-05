@@ -10,7 +10,7 @@ private:
 	vector<Observer*> m_vNoticelist;
 protected:
 	ObjectStat* m_cMonster;
-	bool isAppear;
+	Condition m_eCondition;
 public:
 	void AddObserver(Observer* add);
 	void RemoveObserver(Observer* remove);

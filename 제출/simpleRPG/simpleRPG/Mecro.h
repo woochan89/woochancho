@@ -1,26 +1,38 @@
+#pragma once
 #include<iostream>
 #include<string>
 #include<vector>
+#include<list>
+#include<map>
 using namespace std;
+#define ONE_ENEMY false
+#define ALL_ENEMY true
 
 
-
-typedef struct objectstat {
+typedef struct _objectstat {
 	string Name;
+	int Lv;
 	int Atk;
 	int Def;
+	int MaxHp;
 	int Hp;
+	int MaxMp;
 	int Mp;
 }ObjectStat;
 
-
-ObjectStat* MakeStat(string name, int atk = 0, int def = 0, int hp = 0, int mp = 0)
+typedef struct _skill
 {
-	ObjectStat* tmp = new ObjectStat();
-	tmp->Name = name;
-	tmp->Atk = atk;
-	tmp->Def = def;
-	tmp->Hp = hp;
-	tmp->Mp = mp;
-	return tmp;
-}
+	string Name;
+	int GetLevel;
+	float Dmg;
+	int MpConsumtion;
+	int Target;
+	Condition condition;
+}ObjectSkill;
+
+enum Condition {
+	NOMAL=0,
+	BLEEDING,
+	POSION,
+	BURNING
+};
