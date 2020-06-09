@@ -23,10 +23,28 @@ WarriorSkill::WarriorSkill()
 	tmp->GetLevel = 1;
 	tmp->MpConsumtion = 3;
 	tmp->Target = ONE_ENEMY;
-	m_lSkill.push_back(tmp);
+	m_Skill=tmp;
 }
 
 WarriorSkill::~WarriorSkill()
+{
+
+}
+
+
+MonsterSkill::MonsterSkill(string name, Condition condition, float dmg, int getlv, int mpconsume, int target)
+{
+	ObjectSkill *tmp = new ObjectSkill();
+	tmp->Name = name;
+	tmp->condition = condition;
+	tmp->Dmg = dmg;
+	tmp->GetLevel = 1;
+	tmp->MpConsumtion = 2;
+	tmp->Target = ONE_ENEMY;
+	m_Skill = tmp;
+}
+
+MonsterSkill::~MonsterSkill()
 {
 
 }

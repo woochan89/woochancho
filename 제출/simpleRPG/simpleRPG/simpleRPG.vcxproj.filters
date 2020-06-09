@@ -24,19 +24,19 @@
     <ClCompile Include="Draw.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Subject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Abstract_Factory.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractFactory.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,16 +53,10 @@
     <ClInclude Include="Draw.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Subject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Abstract_Factory.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Skill.h">
@@ -72,6 +66,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractFactory.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

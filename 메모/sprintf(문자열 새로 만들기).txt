@@ -1,0 +1,18 @@
+필요헤더 
+#include<stdio.h>
+
+특징
+
+1. 문자열 사이에 서식문자를 이용해 재조합 하여 새로운 문자열을 만든다
+
+
+예시
+
+void main()
+{
+	char buf[40];
+	int age = 30;
+	char Name[10] = "우찬";
+	sprintf(buf,"%s님의 나이는 %d살 입니다.",Name,age);
+	printf("%s",buf);
+}

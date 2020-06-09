@@ -1,30 +1,42 @@
 #pragma once
+#include"AbstractFactory.h"
 #include"Mecro.h"
-#include"Weapon.h"
 #include"Observer.h"
 #include"Skill.h"
+#include"Item.h"
 
 
 
 
 class Player:public Observer
 {
-protected:
-	ObjectStat *m_cPlayerStat;
-	//Weapon* m_cWeapon;
-	list<Skill*> m_cSkill;
 public:
+
+	ObjectStat *m_PlayerStat;
+	vector<Skill*> m_Skill;
+	Condition m_Condition;
+	Item* m_Weapon;
+	Item* m_Armor;
+	Item* m_Accessory;
+	list<Item*> m_Inventory;
+	int m_Exp;
+
+
 	virtual void notify (string boss_name, Condition condition);
+	virtual void LVup() = 0;
 	string ReturnCondition(Condition condition);
-	Player(string name);
+	void GetExp(int exp);
+	Player();
 	virtual ~Player();
 };
 
 
 class Warrior :public Player
 {
+
 public:
-	Warrior(string name);
+	virtual void LVup();
+	Warrior();
 	~Warrior();
 };
 

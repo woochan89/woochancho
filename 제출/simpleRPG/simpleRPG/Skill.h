@@ -6,8 +6,12 @@
 class Skill
 {
 protected:
-	list<ObjectSkill*> m_lSkill;
+	ObjectSkill* m_Skill;
 public:
+	ObjectSkill* GetSkill() 
+	{
+		return m_Skill;
+	}
 	Skill();
 	~Skill();
 };
@@ -38,3 +42,13 @@ class MagicianSkill :public Skill
 {
 
 };
+
+
+class MonsterSkill :public Skill
+{
+public:
+	MonsterSkill(string name, Condition condition, float dmg, int getlv, int mpconsume, int target);
+	~MonsterSkill();
+
+};
+

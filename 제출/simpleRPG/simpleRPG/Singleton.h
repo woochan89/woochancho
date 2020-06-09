@@ -5,31 +5,31 @@ template<typename T>
 class Singleton
 {
 private:
-	static T* m_pThis;
+	static T* m_hThis;
 protected:
 	Singleton()
 	{
 
-	}
+	};
 	virtual ~Singleton()
 	{
 
-	}
+	};
 public:
 	static T* GetInstance()
 	{
-		if (m_pThis == NULL)
-			m_pThis = new T;
-		return m_pThis;
+		if (m_hThis == NULL)
+			m_hThis = new T;
+		return m_hThis;
 	}
 	static void DestroyInstance()
 	{
-		if (m_pThis != NULL)
+		if (m_hThis != NULL)
 		{
-			delete m_pThis;
-			m_pThis = NULL;
+			delete m_hThis;
+			m_hThis = NULL;
 		}
 	}
 };
 
-template <typename T> T* Singleton<T>::m_pThis = 0;
+template <typename T> T* Singleton<T>::m_hThis = 0;

@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<conio.h>
+#include<Windows.h>
+//////////////////////////////////////////////////////
+#define col GetStdHandle(STD_OUTPUT_HANDLE) 
+#define BLACK SetConsoleTextAttribute( col,0x0000 );
+#define DARK_BLUE SetConsoleTextAttribute( col,0x0001 );
+#define GREEN SetConsoleTextAttribute( col,0x0002 );
+#define BLUE_GREEN SetConsoleTextAttribute( col,0x0003 );
+#define BLOOD SetConsoleTextAttribute( col,0x0004 );
+#define PUPPLE SetConsoleTextAttribute( col,0x0005 );
+#define GOLD SetConsoleTextAttribute( col,0x0006 );			//색상 지정
+#define ORIGINAL SetConsoleTextAttribute( col,0x0007 );
+#define GRAY SetConsoleTextAttribute( col,0x0008 );
+#define BLUE SetConsoleTextAttribute( col,0x0009 );
+#define HIGH_GREEN SetConsoleTextAttribute( col,0x000a );
+#define SKY_BLUE SetConsoleTextAttribute( col,0x000b );
+#define RED SetConsoleTextAttribute( col,0x000c );
+#define PLUM SetConsoleTextAttribute( col,0x000d );
+#define YELLOW SetConsoleTextAttribute( col,0x000e );
+//////////////////////////////////////////////////////
+void main()
+{
+	int Width = (WIDTH * 2) + 1;
+	int Height = HEIGHT + 5;
+	char buf[256];
+	sprintf(buf, "mode con: lines=%d cols=%d", Height, Width);
+	system(buf);
+
+	DARK_BLUE
+		printf("DARK_BLUE\n");
+	GREEN
+		printf("GREEN\n");
+	BLUE_GREEN
+		printf("BLUE_GREEN\n");
+	BLOOD
+		printf("BLOOD\n");
+	PUPPLE
+		printf("PUPPLE\n");
+	GOLD
+		printf("GOLD\n");
+	GRAY
+		printf("GRAY\n");
+	BLUE
+		printf("BLUE\n");
+	HIGH_GREEN
+		printf("HIGH_GREEN\n");
+	SKY_BLUE
+		printf("SKY_BLUE\n");
+	RED
+		printf("RED\n");
+	PLUM
+		printf("PLUM\n");
+	YELLOW
+		printf("YELLOW\n");
+}

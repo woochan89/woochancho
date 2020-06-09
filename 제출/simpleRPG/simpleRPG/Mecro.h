@@ -9,6 +9,11 @@ using namespace std;
 #define ALL_ENEMY true
 
 
+enum Condition {
+	NOMAL = 0,
+	POSION,
+	SLEEP
+};
 typedef struct _objectstat {
 	string Name;
 	int Lv;
@@ -29,10 +34,3 @@ typedef struct _skill
 	int Target;
 	Condition condition;
 }ObjectSkill;
-
-enum Condition {
-	NOMAL=0,
-	BLEEDING,
-	POSION,
-	BURNING
-};

@@ -6,16 +6,15 @@
 
 class Subject
 {
-private:
-	vector<Observer*> m_vNoticelist;
 protected:
-	ObjectStat* m_cMonster;
-	Condition m_eCondition;
+
+	vector<Observer*> m_Noticelist;
+protected:
 public:
 	void AddObserver(Observer* add);
 	void RemoveObserver(Observer* remove);
-	void Notification();
-	void Notification(Observer* target);
+	virtual void Notification()=0;
+	virtual void Notification(Observer* target)=0;
 	Subject();
 	~Subject();
 
