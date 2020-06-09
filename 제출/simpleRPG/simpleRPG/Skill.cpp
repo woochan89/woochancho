@@ -1,19 +1,6 @@
 #include "Skill.h"
 
 
-
-Skill::Skill()
-{
-}
-
-
-Skill::~Skill()
-{
-}
-
-
-
-
 WarriorSkill::WarriorSkill()
 {
 	ObjectSkill *tmp = new ObjectSkill();
@@ -26,13 +13,7 @@ WarriorSkill::WarriorSkill()
 	m_Skill=tmp;
 }
 
-WarriorSkill::~WarriorSkill()
-{
-
-}
-
-
-MonsterSkill::MonsterSkill(string name, Condition condition, float dmg, int getlv, int mpconsume, int target)
+RogueSkill::RogueSkill(string name, Condition condition, float dmg, int getlv, int mpconsume, int target)
 {
 	ObjectSkill *tmp = new ObjectSkill();
 	tmp->Name = name;
@@ -44,7 +25,53 @@ MonsterSkill::MonsterSkill(string name, Condition condition, float dmg, int getl
 	m_Skill = tmp;
 }
 
-MonsterSkill::~MonsterSkill()
+HunterSkill::HunterSkill(string name, Condition condition, float dmg, int getlv, int mpconsume, int target)
 {
+	ObjectSkill *tmp = new ObjectSkill();
+	tmp->Name = name;
+	tmp->condition = condition;
+	tmp->Dmg = dmg;
+	tmp->GetLevel = 1;
+	tmp->MpConsumtion = 2;
+	tmp->Target = ONE_ENEMY;
+	m_Skill = tmp;
 
+}
+
+PriestSkill::PriestSkill(string name, Condition condition, float dmg, int getlv, int mpconsume, int target)
+{
+	ObjectSkill *tmp = new ObjectSkill();
+	tmp->Name = name;
+	tmp->condition = condition;
+	tmp->Dmg = dmg;
+	tmp->GetLevel = 1;
+	tmp->MpConsumtion = 2;
+	tmp->Target = ONE_ENEMY;
+	m_Skill = tmp;
+
+}
+
+MagicianSkill::MagicianSkill(string name, Condition condition, float dmg, int getlv, int mpconsume, int target)
+{
+	ObjectSkill *tmp = new ObjectSkill();
+	tmp->Name = name;
+	tmp->condition = condition;
+	tmp->Dmg = dmg;
+	tmp->GetLevel = 1;
+	tmp->MpConsumtion = 2;
+	tmp->Target = ONE_ENEMY;
+	m_Skill = tmp;
+
+}
+
+MonsterSkill::MonsterSkill(string name, Condition condition, float dmg, int getlv, int mpconsume, int target)
+{
+	ObjectSkill *tmp = new ObjectSkill();
+	tmp->Name = name;
+	tmp->condition = condition;
+	tmp->Dmg = dmg;
+	tmp->GetLevel = 1;
+	tmp->MpConsumtion = 2;
+	tmp->Target = ONE_ENEMY;
+	m_Skill = tmp;
 }

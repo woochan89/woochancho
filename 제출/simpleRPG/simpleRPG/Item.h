@@ -13,40 +13,42 @@ enum ItemType{
 class Item
 {
 private:
-	const string m_sName;
-	const ItemType m_eType;
+	const string m_Name;
+	const ItemType m_Type;
 protected:
-	int m_iAtk;
-	int m_iDef;
-	int m_iHp;
-	int m_iMp;
+	int m_Atk;
+	int m_Def;
+	int m_Hp;
+	int m_Mp;
 public:
-	string GetName() { return m_sName; }
-	ItemType GetType(){ return m_eType; }
-	int GetAtk() { return m_iAtk; }
-	int GetDef() { return m_iDef; }
-	int GetHp() { return m_iHp; }
-	int GetMp() { return m_iMp; }
-	Item(string name, ItemType type) :m_sName(name),m_eType(type) {}
+	string GetName() { return m_Name; }
+	ItemType GetType(){ return m_Type; }
+	int GetAtk() { return m_Atk; }
+	int GetDef() { return m_Def; }
+	int GetHp() { return m_Hp; }
+	int GetMp() { return m_Mp; }
+	Item(string name, ItemType type) :m_Name(name),m_Type(type) {}
 	~Item() {}
 };
 
 class Weapon :public Item
 {
 public:
-	Weapon(string name);
+	Weapon(string name,int atk,int def, int hp, int mp);
 	~Weapon();
 };
 
 class Armor :public Item
 {
-	Armor(string name);
+public:
+	Armor(string name, int atk, int def, int hp, int mp);
 	~Armor();
 };
 
 class Accessory :public Item
 {
-	Accessory(string name);
+public:
+	Accessory(string name, int atk, int def, int hp, int mp);
 	~Accessory();
 };
 

@@ -49,33 +49,30 @@ void Draw::showEquipment(string name, int atk, int def, int hp, int mp)
 int Draw::Cursor(int Max, int x, int y)
 {
 	char ch;
-	int ypos=1;
+	int ypos=0;
 	gotoxy(x, y);
 	cout << "¢¹";
 	while (true)
 	{
 		ch = getch();
+		gotoxy(x, y + ypos);
+		cout << "  ";
 		switch (ch)
 		{
 		case 'w':
-			if (ypos != 1)
-			{
+			if (ypos != 0)
 				ypos--;
-				gotoxy(x, y + ypos);
-				cout << "¢¹";
-			}
+			gotoxy(x, y + ypos);
+			cout << "¢¹";
 			break;
 		case 's':
-			if (ypos != Max)
-			{
+			if (ypos != Max-1)
 				ypos++;
-				gotoxy(x, y + ypos);
-				cout << "¢¹";
-			}
-
+			gotoxy(x, y + ypos);
+			cout << "¢¹";
 			break;
 		case 13:
-			return ypos;
+			return ypos + 1;
 		}
 	}
 }

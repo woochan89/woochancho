@@ -4,6 +4,7 @@
 #include"Observer.h"
 #include"Skill.h"
 #include"Item.h"
+#include<deque>
 
 
 
@@ -14,6 +15,7 @@ public:
 
 	ObjectStat *m_PlayerStat;
 	vector<Skill*> m_Skill;
+	deque<Skill*> m_TmpSkill;
 	Condition m_Condition;
 	Item* m_Weapon;
 	Item* m_Armor;
@@ -36,26 +38,32 @@ class Warrior :public Player
 
 public:
 	virtual void LVup();
-	Warrior();
-	~Warrior();
 };
 
 class Rogue :public Player
 {
+public:
+	virtual void LVup();
 
 };
 
 class Hunter :public Player
 {
+public:
+	virtual void LVup();
 
 };
 
 class Priest :public Player
 {
+public:
+	virtual void LVup();
 
 };
 
 class Magician :public Player
 {
+public:
+	virtual void LVup();
 
 };

@@ -13,7 +13,13 @@ ObjectStat* MakeStat(string name, int atk = 0, int def = 0, int hp = 0, int mp =
 
 GameManager::GameManager()
 {
+	Item* item1 = new Weapon("롱소드", 3, 0, 0, 0);
+	Item* item2 = new Armor("레더아머", 0, 2, 0, 0);
+	Item* item3 = new Accessory("구리반지", 0, 0, 3, 3);
 
+	m_Shop.WeaponList.push_back(item1);
+	m_Shop.ArmorList.push_back(item2);
+	m_Shop.AccessoryList.push_back(item3);
 }
 
 
@@ -46,7 +52,15 @@ void GameManager::showMain(Player* player)
 			showStat();
 			break;
 		case 3:
+			system("cls");
 			showInventory(m_Player->m_Inventory);
+			if (m_Player->m_Inventory.size() == 0)
+				break;
+			cout << "    나가기\n";
+			sel = Draw::GetInstance()->Cursor(m_Player->m_Inventory.size() + 1, 0, 2);
+			if (sel == m_Player->m_Inventory.size()+1)
+				break;
+			wearEquipment(m_Player->m_Inventory, sel);
 			break;
 		case 4:
 			Shop();
@@ -213,14 +227,14 @@ void GameManager::showStat()
 	cout << "무기 : " ;
 	if(m_Player->m_Weapon!=NULL)
 	Draw::GetInstance()->showEquipment(m_Player->m_Weapon->GetName(), m_Player->m_Weapon->GetAtk(), m_Player->m_Weapon->GetDef(), m_Player->m_Weapon->GetHp(), m_Player->m_Weapon->GetMp());
-	cout << "방어구 : " ;
+	cout << "\n방어구 : " ;
 	if(m_Player->m_Armor!=NULL)
 	Draw::GetInstance()->showEquipment(m_Player->m_Armor->GetName(), m_Player->m_Armor->GetAtk(), m_Player->m_Armor->GetDef(), m_Player->m_Armor->GetHp(), m_Player->m_Armor->GetMp());
-	cout << "장신구 : " ;
+	cout << "\n장신구 : " ;
 	if(m_Player->m_Accessory !=NULL)
 	Draw::GetInstance()->showEquipment(m_Player->m_Accessory->GetName(), m_Player->m_Accessory->GetAtk(), m_Player->m_Accessory->GetDef(), m_Player->m_Accessory->GetHp(), m_Player->m_Accessory->GetMp());
 	
-	cout << "\n보유스킬" << endl;
+	cout << "\n\n보유스킬" << endl;
 	Draw::GetInstance()->showSkill(m_Player->m_Skill);
 	system("pause");
 }
@@ -233,15 +247,15 @@ void GameManager::showInventory(list<Item*> Target,string name)
 		system("pause");
 		return;
 	}
-
 	list<Item*>::iterator iter=Target.begin();
-	Item* tmp = *iter;
 	cout << name << endl << endl;
-	while (iter != m_Player->m_Inventory.end())
+	while (iter != Target.end())
 	{
-		Draw::GetInstance()->showEquipment(tmp->GetName(), tmp->GetAtk(), tmp->GetDef(), tmp->GetHp(), tmp->GetMp());
+		cout << "   ";
+		Draw::GetInstance()->showEquipment((*iter)->GetName(), (*iter)->GetAtk(), (*iter)->GetDef(), (*iter)->GetHp(), (*iter)->GetMp());
+		cout << "\n";
+		iter++;
 	}
-	system("pause");
 
 }
 
@@ -256,6 +270,7 @@ void GameManager::Shop()
 		cout << "3. 소모품" << endl;
 		cout << "4. 나가기" << endl;
 		cin >> sel;
+		system("cls");
 		switch (sel)
 		{
 		case 1:
@@ -267,8 +282,11 @@ void GameManager::Shop()
 			else
 			{
 				showInventory(m_Shop.WeaponList, "무기");
-				sel = Draw::GetInstance()->Cursor(m_Shop.GetWeaponMax());
-				buySomething(m_Shop.WeaponList, m_Player->m_Inventory, sel);
+				cout << "\n   나가기\n";
+				sel = Draw::GetInstance()->Cursor(m_Shop.GetWeaponMax()+1,0,2);
+				if (sel == m_Shop.GetWeaponMax() + 1)
+					continue;
+				buySomething(&m_Shop.WeaponList, &m_Player->m_Inventory, sel);
 			}
 			break;
 		case 2:
@@ -280,8 +298,12 @@ void GameManager::Shop()
 			else
 			{
 				showInventory(m_Shop.ArmorList, "방어구");
-				sel = Draw::GetInstance()->Cursor(m_Shop.GetArmorMax());
-				buySomething(m_Shop.ArmorList, m_Player->m_Inventory, sel);
+				cout << "\n   나가기\n";
+				sel = Draw::GetInstance()->Cursor(m_Shop.GetArmorMax()+1, 0, 2);
+				if (sel == m_Shop.GetArmorMax() + 1)
+					continue;
+
+				buySomething(&m_Shop.ArmorList, &m_Player->m_Inventory, sel);
 			}
 			break;
 		case 3:
@@ -293,8 +315,11 @@ void GameManager::Shop()
 			else
 			{
 				showInventory(m_Shop.AccessoryList, "장신구");
-				sel = Draw::GetInstance()->Cursor(m_Shop.GetAccessoryMax());
-				buySomething(m_Shop.AccessoryList, m_Player->m_Inventory, sel);
+				cout << "\n   나가기\n";
+				sel = Draw::GetInstance()->Cursor(m_Shop.GetAccessoryMax()+1, 0, 2);
+				if (sel == m_Shop.GetAccessoryMax() + 1)
+					continue;
+				buySomething(&m_Shop.AccessoryList, &m_Player->m_Inventory, sel);
 			}
 			break;
 		case 4:
@@ -305,25 +330,31 @@ void GameManager::Shop()
 	}
 }
 
-void GameManager::wearEquipment(list<Item*> inventory, int target)
+void GameManager::wearEquipment(list<Item*> &inventory, int target)
 {
 	list<Item*>::iterator iter = inventory.begin();
-	for (int i = 0; i < target; i++)
+	for (int i = 1; i < target; i++)
 		iter++;
 	Item* tmp = *iter;
 
 	if (tmp->GetType() == WEAPON)
 	{
+		if (m_Player->m_Weapon != NULL)
+			offEquipment(WEAPON);
 		m_Player->m_Weapon = *iter;
 		inventory.erase(iter);
 	}
 	else if (tmp->GetType() == ARMOR)
 	{
+		if (m_Player->m_Armor != NULL)
+			offEquipment(ARMOR);
 		m_Player->m_Armor = *iter;
 		inventory.erase(iter);
 	}
 	else
 	{
+		if (m_Player->m_Accessory != NULL)
+			offEquipment(ACCESSORY);
 		m_Player->m_Accessory = *iter;
 		inventory.erase(iter);
 	}
@@ -373,14 +404,14 @@ void GameManager::offEquipment(ItemType type)
 }
 
 
-void GameManager::buySomething(list<Item*>fromlist, list<Item*>tolist, int fromtarget)
+void GameManager::buySomething(list<Item*> *fromlist, list<Item*> *tolist, int fromtarget)
 {
-	list<Item*>::iterator iter = fromlist.begin();
-	for (int i = 0; i < fromtarget;i++)
+	list<Item*>::iterator iter = fromlist->begin();
+	for (int i = 1; i < fromtarget;i++)
 		iter++;
 
-	tolist.push_back(*iter);
-	fromlist.erase(iter);
+	tolist->push_back(*iter);
+	fromlist->erase(iter);
 }
 
 

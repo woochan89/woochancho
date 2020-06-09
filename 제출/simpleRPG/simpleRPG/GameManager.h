@@ -17,9 +17,9 @@ public:
 	void showStat();
 	void showInventory(list<Item*> Target, string name="인벤토리");
 	void Shop();
-	void wearEquipment(list<Item*> inventory,int target);
+	void wearEquipment(list<Item*> &inventory,int target);
 	void offEquipment(ItemType type);
-	void buySomething(list<Item*>fromlist, list<Item*>tolist, int fromtarget);
+	void buySomething(list<Item*> *fromlist, list<Item*> *tolist, int fromtarget);
 	GameManager();
 	~GameManager();
 };
