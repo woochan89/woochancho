@@ -46,18 +46,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 
-		int Circle_R = 50;
+		int Circle_R = 100;
 		int Circle_X = 200;
 		int Circle_Y = 200;
+		//for (int i = 0; i < 360; i++)
+		//	SetPixel(hdc, Circle_X + int(sin(i*3.141592 / 180)*Circle_R),
+		//		Circle_Y + int(cos(i*3.141592 / 180)*Circle_R), RGB(0,0,0));
 		for (int i = 0; i < 360; i++)
-			SetPixel(hdc, Circle_X + int(sin(i*3.141592 / 180)*Circle_R),
-				Circle_Y + int(cos(i*3.141592 / 180)*Circle_R), RGB(0,0,0));
-
-		for (int i = 0; i < 360; i++) 
 		{
-			SetPixel(hdc, 100 + int(sin(i*3.141592 / 180) * 50),
-				100 + int(cos(i*3.141592 / 180) * 30), RGB(0, 0, 0));
+			SetPixel(hdc, Circle_X + cos(i*3.14 / 180)*Circle_R, Circle_Y + sin(i*3.14 / 180)*Circle_R,RGB(0,0,0));
 		}
+		//for (int i = 0; i < 360; i++)
+		//{
+		//	SetPixel(hdc, Circle_X + cos(i*3.14 / 180)*Circle_R, Circle_Y + sin(i*3.14 / 180)*Circle_R, RGB(0,0,0));
+		//}
+		//for (int i = 0; i < 360; i++) 
+		//{
+		//	SetPixel(hdc, 100 + int(sin(i*3.141592 / 180) * 50),
+		//		100 + int(cos(i*3.141592 / 180) * 30), RGB(0, 0, 0));
+		//}
 		return 0;
 	}
 	return(DefWindowProc(hWnd, iMessage, wParam, lParam));
