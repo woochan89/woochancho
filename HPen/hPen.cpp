@@ -43,7 +43,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-		MyPen = CreatePen(PS_SOLID, 5, RGB(0, 0, 255));
+		MyPen = CreatePen(PS_SOLID, 20, RGB(0, 0, 255));
 		OldPen = (HPEN)SelectObject(hdc, MyPen);
 		Rectangle(hdc, 50, 50, 300, 200);
 		SelectObject(hdc, OldPen);
