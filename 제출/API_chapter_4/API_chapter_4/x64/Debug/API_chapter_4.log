@@ -1,0 +1,6 @@
+﻿  소스.cpp
+c:\users\user\desktop\woochancho\제출\api_chapter_4\api_chapter_4\소스.cpp(60): error C2664: 'UINT_PTR SetTimer(HWND,UINT_PTR,UINT,TIMERPROC)': 인수 4을(를) 'void (__cdecl *)(HWND,UINT,UINT,DWORD)'에서 'TIMERPROC'(으)로 변환할 수 없습니다.
+  c:\users\user\desktop\woochancho\제출\api_chapter_4\api_chapter_4\소스.cpp(60): note: 대상 형식과 일치하는 범위에 이름이 같은 함수가 없습니다.
+c:\users\user\desktop\woochancho\제출\api_chapter_4\api_chapter_4\소스.cpp(79): warning C4244: '초기화 중': 'time_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\woochancho\제출\api_chapter_4\api_chapter_4\소스.cpp(125): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\woochancho\제출\api_chapter_4\api_chapter_4\소스.cpp(126): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.

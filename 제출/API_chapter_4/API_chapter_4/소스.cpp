@@ -46,6 +46,88 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPervlnstance, LPSTR lpszCmd
 }
 
 
+//
+//
+//LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+//{
+//	HDC hdc;
+//	PAINTSTRUCT ps;
+//	SYSTEMTIME st;
+//	static TCHAR sTime[128];
+//	switch (iMessage)
+//	{
+//	case WM_CREATE:
+//		SetTimer(hWnd, 1, 10, TimeProc);
+//		SendMessage(hWnd, 0, 1, 0);
+//		return 0;
+//	case WM_PAINT:
+//		hdc = BeginPaint(hWnd, &ps);
+//		Rectangle(hdc, 90, 90, 510, 510);
+//		Ellipse(hdc, x - 10, y - 10, x + 10, y + 10);
+//		EndPaint(hWnd, &ps);
+//		return 0;
+//	case WM_DESTROY:
+//		KillTimer(hWnd, 1);
+//		PostQuitMessage(0);
+//		return 0;
+//	}
+//	return(DefWindowProc(hWnd, iMessage, wParam, lParam));
+//}
+//
+//void CALLBACK TimeProc(HWND hWnd, UINT uMsg, UINT idEvent, DWORD dwTime)
+//{
+//	static int timeb = time(NULL);
+//	//static int angle = (timeb % 360) + 1;
+//	static int angle = 90;
+//	int tmpNum;
+//
+//	if ((x <= 100 || x >= 500) && (angle == 90 || angle == 270))
+//	{
+//		angle += 180;
+//	}
+//	else if (x <= 100 || x >= 500)
+//	{
+//		if (angle >= 270)
+//			tmpNum = angle - 270;
+//		else if (angle >= 180)
+//			tmpNum = angle - 180;
+//		else if (angle >= 90)
+//			tmpNum = angle - 90;
+//		else
+//			tmpNum = angle;
+//
+//		angle = angle - tmpNum + 180 - tmpNum;
+//	}
+//
+//	if ((y <= 100 || y >= 500) && (angle == 0 || angle == 180))
+//	{
+//		angle += 180;
+//	}
+//	else if (y <= 100 || y >= 500)
+//	{
+//		if (angle >= 270)
+//			tmpNum = angle - 270;
+//		else if (angle >= 180)
+//			tmpNum = x - 180;
+//		else if (angle >= 90)
+//			tmpNum = x - 90;
+//		else
+//			tmpNum = angle;
+//		angle = angle - tmpNum + 180 - tmpNum;
+//	}
+//
+//
+//
+//	if (angle > 360)
+//		angle -= 360;
+//	else if (angle < 0)
+//		angle += 360;
+//	x = x + cos(angle) * 1;
+//	y = y + sin(angle) * 1;
+//
+//
+//	InvalidateRect(hWnd, NULL, TRUE);
+//}
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
@@ -57,7 +139,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 	switch (iMessage)
 	{
 	case WM_CREATE:
-		SetTimer(hWnd, 1, 10, TimeProc);
+		SetTimer(hWnd, 1, 1000, TimeProc);//초
+		SetTimer(hWnd, 2, 60000, NULL);//분
+		SetTimer(hWnd, 3, 3600000, NULL);//시
 		SendMessage(hWnd, 0, 1, 0);
 		return 0;
 	case WM_PAINT:
@@ -68,11 +152,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		return 0;
 	case WM_DESTROY:
 		KillTimer(hWnd, 1);
+		KillTimer(hWnd, 2);
+		KillTimer(hWnd, 3);
 		PostQuitMessage(0);
 		return 0;
 	}
 	return(DefWindowProc(hWnd, iMessage, wParam, lParam));
 }
+
 void CALLBACK TimeProc(HWND hWnd, UINT uMsg, UINT idEvent, DWORD dwTime)
 {
 	static int timeb = time(NULL);
@@ -127,3 +214,107 @@ void CALLBACK TimeProc(HWND hWnd, UINT uMsg, UINT idEvent, DWORD dwTime)
 
 	InvalidateRect(hWnd, NULL, TRUE);
 }
+
+
+
+//
+//LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+//{
+//	HDC hdc;
+//	PAINTSTRUCT ps;
+//	SYSTEMTIME st;
+//	static TCHAR sTime[128];
+//	int Circle_R = 100;
+//	int Circle_X = 200;
+//	int Circle_Y = 200;
+//	char text[3];
+//
+//
+//	switch (iMessage)
+//	{
+//	case WM_CREATE:
+//		SetTimer(hWnd, 1, 1000, TimeProc);//초
+//		SendMessage(hWnd, 0, 1, 0);
+//		return 0;
+//	case WM_PAINT:
+//		hdc = BeginPaint(hWnd, &ps);
+//
+//		Ellipse(hdc, Circle_X - Circle_R, Circle_Y - Circle_R + 6, Circle_X + Circle_R, Circle_Y + Circle_R + 6);
+//
+//		for (int tmp = 1, i = -90; i < 270; i++)
+//		{
+//			SetTextAlign(hdc, TA_CENTER);
+//			if (i % 30 == 0)
+//			{
+//				if (tmp < 10)
+//					sprintf(text, "%d%d", 0, tmp);
+//				else
+//					sprintf(text, "%d", tmp);
+//				tmp++;
+//				TextOut(hdc, Circle_X + cos(i * 30 * 3.14 / 180)*(Circle_R - 15), Circle_Y + sin(i * 30 * 3.14 / 180)*(Circle_R - 15), TEXT(text), 2);
+//
+//			}
+//		}
+//
+//
+//		for (int i = 1; i <= 12; i++)
+//		{
+//			SetTextAlign(hdc, TA_CENTER);
+//			if (i < 10)
+//				sprintf(text, "%d%d", 0, i);
+//			else
+//				sprintf(text, "%d", i);
+//			TextOut(hdc, Circle_X + cos(i * 30 * 3.14 / 180)*(Circle_R - 15), Circle_Y + sin(i * 30 * 3.14 / 180)*(Circle_R - 15), TEXT(text), 2);
+//		}
+//		//원그리기
+//
+//
+//		//시간그리기
+//
+//		//초침 그리기
+//
+//		//분침 그리기
+//
+//		//시침 그리기
+//
+//
+//
+//		EndPaint(hWnd, &ps);
+//		return 0;
+//	case WM_DESTROY:
+//		KillTimer(hWnd, 1);
+//		PostQuitMessage(0);
+//		return 0;
+//	}
+//	return(DefWindowProc(hWnd, iMessage, wParam, lParam));
+//}
+//
+//void CALLBACK TimeProc(HWND hWnd, UINT uMsg, UINT idEvent, DWORD dwTime)
+//{
+//	static time_t t = time(NULL);
+//	time(&t);
+//	struct tm *ct = localtime(&t);
+//	//static int angle = (timeb % 360) + 1;
+//	static int angle = 90;
+//	int tmpNum;
+//
+//
+//	(ct->tm_sec)++;
+//	if (ct->tm_sec >= 60)
+//	{
+//		ct->tm_sec = 0;
+//		(ct->tm_min)++;
+//		if (ct->tm_min >= 60)
+//		{
+//			(ct->tm_hour)++;
+//			if (ct->tm_hour > 12)
+//				ct->tm_hour = 1;
+//		}
+//	}
+//
+//
+//
+//
+//
+//	InvalidateRect(hWnd, NULL, TRUE);
+//}
